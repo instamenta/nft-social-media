@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 export const Navbar = () => {
+
     return (
         <div id="navbar-main-div">
             <div className="html-container">
@@ -24,7 +25,6 @@ export const Navbar = () => {
                                     <li>
                                         <Link
                                             to="https://codepen.io/"
-                                             
                                             className="active2"
                                         >
                                             Contact
@@ -33,18 +33,12 @@ export const Navbar = () => {
                                     <li>
                                         <Link
                                             to="https://w3schools.com/"
-                                             
                                             className="active3"
                                         >
                                             Support
                                         </Link>
                                     </li>
                                     <div className="line" />
-                                    <li>
-                                        {/*<Link>
-                                            <i className="fa fa-search" onclick="show()"></i>
-                                        </Link>*/}
-                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -61,12 +55,6 @@ export const Navbar = () => {
                 </noscript>
             </div>
             <template />
-            <div className="dropdown" id="anotherFunction">
-                <div className="drop1">HTML</div>
-                <div className="drop2">CSS</div>
-                <div className="drop3">Javascript</div>
-                <div className="drop4">Sass</div>
-            </div>
         </div>
     )
 }
