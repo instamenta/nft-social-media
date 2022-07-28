@@ -10,33 +10,38 @@ export const Navbar = () => {
                             <nav>
                                 <ul className="nav-type">
                                     <li>
-                                        <Link to="https://codepen.io/EneergeticTomy/" className="active">
-                                            Home
-                                        </Link>
+                                        <Link to="/" className="active"
+                                        >Home</Link>
                                     </li>
                                     <li>
                                         <Link
-                                            to="https://codepen.io/TomikaBoy/full/LqMpaE"
+                                            to="/catalog"
                                             className="active1"
-                                        >
-                                            About
-                                        </Link>
+                                        >Catalog</Link>
                                     </li>
                                     <li>
                                         <Link
-                                            to="https://codepen.io/"
+                                            to="/contacts"
                                             className="active2"
-                                        >
-                                            Contact
-                                        </Link>
+                                        >Contacts</Link>
                                     </li>
                                     <li>
                                         <Link
-                                            to="https://w3schools.com/"
+                                            to="/user/login"
                                             className="active3"
-                                        >
-                                            Support
-                                        </Link>
+                                        >Login</Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/user/register"
+                                            className="active3"
+                                        >Register</Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/user/logout"
+                                            className="active3"
+                                        >Logout</Link>
                                     </li>
                                     <div className="line" />
                                 </ul>
