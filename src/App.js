@@ -1,8 +1,9 @@
 //import { useEffect, useState, Suspense } from "react";
 import { Routes, Route } from 'react-router-dom';
 
-import { Navbar } from "./components/navbar/navbar"
+import { Navbar } from "./components/Navbar/Navbar"
 import "./App.css"
+
 function App() {
 
 
@@ -20,6 +21,7 @@ function App() {
                 </Routes>
             </main>
         </div>
+        
     );
 }
 
