@@ -1,19 +1,29 @@
-
 form {
     background-color: white;
     padding: 0px 60px;
     border-radius: 10px;
+    box-shadow: 5px 5px 2px rgb(104, 123, 127);
 }
+
 h1 {
-    color: purple;
+    padding-top: 15px;
+    color: rgb(31, 179, 228);
     text-align: center;
+
 }
+
+h1:hover {
+    color: rgb(31, 179, 228);
+    ;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
 button {
-    width: 100%;
+    width: 90%;
     height: 50px;
     padding: 10px;
-    border: none;
-    background-color: rebeccapurple;
+    border: 3px lightskyblue outset;
+    background-color: rgb(31, 179, 228);
     color: white;
     border-radius: 5px;
     font-weight: bold;
@@ -21,4 +31,9 @@ button {
     cursor: pointer;
     margin: 15px;
     margin-bottom: 30px;
+}
+
+button:hover {
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
