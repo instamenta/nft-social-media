@@ -3,5 +3,8 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-
+    background-image: url('https://images.unsplash.com/photo-1589810264340-0ce27bfbf751?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c3Vuc2V0JTIwZ3JhZGllbnR8ZW58MHx8MHx8&w=1000&q=80');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
 }

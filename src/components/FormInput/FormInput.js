@@ -1,9 +1,13 @@
 import "./FormInput.css"
-export const FormInput = () => {
+export const FormInput = (props) => {
+    const {label, onChange, id, ...inputProps} = props
     return(
-        <div className="fromInput">
-            <label>Username</label>
-            <input></input>
+        <div className="formInput">
+            <label>{label}</label>
+            <input 
+            {...inputProps}
+            onChange={onChange}
+            ></input>
         </div>
     )
 }
