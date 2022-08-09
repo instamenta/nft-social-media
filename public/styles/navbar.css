@@ -16,14 +16,19 @@ li {
 }
 a {
     text-decoration: none;
-    color: orangered;
+    color: rgb(31, 179, 228);
+}
+a:hover {
+    color: white
 }
 .nav{
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: space-around;
     height: 8vh;
-    background-color: rgb(69, 1, 240);
+    background-color: rgb(8, 7, 10);
+    border-bottom: 5px solid rgb(31, 179, 228);
 }
 .nav_brand {
     text-transform: uppercase;
@@ -35,8 +40,6 @@ a {
     justify-content: space-around;
     gap: 3rem;
 }
-
-
-.nav_activate {
-    transform: translateX(0);
+.brand-logo {
+    background-image: url('https://png.pngtree.com/element_pic/16/11/02/bd886d7ccc6f8dd8db17e841233c9656.jpg');
 }
