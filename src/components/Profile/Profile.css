@@ -1,0 +1,11 @@
+div.container {
+    background-color: whitesmoke;
+    padding: 30px;
+    margin: 30px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 2px rgb(104, 123, 127);
+}
+.profile-pic {
+    border-radius: 20px;
+    border: 5px solid rgb(219, 228, 231);
+}
