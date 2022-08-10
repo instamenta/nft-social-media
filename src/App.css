@@ -8,3 +8,11 @@
     background-size: cover;
     background-position-x: center;
 }
+.footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: rgb(8, 7, 10);
+    color: rgb(31, 179, 228);
+    text-align: center;
+    user-select: none;
+}

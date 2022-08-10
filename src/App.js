@@ -6,6 +6,7 @@ import { Home } from "./components/Home/Home"
 import { Register } from './components/Register/Register'
 import { Login } from './components/Login/Login';
 import "./App.css"
+import { Footer } from './components/Footer';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/catalog/:gameId" />
                 </Routes>
             </main>
+            <Footer/>
         </div>
         
     );

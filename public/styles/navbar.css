@@ -49,4 +49,5 @@ a.nav_link:hover {
 .brand {
     font-size: 25px;
     font-weight: bold;
+    user-select: none;
 }
