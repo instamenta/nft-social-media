@@ -8,6 +8,7 @@ import { Login } from './components/Login/Login';
 import { Footer } from './components/Footer/Footer';
 
 import "./App.css"
+import { Profile } from './components/Profile/Profile';
 function App() {
 
 
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/create"  />
                     <Route path="/catalog" />
                     <Route path="/catalog/:gameId" />
+                    <Route path="/profile/*" element={<Profile />}/>
                 </Routes>
             </main>
             <Footer/>
