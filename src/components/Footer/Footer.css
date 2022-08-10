@@ -1,0 +1,33 @@
+.footer {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: rgb(8, 7, 10);
+    color: rgb(31, 179, 228);
+    text-align: center;
+    user-select: none;
+    width: 100%;
+    display: inline-block;
+    border-top: 5px solid rgb(107, 189, 216);
+}
+.footer-listing {
+    list-style-type: none;
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.social-icon {
+    width: 30px;
+    height: 30px;
+}
+.footer-socials {   
+    background-color: rgb(129, 135, 174);
+    border-bottom:5px solid rgb(96, 101, 133);
+    border-top:5px solid rgb(96, 101, 133);
+}
+.footer-copyright {
+    margin: 0px;
+    padding-top: 12px;
+}
