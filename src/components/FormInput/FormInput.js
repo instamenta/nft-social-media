@@ -9,15 +9,16 @@ export const FormInput = (props) => {
     }
     return(
         <div className="formInput">
-            <label for={props.name}>{label}</label>
+            <label htmlFor={props.name} className="input-label">{label}</label>
             <input 
+            className="auth-input"
             {...inputProps}
             onChange={onChange}
             onBlur={handleFocus}
             onFocus={()=>inputProps.name ==="confirmPassword" && setFocused(true)}
             focused={focused.toString()}
             ></input>
-            <span>{errorMessage}</span>
+            <span className="error-span">{errorMessage}</span>
         </div>
     )
 }

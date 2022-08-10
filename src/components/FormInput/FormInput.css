@@ -3,29 +3,30 @@
     flex-direction: column;
     width: 280px;
 }
-input{
+input.auth-input{
     padding: 15px;
     margin: 10px 0px;
     border-radius: 10px 0px;
     border: 1px solid rgb(8, 7, 10);
 }
-input:hover {
+input.auth-input:hover {
     box-shadow: 2px 2px 1px rgb(104, 123, 127);
 }
-label {
+label.input-label {
     font-size: 12px;
     color: rgb(8, 7, 10);
-    user-select: none
+    user-select: none;
 }
-span {
+span.error-span {
     font-size: 12px;
     padding: 3px;
     color: red;
     display: none;
+    user-select: none;
 }
-input:invalid[focused="true"] {
+input.auth-input:invalid[focused="true"] {
     border: 1px solid red;
 }
-input:invalid[focused="true"] ~ span {
+input.auth-input:invalid[focused="true"] ~ span {
     display: block;
 }

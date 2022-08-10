@@ -3,7 +3,7 @@ export const Navbar = () => {
 
     return (
         <nav className="nav">
-            <Link to="#" className="brand">Online-Shop</Link>
+            <Link to="/" className="brand">Online-Shop</Link>
 
             <ul className="nav_menu">
                 <li className="nav_item"><Link to="#" className="nav_link">Catalog</Link></li>

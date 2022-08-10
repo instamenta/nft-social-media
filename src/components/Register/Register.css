@@ -1,24 +1,25 @@
-form {
+form.authd-data {
     background-color: white;
     padding: 0px 60px;
     border-radius: 10px;
     box-shadow: 5px 5px 2px rgb(104, 123, 127);
 }
 
-h1 {
+h1.auth-h1 {
+    user-select: none;
     padding-top: 15px;
     color: rgb(31, 179, 228);
     text-align: center;
 
 }
 
-h1:hover {
+h1.auth-h1:hover {
     color: rgb(31, 179, 228);
-    ;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-button {
+
+button.submit-button{
     width: 90%;
     height: 50px;
     padding: 10px;
@@ -33,7 +34,15 @@ button {
     margin-bottom: 30px;
 }
 
-button:hover {
+button.submit-button:hover {
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+.auth-redirect {
+    color: black;
+    text-align: center;
+}
+.auth-redirect:hover {
+    color: darkslategray;
+}
+
