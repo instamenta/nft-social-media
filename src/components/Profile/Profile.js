@@ -19,12 +19,12 @@ export const Profile = () => {
                                 <h6>web developer</h6>
                                 <p className="profile-rating mt-3 mb-5"> RANKINGS: <span> 1/10 </span></p>
 
-                                
+
 
                             </div>
                         </div>
-                        <div className="col-md-2">
-                            <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                        <div className="col-md-2">  
+                            <Link to="/" className="homepage-btn">✘</Link>
                         </div>
 
                     </div>
@@ -41,27 +41,42 @@ export const Profile = () => {
                             </div>
                         </div>
                         {/* right side url */}
-                        <div className="col-md-8 pl-5 about-info">
+                        <div className="col-md-8 pl-5 about-info ">
                             <div className="tab-content profile-tab" id="myTabContent">
                                 <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                                    <div className="row md-3">
-                                        <div className="col-md-6">
-                                            <label htmlFor="User ID"></label>
+                                    <div className="grid-box">
+                                        <div className="aligner label-data">
+                                            <label>Username :</label>
                                         </div>
-                                        <div className="col-md-6">
-                                            <p>12312312323  </p>
+
+
+                                        <div className="aligner">
+                                            <input className="user-data" value="Jamjam" placeholder="Please fill field!"></input>
+                                            <button className="confirm-button">✓</button>
+                                        </div>
+                                    </div>
+                                    <div className="grid-box">
+                                        <div className="aligner label-data">
+                                            <label>E-mail :</label>
+                                        </div>
+
+                                        <div className="aligner">
+                                            <input className="user-data" value="jamjam@jam.com" placeholder="Please fill field!"></input>
+                                            <button className="confirm-button">✓</button>
+                                        </div>
+                                    </div>
+                                    <div className="grid-box" >
+
+                                        <div className="aligner label-data">
+                                            <label>Birthday :</label>
+                                        </div>
+
+                                        <div className="aligner ">
+                                            <p className="user-text">06/07/2001.</p>
                                         </div>
                                     </div>
 
-                                    <div className="row md-3">
-                                        <div className="col-md-6">
-                                            <label htmlFor="Name"></label>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <p>JAMJAMJAM</p>
-                                        </div>
-                                    </div>
 
                                 </div>
                             </div>

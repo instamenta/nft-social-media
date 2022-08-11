@@ -2,7 +2,7 @@
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: rgb(8, 7, 10);
-    color: rgb(31, 179, 228);
+    color: white;
     text-align: center;
     user-select: none;
     width: 100%;
@@ -21,11 +21,19 @@
 .social-icon {
     width: 30px;
     height: 30px;
+
+}
+.social-icon:hover {
+    background-color: rgb(96, 101, 133);
+    border-radius: 30%;
+    border: 4px solid rgb(202, 185, 236);
+    
 }
 .footer-socials {   
     background-color: rgb(129, 135, 174);
     border-bottom:5px solid rgb(96, 101, 133);
     border-top:5px solid rgb(96, 101, 133);
+    padding-top: 10px;
 }
 .footer-copyright {
     margin: 0px;
