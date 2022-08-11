@@ -4,7 +4,7 @@ export const Navbar = () => {
 
     return (
         <nav className="nav">
-            <Link to="/" className="brand">NFT-Collector</Link>
+            <Link to="/" className="brand">The NFT Hunter</Link>
 
             <ul className="nav_menu">
                 <li className="nav_item"><Link to="/catalog" className="nav_link">Catalog</Link></li>

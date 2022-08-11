@@ -1,0 +1,64 @@
+#welcome-world {
+    padding: 50px;
+    scroll-snap-type: y mandatory;
+    margin-top: 100px;
+    
+    text-align: center;
+    border: 2px solid rgb(96, 101, 133);
+    background-color: white;
+    border-radius: 40px;
+    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.3);
+
+}
+.section {
+    width: 90%;
+    height: 80%;
+    display: flex;
+
+}
+.home-page-container {
+    scroll-snap-type: y mandatory;
+
+}
+#welcome-world .welcome-message {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    background-image: url("https://uploads-ssl.webflow.com/5ead65b4cd1146b85071bfdf/604f37e7864989ee97d67574_Screen%20Shot%202021-03-15%20at%2011.32.15.png");
+    border-radius: 40px;
+    border: 5px solid black;
+}
+
+
+.welcome-message h2 {
+
+    font-size: 55px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: uppercase;
+    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    font-family: "Agency FB";
+    margin: 50px;
+    text-align: right;
+    -webkit-text-stroke: 2px black;
+    color: white;
+}
+
+.welcome-message h3 {
+
+    font-size: 55px;
+    text-shadow: none;
+    line-height: 1;
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4.8px rgba(0, 0, 0, 0.3);
+    font-family: "Agency FB";
+    margin: 50px;
+    -webkit-text-stroke: 2px black;
+    color: white;
+}

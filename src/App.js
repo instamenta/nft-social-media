@@ -1,4 +1,3 @@
-//import { useEffect, useState, Suspense } from "react";
 import { Routes, Route } from 'react-router-dom';
 
 import { Navbar } from "./components/Navbar/Navbar"
@@ -6,9 +5,10 @@ import { Home } from "./components/Home/Home"
 import { Register } from './components/Register/Register'
 import { Login } from './components/Login/Login';
 import { Footer } from './components/Footer/Footer';
+import { Profile } from './components/Profile/Profile';
+import { Catalog } from './components/Catalog/Catalog';
 
 import "./App.css"
-import { Profile } from './components/Profile/Profile';
 function App() {
 
 
@@ -22,7 +22,7 @@ function App() {
                     <Route path="/login" element={<Login />}/>
                     <Route path="/register" element={<Register />}/>
                     <Route path="/create"  />
-                    <Route path="/catalog" />
+                    <Route path="/catalog" element={<Catalog />}/>
                     <Route path="/catalog/:gameId" />
                     <Route path="/profile/*" element={<Profile />}/>
                 </Routes>
