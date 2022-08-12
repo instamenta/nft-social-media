@@ -37,7 +37,7 @@ export const Login = () => {
         const data = new FormData(e.target)
         console.log(Object.fromEntries(data.entries()))
 
-        api.get('http://localhost:3030/')
+        api.post('http://localhost:3030/', )
     }
 
     const onChange = (e) => {
