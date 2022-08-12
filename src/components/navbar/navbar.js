@@ -13,8 +13,8 @@ export const Navbar = () => {
                 
                 <li className="nav_item"><Link to="/user-list/:userId" className="nav_link">My Collection</Link></li>
                 <li className="nav_item"><Link to="/profile/:userId" className="nav_link">Profile</Link></li>
-                <li className="nav_item"><Link to="/login" className="nav_link">Login</Link></li>
-                <li className="nav_item"><Link to="/register" className="nav_link">Register</Link></li>
+                <li className="nav_item"><Link to="/users/login" className="nav_link">Login</Link></li>
+                <li className="nav_item"><Link to="/users/register" className="nav_link">Register</Link></li>
                 <li className="nav_item"><Link to="/logout" className="nav_link">Logout</Link></li>
                 
             </ul>

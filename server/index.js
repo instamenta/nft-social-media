@@ -1,26 +1,34 @@
+const mongoose = require('mongoose');
 const express = require('express');
 
-const cookieParser = require('cookie-parser');
-const { PORT } = require('./config/variables');
-// const routes = require('./routes');
-const { dataBase } = require('./config/dataBase')
-//const { auth } = require('./middlewares/authMiddleware')
-//const { errorHandler} = require('./middleware/errorHandlingMiddleware')
+const cors = require('./src/middlewares/cors');
+const auth = require('./src/middlewares/auth');
+const furnitureController = require('./src/controllers/furniture');
+const usersController = require('./src/controllers/users');
 
-const app = express();
 
-app.use(express.urlencoded({extended: false}));
-app.use(cookieParser())
+async function start() {
+    try {
+        await mongoose.connect('mongodb://localhost:27017/furniture2');
 
-app.get('/', ( req,res) => {
+        console.log('DB Ready');
+    } catch (err) {
+        console.log('Error connecting to database');
+        return process.exit(1);
+    }
 
-    console.log('works')
-})
+    const app = express();
 
-//app.use(auth)
-// app.use(routes);
-//app.use(errorHandler)
+    app.use(express.urlencoded({ extended: true }));
+    app.use(express.json());
+    app.use(cors());
+    app.use(auth());
 
-dataBase();
+    app.use('/data/catalog', furnitureController);
+    app.use('/users', usersController);
 
-app.listen(PORT, () => console.log('Server is running ' + PORT))
+    app.listen(3030, () => console.log('REST Service started on port 3030'));
+}
+
+
+start();

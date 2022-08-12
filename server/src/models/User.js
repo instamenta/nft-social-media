@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const { SALT_ROUNDS } = require('../config/variables');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -29,7 +28,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre('save', function(next) {
-    bcrypt.hash(this.password, SALT_ROUNDS)
+    bcrypt.hash(this.password, 10)
         .then(hashedPassword => {
             this.password = hashedPassword;
             next();

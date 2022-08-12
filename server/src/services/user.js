@@ -1,29 +1,27 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User = require('../models/UserModel');
+const User = require('../models/User');
 
 
 const blacklist = new Set();
 
 const JWT_SECRET = 't gcsergcserg  b920n3w4pc[w3tcawert6v9';
 
-export async function register(username, email, password) {
+async function register(email, password) {
     // check if email is taken
-    // const existing = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
+    const existing = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
 
-    // if (existing) {
-    //     throw new Error('Email is taken');
-    // }
+    if (existing) {
+        throw new Error('Email is taken');
+    }
 
     // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // store user
     const user = new User({
-        username,
         email,
-        hashedPassword,
-
+        hashedPassword
     });
 
     await user.save();
@@ -31,7 +29,7 @@ export async function register(username, email, password) {
     return createSession(user);
 }
 
-export async function login(email, password) {
+async function login(email, password) {
     // check if user exists
     const user = await User.findOne({ email: new RegExp(`^${email}$`, 'i') });
 
@@ -49,6 +47,10 @@ export async function login(email, password) {
     return createSession(user);
 }
 
+function logout(token) {
+    blacklist.add(token);
+}
+
 function createSession(user) {
     const payload = {
         email: user.email,
@@ -64,9 +66,16 @@ function createSession(user) {
     };
 }
 
-export const validateToken = (token) => {
+function validateToken(token) {
     if (blacklist.has(token)) {
         throw new Error('Token is blacklisted');
     }
     return jwt.verify(token, JWT_SECRET);
 }
+
+module.exports = {
+    register,
+    login,
+    logout,
+    validateToken
+};
