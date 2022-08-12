@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FormInput } from "../FormInput/FormInput"
+import * as api from "../../utilities/requester"
 
 export const Login = () => {
 
@@ -35,7 +36,10 @@ export const Login = () => {
 
         const data = new FormData(e.target)
         console.log(Object.fromEntries(data.entries()))
+
+        api.get('http://localhost:3030/')
     }
+
     const onChange = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
     }
