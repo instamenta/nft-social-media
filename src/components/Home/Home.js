@@ -19,9 +19,16 @@ export const Home = () => {
                 </div>
                             
                 <ImageSlider slides={SliderData}></ImageSlider>
-                <ul className="homepage-nav-list">
-                    <li><Link to="/catalog" className="homepage-nav-link">CATALOG</Link></li>
-                    <li><Link to="/catalog/most-wanted" className="homepage-nav-link">MOST WANTED</Link></li>
+                <ul className="homepage-nav-list">★
+                    {/* <li><Link to="/user/:userId" className="homepage-nav-link">My Collection</Link></li>★ */}
+                    {/* <li><Link to="/profile/:userId" className="homepage-nav-link">My Profile</Link></li>★ */}
+                    
+
+                    <li><Link to="/catalog" className="homepage-nav-link">Catalog</Link></li>★
+                    <li><Link to="/catalog/most-wanted" className="homepage-nav-link">Most Wanted</Link></li>★
+                    
+                    <li><Link to="/login" className="homepage-nav-link">Login</Link></li>★
+                    <li><Link to="/register" className="homepage-nav-link">Register</Link></li>★
                 </ul>
                 <h1 className="star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
             </form>

@@ -23,9 +23,10 @@ function App() {
                     <Route path="/register" element={<Register />}/>
                     <Route path="/create"  />
                     <Route path="/catalog" element={<Catalog />}/>
-                    <Route path="/catalog/:gameId" />
+                    <Route path="/catalog/:id" />
                     <Route path="/profile/*" element={<Profile />}/>
                     <Route path="/catalog/most-wanted" />
+                    <Route path="/user-list/:userId" />
                 </Routes>
             </main>
             <Footer/>

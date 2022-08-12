@@ -1,22 +1,22 @@
 export const SliderData = [
     {
       image:
-        'https://images.unsplash.com/photo-1546768292-fb12f6c92568?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
+        'https://airnfts.s3.amazonaws.com/nft-images/Cyber_Punk_004_1620157714307.gif'
     },
     {
       image:
-        'https://images.unsplash.com/photo-1501446529957-6226bd447c46?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1489&q=80'
+        'https://airnfts.s3.amazonaws.com/nft-images/Cyber_Punk_019_1620358977486.gif'
     },
     {
       image:
-        'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80'
+        'https://cdn.dribbble.com/users/10727738/screenshots/17489665/sample_1_4x.png'
     },
     {
       image:
-        'https://images.unsplash.com/photo-1475189778702-5ec9941484ae?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1351&q=80'
+        'https://d2vi0z68k5oxnr.cloudfront.net/e43c2035-4e91-492c-aa6c-651327503987/original.gif'
     },
     {
       image:
-        'https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80'
+        'https://www.arweave.net/D--6xS9qrl5zUGfschBQGUu1aS5l5H76lflBAlR9JbI?ext=PNG'
     }
   ];
