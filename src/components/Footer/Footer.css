@@ -8,6 +8,8 @@
     width: 100%;
     display: inline-block;
     border-top: 5px solid rgb(107, 189, 216);
+
+    position: relative;
 }
 .footer-listing {
     list-style-type: none;

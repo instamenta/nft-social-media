@@ -25,6 +25,7 @@ function App() {
                     <Route path="/catalog" element={<Catalog />}/>
                     <Route path="/catalog/:gameId" />
                     <Route path="/profile/*" element={<Profile />}/>
+                    <Route path="/catalog/most-wanted" />
                 </Routes>
             </main>
             <Footer/>

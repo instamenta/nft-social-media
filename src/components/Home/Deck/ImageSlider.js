@@ -21,6 +21,7 @@ export const ImageSlider = ({ slides }) => {
 
     return (
         <section className='slider'>
+            <h2 className="most-wanted-label">★ MOST WANTED NTF'S ★</h2>
             <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />
             <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
             {SliderData.map((slide, index) => {
@@ -30,11 +31,13 @@ export const ImageSlider = ({ slides }) => {
                         key={index}
                     >
                         {index === current && (
-                            <img src={slide.image} alt='travel image' className='image' />
+                            <img src={slide.image} alt='travel image' className='image' onClick={nextSlide}/>
                         )}
                     </div>
                 );
+                
             })}
+
         </section>
     );
 };

@@ -1,64 +1,83 @@
-#welcome-world {
-    padding: 50px;
-    scroll-snap-type: y mandatory;
-    margin-top: 100px;
-    
-    text-align: center;
-    border: 2px solid rgb(96, 101, 133);
+.home-form {
     background-color: white;
-    border-radius: 40px;
-    box-shadow: 10px 10px 5px  rgba(0, 0, 0, 0.3);
-
+    padding: 0px 60px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 2px rgb(104, 123, 127);
+    margin-bottom: 40px;
+    padding-bottom: 5px;
 }
-.section {
-    width: 90%;
-    height: 80%;
-    display: flex;
 
-}
-.home-page-container {
-    scroll-snap-type: y mandatory;
-
-}
-#welcome-world .welcome-message {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.star-message {
+    user-select: none;
+    padding-top: 15px;
+    margin-top: 30px;
+    color: black;
     text-align: center;
-    background-image: url("https://uploads-ssl.webflow.com/5ead65b4cd1146b85071bfdf/604f37e7864989ee97d67574_Screen%20Shot%202021-03-15%20at%2011.32.15.png");
-    border-radius: 40px;
-    border: 5px solid black;
 }
 
-
-.welcome-message h2 {
-
-    font-size: 55px;
-    line-height: 1;
-    font-weight: 700;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: uppercase;
-    text-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    font-family: "Agency FB";
-    margin: 50px;
-    text-align: right;
-    -webkit-text-stroke: 2px black;
-    color: white;
-}
-
-.welcome-message h3 {
-
-    font-size: 55px;
-    text-shadow: none;
-    line-height: 1;
-    font-weight: 700;
+.left-message {
     text-align: left;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: uppercase;
-    text-shadow: 0 2px 4.8px rgba(0, 0, 0, 0.3);
-    font-family: "Agency FB";
-    margin: 50px;
-    -webkit-text-stroke: 2px black;
+    margin-left: 10px;
+    height: 50%;
+    font-size: 35px;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 4px;
+    user-select: none;
+    font-weight: 700;
+}
+
+.right-message {
+    text-align: right;
+    margin-right: 10px;
+    height: 50%;
+    user-select: none;
+    font-size: 35px;
+    font-weight: 700;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 4px;
+}
+
+.welcome-message {
+    display: grid;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow:  2px 2px 5px 2px rgb(159, 197, 205);
+    grid-template-columns: 1fr 1fr;
+    background-image: url('https://media.smallbiztrends.com/2022/05/most-popular-nft-collections-may-9-2022.png');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 410px;
+}
+
+.star-message:hover {
     color: white;
+    -webkit-text-stroke: 2px black;
+}
+
+.homepage-nav-link {
+    font-family: "Times New Roman", Times, serif;
+
+    padding: 20px;
+    color: black;
+    font-size: 30px;
+}
+.homepage-nav-link:hover {
+
+    color: rgb(31, 179, 228);
+    text-decoration: none;
+
+}
+.homepage-nav-list {
+    list-style-type: none;
+    user-select: none;
+    font-weight:700;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px;
+    
+    margin-top: 30px;
+    margin-bottom: 0;
 }

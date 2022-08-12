@@ -15,23 +15,25 @@ li.nav_item {
     list-style: none;
 }
 a.nav_link {
-    font-size: 20px;
+    font-size: 30px;
+    font-family: "Times New Roman", Times, serif;
     text-decoration: none;
+    
     color: rgb(31, 179, 228);
     user-select: none;
 }
 a.nav_link:hover {
-    color: white
+    color: black;
 }
 .nav{
-    font-weight: bold;
+    font-weight:700;
     display: flex;
     align-items: center;
     justify-content: space-around;
-
-    background-color: rgb(8, 7, 10);
+    background-color: white;
     border-bottom: 5px solid rgb(31, 179, 228);
-    padding: 20px;
+
+
 }
 .nav_brand {
     text-transform: uppercase;
@@ -45,10 +47,16 @@ a.nav_link:hover {
 }
 
 .brand {
-    font-size: 25px;
-    font-weight: bold;
+    background-image: url('./site-logo.png');
     user-select: none;
+    background-size: cover;
+    width: 110px;
+    height: 90px;
+    background-position: center;
+    background-color: white;
+    border-radius: 80%;
 }
 .brand:hover {
-    color: white;
+    background-color: whitesmoke;
+    box-shadow: 0px 1px 2px 2px rgb(152, 147, 168);
 }
