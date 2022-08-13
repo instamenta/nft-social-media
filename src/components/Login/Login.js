@@ -31,12 +31,14 @@ export const Login = () => {
             required: true,
         },
     ]
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const data = new FormData(e.target)
         const user =Object.fromEntries(data.entries())
-
+        await axios.post('/')
+        .then(res => res.json())
+        .then(res => console.log(res))
         console.log(user)
         
         
