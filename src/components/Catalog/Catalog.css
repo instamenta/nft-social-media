@@ -1,0 +1,78 @@
+.wrapper-card {
+    margin: 2rem;
+    padding-top: 50px;
+    display: grid;
+    gap:1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.card {
+
+    text-align: center;
+    
+
+    box-shadow: 0 0 10px 5px lightgray;
+    border-radius: 20px;
+
+
+    margin: 10px;
+}
+.card-img {
+    object-fit: cover;
+    width: 230px;
+    height: 230px;
+    border-radius: 20px 20px 0px 0px;
+    user-select: none;
+}
+.card-body {
+    margin: 1rem;
+    flex-grow: 1;
+    user-select: none;
+}
+
+.card-title {
+    line-height: 1.4rem;
+    margin-bottom: 0.5rem;
+    user-select: none;
+}
+
+.card-description {
+    line-height: 1.2rem;
+    user-select: none;
+}
+.card-price {
+    font-size: 1.4rem;
+    user-select: none;
+    margin-top: 0.6rem;
+
+}
+.card-price::before {
+    content: "$";
+    font-size: 1rem;
+    position: relative;
+    top: -0.3rem;
+    user-select: none;
+    padding-right: 0.1rem;
+}
+.card-btn {
+    border: none;
+    border-top: 1px solid gainsboro;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    color: inherit;
+    width: 100%;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    user-select: none;
+    height: 50%;
+}
+.card-btn:hover {
+    color: black;
+    background-color:  whitesmoke;
+    border-radius: 50%;
+}
+
