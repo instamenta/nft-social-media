@@ -23,7 +23,7 @@ function App() {
                     <Route path="/" element={<Home />}/>
                     <Route path="/users/login" element={<Login />}/>
                     <Route path="/users/register" element={<Register />}/>
-                    <Route path="/create" element={<Upload />}/>
+                    <Route path="/nft/upload" element={<Upload />}/>
                     <Route path="/catalog" element={<Catalog />}/>
                     <Route path="/catalog/:id" />
                     <Route path="/profile/*" element={<Profile />}/>
