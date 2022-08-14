@@ -48,3 +48,8 @@ button.submit-button:hover {
     color: darkslategray;
 }
 
+.try-again-message {
+    font-size: 15px;
+    color: red;
+    text-align: center;
+}

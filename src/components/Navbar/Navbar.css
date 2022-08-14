@@ -18,7 +18,7 @@ a.nav_link {
     font-size: 30px;
     font-family: "Times New Roman", Times, serif;
     text-decoration: none;
-    
+    text-shadow: 1px 1px rgb(143, 142, 142);
     color: rgb(31, 179, 228);
     user-select: none;
 }

@@ -9,6 +9,8 @@ export const Home = () => {
         <div>
             <form className="home-form">
                 <h1 className="star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+                <h1 className="site-welcome">The Bigger Picture</h1>
+                <h1 className="star-message bottom">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
                 <div className="welcome-message">
                     <h1 className="left-message">
                         LOOKING<br/>FOR<br/>THE<br/>MOST<br/>WANTED<br/>NFT?

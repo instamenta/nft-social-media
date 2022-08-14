@@ -2,15 +2,26 @@ const User = require('../models/UserModel')
 const bcrypt = require('bcrypt');
 const generateToken = require('../utils/generateToken');
 const registerUser = async (req, res) => {
-    const { username, email, birthday, password } = req.body;
 
-    const user = await User.create({
-        username,
-        email,
-        birthday,
-        password
-    })
-    console.log(user)
+    let { username, email, birthday, password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+
+    if (password) {
+        password = await bcrypt.hash(password, salt)
+    }
+    let user
+    try {
+        user = await User.create({
+            username,
+            email,
+            birthday,
+            password
+        })
+        console.log(user)
+    } catch (err) {
+        res.status(203)
+        console.log('Error with register')
+    }
     if (user) {
         res.status(201).json({
             _id: user._id,
@@ -19,19 +30,22 @@ const registerUser = async (req, res) => {
             token: generateToken(user._id)
         })
     } else {
-        throw new Error('Error with register')
+        res.status(203)
+        console.log('Error with register')
     }
-    res.json({
-        username,
-        email
-    })
+
 }
 const authUser = async (req, res) => {
     const { username, password } = req.body;
+    let user
 
-    const user = await User.findOne({ username });
+    if (username) {
+        user = await User.findOne({ username });
+    }
 
     const valid = await bcrypt.compare(password, user.password)
+
+    console.log(valid)
 
     if (user && valid) {
         res.json({
@@ -42,8 +56,8 @@ const authUser = async (req, res) => {
             token: generateToken(user._id)
         })
     } else {
-        res.status(401)
-        throw new Error('Invalid email or password')
+        res.status(203)
+        console.log('Invalid username or password')
     }
 }
 

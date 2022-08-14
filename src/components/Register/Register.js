@@ -1,10 +1,13 @@
 import "./Register.css"
 
 import { useState } from 'react'
+import axios from "axios"
 import { FormInput } from "../FormInput/FormInput"
 import { Link } from "react-router-dom"
 
 export const Register = () => {
+
+    const [errors, setErrors] = useState('')
 
     const [values, setValues] = useState({
         username: '',
@@ -46,8 +49,8 @@ export const Register = () => {
             type: 'password',
             placeholder: '********',
             label: 'Password:',
-            errorMessage: "Password should be 6-20 characters!",
-            pattern: "^[A-Za-z0-9]{3,16}$",
+            errorMessage: "Password should be 6-25 characters!",
+            pattern: "^[A-Za-z0-9]{3,25}$",
             required: true,
         },
         {
@@ -67,7 +70,31 @@ export const Register = () => {
         const data = new FormData(e.target)
         const { username, email, birthday, password } = Object.fromEntries(data.entries());
 
-        console.log(username, email, birthday, password)
+        try {
+            const config = {
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }
+            const data = await axios.post('http://localhost:3031/users/register',
+                {
+                    username,
+                    email,
+                    birthday,
+                    password
+                },
+                config
+            )
+            if(data.status === 203) {
+                setErrors('Register error')
+                
+            } else {
+                localStorage.setItem('userInfo', JSON.stringify(data.data))
+            }
+            console.log(data)
+        } catch (error) {
+            setErrors('Register error')
+        }
 
     }
     const onChange = (e) => {
@@ -78,6 +105,8 @@ export const Register = () => {
         <div>
             <form onSubmit={handleSubmit} className="auth-data">
                 <h1 className="auth-h1">Register</h1>
+                
+<h2 className='try-again-message'>{errors}</h2>
                 {inputs.map((input) => (
                     <FormInput
                         key={input.id}

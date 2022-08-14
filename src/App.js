@@ -7,8 +7,10 @@ import { Login } from './components/Login/Login';
 import { Footer } from './components/Footer/Footer';
 import { Profile } from './components/Profile/Profile';
 import { Catalog } from './components/Catalog/Catalog';
+import { Upload } from './components/Upload/Upload';
 
 import "./App.css"
+
 function App() {
 
 
@@ -21,7 +23,7 @@ function App() {
                     <Route path="/" element={<Home />}/>
                     <Route path="/users/login" element={<Login />}/>
                     <Route path="/users/register" element={<Register />}/>
-                    <Route path="/create"  />
+                    <Route path="/create" element={<Upload />}/>
                     <Route path="/catalog" element={<Catalog />}/>
                     <Route path="/catalog/:id" />
                     <Route path="/profile/*" element={<Profile />}/>
