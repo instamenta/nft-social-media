@@ -1,67 +1,25 @@
 const Nft = require('../models/NftModel')
-
+const mongoose = require('mongoose')
 
 const uploadNft = async (req, res) => {
-    console.log(req.body)
+    let { name, info, description, price, pic, _id } = req.body;
+    price = Number(price)
+    console.log(typeof(price))
+    const creator = mongoose.Types.ObjectId(_id)
+    try {
+        let post = await Nft.create({name, info, description, price, pic, creator})
+        console.log(post)
+        res.json({post})
+    } catch (err) {
+        console.log(err)
+        res.status(203) 
+    }
 }
-// const registerUser = async (req, res) => {
 
-//     let { username, email, birthday, password } = req.body;
-//     const salt = await bcrypt.genSalt(10);
+const catalogNft = async (req, res) => {
+    
+    const nftList = await Nft.find()
 
-//     if (password) {
-//         password = await bcrypt.hash(password, salt)
-//     }
-//     let user
-//     try {
-//         user = await User.create({
-//             username,
-//             email,
-//             birthday,
-//             password
-//         })
-//         console.log(user)
-//     } catch (err) {
-//         res.status(203)
-//         console.log('Error with register')
-//     }
-//     if (user) {
-//         res.status(201).json({
-//             _id: user._id,
-//             username: user.username,
-//             birthday: user.birthday,
-//             token: generateToken(user._id)
-//         })
-//     } else {
-//         res.status(203)
-//         console.log('Error with register')
-//     }
-
-// }
-// const authUser = async (req, res) => {
-//     const { username, password } = req.body;
-//     let user
-
-//     if (username) {
-//         user = await User.findOne({ username });
-//     }
-
-//     const valid = await bcrypt.compare(password, user.password)
-
-//     console.log(valid)
-
-//     if (user && valid) {
-//         res.json({
-//             _id: user._id,
-//             username: user.username,
-//             birthday: user.birthday,
-//             pic: user.pic,
-//             token: generateToken(user._id)
-//         })
-//     } else {
-//         res.status(203)
-//         console.log('Invalid username or password')
-//     }
-// }
-
-module.exports = { uploadNft }
+    res.json(nftList)
+}
+module.exports = { uploadNft, catalogNft }

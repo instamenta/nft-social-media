@@ -24,11 +24,12 @@ function App() {
                     <Route path="/users/login" element={<Login />}/>
                     <Route path="/users/register" element={<Register />}/>
                     <Route path="/nft/upload" element={<Upload />}/>
-                    <Route path="/catalog" element={<Catalog />}/>
-                    <Route path="/catalog/:id" />
+                    <Route path="/nft/catalog" element={<Catalog />}/>
+                    <Route path="/nft/catalog/:id" />
                     <Route path="/profile/*" element={<Profile />}/>
-                    <Route path="/catalog/most-wanted" />
+                    <Route path="/nft/catalog/most-wanted" />
                     <Route path="/user-list/:userId" />
+                    {/* <Route path="/users/logout" /> */}
                 </Routes>
             </main>
             <Footer/>

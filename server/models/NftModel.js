@@ -17,7 +17,7 @@ const nftSchema = mongoose.Schema({
         type: String,
     },
     price: {
-        type: String,
+        type: Number,
         required: true,
     },
     pic: {
@@ -26,7 +26,8 @@ const nftSchema = mongoose.Schema({
     },
     creator: {
         type: mongoose.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true,
     },
     owners: [
         {

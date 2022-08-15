@@ -48,13 +48,19 @@ const authUser = async (req, res) => {
     console.log(valid)
 
     if (user && valid) {
+        const token = await generateToken(user)
+
+        res.cookie('accessToken', token, {
+            httpOnly: true,
+        })
         res.json({
             _id: user._id,
             username: user.username,
             birthday: user.birthday,
             pic: user.pic,
-            token: generateToken(user._id)
+            token: token
         })
+        
     } else {
         res.status(203)
         console.log('Invalid username or password')

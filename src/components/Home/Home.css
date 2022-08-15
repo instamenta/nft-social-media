@@ -70,6 +70,7 @@
 
     color: rgb(31, 179, 228);
     text-decoration: none;
+    
 
 }
 .homepage-nav-list {
@@ -97,6 +98,7 @@
 }
 .site-welcome:hover{
     color: rgb(218, 104, 191);
+    letter-spacing: 10px;
 }
 
 .bottom {

@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FormInput } from "../FormInput/FormInput"
 
 export const Login = () => {
+    const navigate = useNavigate();
 
     const [errors, setErrors] = useState('')
 
@@ -53,11 +54,16 @@ export const Login = () => {
                 config
             )
             if(data.status === 203) {
-                setErrors('Invalid username or password')
+                setErrors('Invalid username or password')   
             } else {
-                localStorage.setItem('userInfo', JSON.stringify(data.data))
+                if (data) {
+                    localStorage.setItem('userData', JSON.stringify(data.data))
+                    document.cookie = `USER_DATA=${data.data.token}`
+                    navigate('/')
+                }
+                
             }
-            console.log(data)
+            console.log(data.data)
         } catch (error) {
             setErrors('Invalid username or password')
         }
@@ -80,7 +86,7 @@ export const Login = () => {
                         value={values[input.name]}
                         onChange={onChange} />
                 ))}
-                <Link to="/register" className='auth-redirect'>
+                <Link to="/users/register" className='auth-redirect'>
                     Redirect to register</Link>
                 <button className='submit-button'>Login</button>
             </form>

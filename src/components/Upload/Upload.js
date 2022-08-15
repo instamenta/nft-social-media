@@ -66,30 +66,31 @@ export const Upload = () => {
         e.preventDefault();
 
         const formData = new FormData(e.target)
-        const { name, info, description, price, pic } = Object.fromEntries(formData.entries())
+        let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
         console.log(Object.fromEntries(formData.entries()))
+        const userData = localStorage.getItem('userData')
 
-
+            const _id = userData._id
+            
+        
         try {
             const config = {
                 headers: {
                     "Content-type": "application/json"
                 }
             }
-            const { data } = await axios.post('http://localhost:3031/nft/upload',
-                {
-                    name,
-                    info,
-                    description,
-                    price,
-                    pic
-                },
+            const data = await axios.post('http://localhost:3031/nft/upload',
+                { name, info, description, price, pic , _id},
                 config
             )
-
             console.log(data)
+            if (data.status === 203) {
+                setErrors('Upload failed! 1')
+            }
+            console.log(data.data)
+
         } catch (error) {
-            setErrors('Upload failed!')
+            setErrors('Upload failed! 2')
         }
     }
     const onChange = (e) => {

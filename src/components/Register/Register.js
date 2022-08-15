@@ -3,10 +3,10 @@ import "./Register.css"
 import { useState } from 'react'
 import axios from "axios"
 import { FormInput } from "../FormInput/FormInput"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const Register = () => {
-
+    const navigate = useNavigate()
     const [errors, setErrors] = useState('')
 
     const [values, setValues] = useState({
@@ -89,7 +89,9 @@ export const Register = () => {
                 setErrors('Register error')
                 
             } else {
-                localStorage.setItem('userInfo', JSON.stringify(data.data))
+                localStorage.setItem('userData', JSON.stringify(data.data))
+                document.cookie = `USER_DATA=${data.data.token}`
+                navigate('/')
             }
             console.log(data)
         } catch (error) {
@@ -114,7 +116,7 @@ export const Register = () => {
                         value={values[input.name]}
                         onChange={onChange} />
                 ))}
-                <Link to="/login" className='auth-redirect'>
+                <Link to="/users/login" className='auth-redirect'>
                     Redirect to login</Link>
                 <button className="submit-button">Register</button>
             </form>
