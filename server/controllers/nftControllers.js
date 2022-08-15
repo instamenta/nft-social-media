@@ -19,7 +19,14 @@ const uploadNft = async (req, res) => {
 const catalogNft = async (req, res) => {
     
     const nftList = await Nft.find()
-
     res.json(nftList)
 }
-module.exports = { uploadNft, catalogNft }
+const detailsNft = async (req, res) => {
+    console.log('inthere')
+    const nftId= req.params.id
+
+    const data = await Nft.findById(nftId)
+    console.log(data)
+    res.json(data)
+}
+module.exports = { uploadNft, catalogNft, detailsNft }

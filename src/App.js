@@ -8,33 +8,51 @@ import { Footer } from './components/Footer/Footer';
 import { Profile } from './components/Profile/Profile';
 import { Catalog } from './components/Catalog/Catalog';
 import { Upload } from './components/Upload/Upload';
+import { Details } from './components/Details/Details';
 
 import "./App.css"
-
+import { UserGuard } from './guards/UserGuard';
+import { GuestGuard } from './guards/GuestGuards';
 function App() {
-
 
     return (
         <div id="box" className='box'>
             <Navbar />
-            
+
             <main id="main-content" className='main-content'>
                 <Routes>
-                    <Route path="/" element={<Home />}/>
-                    <Route path="/users/login" element={<Login />}/>
-                    <Route path="/users/register" element={<Register />}/>
-                    <Route path="/nft/upload" element={<Upload />}/>
-                    <Route path="/nft/catalog" element={<Catalog />}/>
-                    <Route path="/nft/catalog/:id" />
-                    <Route path="/profile/*" element={<Profile />}/>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/users/login" element={
+                        <GuestGuard>
+                            <Login />
+                        </GuestGuard>
+                    } />
+                    <Route path="/users/register" element={
+                        <GuestGuard>
+                            <Register />
+                        </GuestGuard>
+                    } />
+                    <Route path="/nft/upload" element={
+                        <UserGuard>
+                            <Upload />
+                        </UserGuard>
+                    } />
+                    <Route path="/nft/catalog" element={<Catalog />} />
+                    <Route path="/nft/catalog/:id" element={
+                        <Details />
+                    }/>
+                    <Route path="/profile/*" element={
+                        <UserGuard>
+                            <Profile />
+                        </UserGuard>
+                    } />
                     <Route path="/nft/catalog/most-wanted" />
                     <Route path="/user-list/:userId" />
-                    {/* <Route path="/users/logout" /> */}
                 </Routes>
             </main>
-            <Footer/>
+            <Footer />
         </div>
-        
+
     );
 }
 

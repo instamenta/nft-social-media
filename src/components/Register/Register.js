@@ -105,7 +105,7 @@ export const Register = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className="auth-data">
+            <form onSubmit={handleSubmit} className="form-container">
                 <h1 className="auth-h1">Register</h1>
                 
 <h2 className='try-again-message'>{errors}</h2>

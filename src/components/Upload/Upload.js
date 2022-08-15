@@ -109,7 +109,7 @@ export const Upload = () => {
             </div>
 
             <div>
-                <form onSubmit={handleSubmit} className='auth-data'>
+                <form onSubmit={handleSubmit} className='form-container'>
                     <h1 className='auth-h1'>Upload your NFT</h1>
                     <h2 className='try-again-message'>{errors}</h2>
                     {inputs.map((input) => (

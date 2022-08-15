@@ -1,10 +1,12 @@
 .wrapper-card {
     margin: 2rem;
-    padding-top: 50px;
+    margin-top: 10px;
+    padding-top: 0px;
     display: grid;
     gap:1rem;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
+    padding-bottom: 30px;
 }
 
 .card {
@@ -76,3 +78,18 @@
     border-radius: 50%;
 }
 
+.message-catalog {
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+    padding: 20px;
+    color: black;
+    font-size: 40px;
+    text-shadow: 2px 2px rgb(143, 142, 142);
+    font-weight: 700;
+    letter-spacing: 3px;
+    user-select: none;
+    
+}
+.message-catalog:hover {
+    color: rgb(31, 179, 228);
+}
