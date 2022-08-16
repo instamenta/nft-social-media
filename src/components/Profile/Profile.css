@@ -67,6 +67,6 @@ div.container {
     
 }
 .homepage-btn:hover{
-
+    font-weight: 1000;
     color: red;
 }

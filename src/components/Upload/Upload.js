@@ -1,11 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
 
 import "./Upload.css"
 export const Upload = () => {
-
+    const navigate = useNavigate()
     const [errors, setErrors] = useState('')
 
     const [values, setValues] = useState({
@@ -88,6 +89,7 @@ export const Upload = () => {
                 setErrors('Upload failed! 1')
             }
             console.log(data.data)
+            navigate('/nft/catalog/' + data.data.post._id)
 
         } catch (error) {
             setErrors('Upload failed! 2')
