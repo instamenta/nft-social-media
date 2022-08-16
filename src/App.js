@@ -42,7 +42,7 @@ function App() {
                     <Route path="/nft/catalog/:id" element={
                         <Details />
                     }/>
-                    <Route path="/profile/*" element={
+                    <Route path="/profile/:id" element={
                         <UserGuard>
                             <Profile />
                         </UserGuard>
@@ -51,7 +51,6 @@ function App() {
                         <Edit />
                     } />
                     <Route path="/nft/catalog/most-wanted" />
-                    <Route path="/user-list/:userId" />
                 </Routes>
             </main>
             <Footer />

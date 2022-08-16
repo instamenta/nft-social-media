@@ -5,9 +5,21 @@ div.container {
     border-radius: 20px;
     box-shadow: 5px 5px 2px rgb(104, 123, 127);
 }
+.profile-bio {
+
+        word-wrap: break-word;
+        text-align: center;
+        width: 340px;
+        height: 150px;
+        font-style: italic;
+        text-overflow: clip;
+        
+}
 .profile-pic {
     border-radius: 20px;
     border: 5px solid rgb(219, 228, 231);
+    width: 235px;
+    height: 235px;
 }
 .aligner {
     display: inline-block;

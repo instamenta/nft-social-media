@@ -24,11 +24,14 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         minlength: 3,
-
     },
     pic: {
         type: String,
         default: "https://d1don5jg7yw08.cloudfront.net/800x800/nft-images/20210609/Anonymous_Binance_1623204341980.png"
+    },
+    bio: {
+        type: String,
+        default: "In NFT we trust!"
     },
     ownedNft: [{
         type: mongoose.Types.ObjectId
