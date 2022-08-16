@@ -36,7 +36,7 @@ const nftSchema = mongoose.Schema({
         }
     ],
     likes: [
-        
+        String
     ]
 })
 

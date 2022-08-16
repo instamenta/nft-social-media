@@ -29,7 +29,10 @@ const userSchema = mongoose.Schema({
     pic: {
         type: String,
         default: "https://d1don5jg7yw08.cloudfront.net/800x800/nft-images/20210609/Anonymous_Binance_1623204341980.png"
-    }
+    },
+    ownedNft: [{
+        type: mongoose.Types.ObjectId
+    }]
 })
 userSchema.pre('save', async function(next) {
     if(this.isModified('password')) {

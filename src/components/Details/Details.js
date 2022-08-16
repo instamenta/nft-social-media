@@ -47,6 +47,14 @@ export const Details = () => {
         
         navigate('/nft/catalog')
     }
+    const likeHandler = (e) => {
+        e.preventDefault()
+        console.log('click')
+    }
+    const ownHandler = (e) => {
+        e.preventDefault()
+        console.log('click')
+    }
     return (
         <>
             <div className="container emp-profile">
@@ -66,18 +74,26 @@ export const Details = () => {
                                 </div>
                                 <div>
                                     {nftData.description.length > 0
-                                        ? <h1 className="details-description">"{nftData.description}"</h1>
+                                        ? <h1 className="details-description">"{nftData.description.trim()}"</h1>
                                         : <></>
                                     }
                                     <h1 className="details-creator">Made By: {nftData.creator}</h1>
                                 </div>
-
+                                <div className="details-action-btn">
+                                <button onClick={likeHandler} className="like-btn">
+                                    Like
+                                </button>
+                                <button onClick={ownHandler} className="own-btn">
+                                    Own
+                                </button>
+                            </div>
                                 <div>
                                     <h1 className="details-price">${nftData.price}</h1>
 
                                 </div>
 
                             </div>
+                            
                             <div className="details-btn-container">
                                 <Link to="/nft/catalog" className="go-back-btn">✘</Link>
 
