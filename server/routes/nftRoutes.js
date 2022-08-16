@@ -7,6 +7,5 @@ router.route('/catalog').get(catalogNft)
 router.route('/catalog/:id').get(detailsNft)
 router.route('/catalog/:id/edit').post(editNft)
 router.route('/catalog/:id/delete').get(deleteNft)
-//router.route('/login').post(authUser)
 
 module.exports = router

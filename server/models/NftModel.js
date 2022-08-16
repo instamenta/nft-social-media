@@ -25,14 +25,13 @@ const nftSchema = mongoose.Schema({
         required: true,
     },
     creator: {
-        type: mongoose.Types.ObjectId,
-        ref: 'User',
+        type: String,
         required: true,
     },
     owners: [
         {
-            type: mongoose.Types.ObjectId,
-            ref: 'User'
+            type:String
+
         }
     ],
     likes: [

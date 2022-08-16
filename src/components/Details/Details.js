@@ -4,8 +4,13 @@ import { Link, useParams, useNavigate } from "react-router-dom"
 
 import "./Details.css"
 export const Details = () => {
+
     const params = useParams()
-    const [editUrl, setEditUrl ] = useState('/')
+
+    const [editUrl, setEditUrl] = useState('/')
+    const [creatorName, setCreatorName] = useState('')
+    const [creatorId, setCreatorId] = useState('')
+
     const navigate = useNavigate()
 
     const [nftData, setNftData] = useState({
@@ -37,14 +42,21 @@ export const Details = () => {
                 creator: data.creator,
                 description: data.description,
             })
+            console.log(`http://localhost:3031/profile/${data.creator.toString()}`)
+
+            const userObject = await axios.get(`http://localhost:3031/profile/${data.creator.toString()}`)
+
+            setCreatorName(userObject.data.username,)
+            setCreatorId(userObject.data._id)     
         }
         getData()
+
     }, []);
     const deleteHandler = async (e) => {
         e.preventDefault()
 
         const data = await axios.get(`http://localhost:3031/nft/catalog/${params.id}/delete`)
-        
+
         navigate('/nft/catalog')
     }
     const likeHandler = (e) => {
@@ -55,6 +67,7 @@ export const Details = () => {
         e.preventDefault()
         console.log('click')
     }
+
     return (
         <>
             <div className="container emp-profile">
@@ -63,7 +76,7 @@ export const Details = () => {
                         ? <div className="details-grid">
                             <div className='details-pic-container'>
                                 <a href={nftData.pic}>
-                                <img className="details-pic" src={nftData.pic} />
+                                    <img className="details-pic" src={nftData.pic} />
                                 </a>
                             </div>
 
@@ -77,23 +90,23 @@ export const Details = () => {
                                         ? <h1 className="details-description">"{nftData.description.trim()}"</h1>
                                         : <></>
                                     }
-                                    <h1 className="details-creator">Made By: {nftData.creator}</h1>
+                                    <h1 className="details-creator">Made By: <Link to={`/profile/` + creatorId} >{creatorName}</Link></h1>
                                 </div>
                                 <div className="details-action-btn">
-                                <button onClick={likeHandler} className="like-btn">
-                                    Like
-                                </button>
-                                <button onClick={ownHandler} className="own-btn">
-                                    Own
-                                </button>
-                            </div>
+                                    <button onClick={likeHandler} className="like-btn">
+                                        Like
+                                    </button>
+                                    <button onClick={ownHandler} className="own-btn">
+                                        Own
+                                    </button>
+                                </div>
                                 <div>
                                     <h1 className="details-price">${nftData.price}</h1>
 
                                 </div>
 
                             </div>
-                            
+
                             <div className="details-btn-container">
                                 <Link to="/nft/catalog" className="go-back-btn">✘</Link>
 

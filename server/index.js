@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 const express = require('express');
 
 const userRoutes = require('./routes/userRoutes')
-const cookieParser = require('cookie-parser')
 const nftRoutes = require('./routes/nftRoutes')
+const profileRoutes = require('./routes/profileRoutes')
+
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 async function start() {
     const app = express();
@@ -23,6 +25,7 @@ async function start() {
   
     app.use('/users', userRoutes)
     app.use('/nft', nftRoutes )
+    app.use('/profile',profileRoutes )
 
     app.listen(3031, () => console.log('REST Service started on port 3031'));
 }
