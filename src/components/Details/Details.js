@@ -1,10 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 
 import "./Details.css"
 export const Details = () => {
     const params = useParams()
+    const [editUrl, setEditUrl ] = useState('/')
+    const navigate = useNavigate()
+
     const [nftData, setNftData] = useState({
         _id: '',
         info: '',
@@ -20,6 +23,8 @@ export const Details = () => {
         const getData = async () => {
             const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
             console.log(data)
+            setEditUrl(`/nft/catalog/${params.id}/edit`)
+
             setNftData({
                 _id: data._id,
                 info: data.info,
@@ -35,7 +40,13 @@ export const Details = () => {
         }
         getData()
     }, []);
+    const deleteHandler = async (e) => {
+        e.preventDefault()
 
+        const data = await axios.get(`http://localhost:3031/nft/catalog/${params.id}/delete`)
+        
+        navigate('/nft/catalog')
+    }
     return (
         <>
             <div className="container emp-profile">
@@ -70,8 +81,8 @@ export const Details = () => {
                             <div className="details-btn-container">
                                 <Link to="/nft/catalog" className="go-back-btn">✘</Link>
 
-                                <Link to="#" className="details-options-btn">Edit</Link>
-                                <Link to="#" className="details-options-btn">Delete</Link>
+                                <Link to={editUrl} className="details-options-btn">Edit</Link>
+                                <button onClick={deleteHandler} className="details-options-btn">Delete</button>
 
 
 

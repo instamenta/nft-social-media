@@ -9,8 +9,6 @@ export const Navbar = () => {
 
     useEffect(()=> {
         const [cookieName, cookieValue] = document.cookie.split('=')
-        console.log(cookieName)
-        console.log(cookieValue)
         if((cookieValue)) {
             setLogInfo(true)
         }

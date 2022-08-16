@@ -13,6 +13,7 @@ import { Details } from './components/Details/Details';
 import "./App.css"
 import { UserGuard } from './guards/UserGuard';
 import { GuestGuard } from './guards/GuestGuards';
+import { Edit } from './components/Edit/Edit';
 function App() {
 
     return (
@@ -45,6 +46,9 @@ function App() {
                         <UserGuard>
                             <Profile />
                         </UserGuard>
+                    } />
+                    <Route path="/nft/catalog/:id/edit" element={
+                        <Edit />
                     } />
                     <Route path="/nft/catalog/most-wanted" />
                     <Route path="/user-list/:userId" />

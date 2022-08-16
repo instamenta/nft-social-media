@@ -7,7 +7,7 @@
 .details-grid{
     display: grid;
 
-    grid-template-columns: 400px 1fr 80px;
+    grid-template-columns: 400px 600px 80px;
 }
 .details-pic-container {
     padding-right: 0px;
@@ -79,7 +79,12 @@
 .details-options-btn {
     font-size: 20px;
     font-weight: 500;
+    border: none;
+    color: rgb(31, 179, 228);
 }
-.details-top {
-    
+.details-options-btn:hover {
+    color: aqua;
+    background-color: rgb(143, 142, 142);
+    border-radius: 50%;
+    text-decoration: underline;
 }

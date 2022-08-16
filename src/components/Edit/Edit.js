@@ -1,13 +1,32 @@
 import axios from 'axios'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
+import jwt_decode from 'jwt-decode'
+export const Edit = () => {
+    const params = useParams()
 
-import "./Upload.css"
-export const Upload = () => {
+    useEffect(() => {
+        const getData = async () => {
+            const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
+            console.log(data)
+
+            setValues({
+                info: data.info,
+                name: data.name,
+                pic: data.pic,
+                price: data.price.toString(),
+                description: data.description,
+            })
+        }
+        getData()
+    }, []);
+    
     const navigate = useNavigate()
+
     const [errors, setErrors] = useState('')
+
 
     const [values, setValues] = useState({
         name: '',
@@ -69,29 +88,28 @@ export const Upload = () => {
 
         const formData = new FormData(e.target)
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
+
         console.log(Object.fromEntries(formData.entries()))
+
         const userData = localStorage.getItem('userData')
 
-            const _id = userData._id
-            
-        
         try {
             const config = {
                 headers: {
                     "Content-type": "application/json"
                 }
+                
             }
-            const data = await axios.post('http://localhost:3031/nft/upload',
-                { name, info, description, price, pic , _id},
+            const data = await axios.post(`http://localhost:3031/nft/catalog/${params.id}/edit`,
+                { name, info, description, price, pic, userData },
                 config
             )
             console.log(data)
-            if (data.status === 203) {
-            setErrors('Updating Failed!')
+            if (data.status === 200) {
+                navigate(`/nft/catalog/${params.id}`)
+            } else {
+                setErrors('Updating Failed')
             }
-            console.log(data.data)
-            navigate('/nft/catalog/' + data.data.post._id)
-
         } catch (error) {
             setErrors('Updating Failed!')
         }
@@ -113,7 +131,7 @@ export const Upload = () => {
 
             <div>
                 <form onSubmit={handleSubmit} className='form-container'>
-                    <h1 className='auth-h1'>Upload your NFT</h1>
+                    <h1 className='auth-h1'>Edit your NFT</h1>
                     <h2 className='try-again-message'>{errors}</h2>
                     {inputs.map((input) => (
                         <FormInput
