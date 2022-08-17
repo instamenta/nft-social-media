@@ -1,7 +1,9 @@
 const express = require('express');
-const { uploadNft, catalogNft, detailsNft, editNft, deleteNft } = require('../controllers/nftControllers');
+const { uploadNft, catalogNft, detailsNft, editNft, deleteNft, likeNft, ownNft } = require('../controllers/nftControllers');
 const router = express.Router()
 
+router.route('/like/:id/:usernames').post(likeNft)
+router.route('/own/:id/:usernames').post(ownNft)
 router.route('/upload').post(uploadNft)
 router.route('/catalog').get(catalogNft)
 router.route('/catalog/:id').get(detailsNft)

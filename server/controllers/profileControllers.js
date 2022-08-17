@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const getUser = async (req, res) => {
 
     const userId = req.params.id
-
+    console.log(userId)
 
     const userData = await User.findOne({_id: userId})
     console.log(userData)

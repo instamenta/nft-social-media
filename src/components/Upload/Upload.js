@@ -71,10 +71,7 @@ export const Upload = () => {
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
         console.log(Object.fromEntries(formData.entries()))
         const userData = localStorage.getItem('userData')
-
-            const _id = userData._id
-            
-        
+        console.log(userData)
         try {
             const config = {
                 headers: {
@@ -82,7 +79,7 @@ export const Upload = () => {
                 }
             }
             const data = await axios.post('http://localhost:3031/nft/upload',
-                { name, info, description, price, pic , _id},
+                { name, info, description, price, pic , userData},
                 config
             )
             console.log(data)

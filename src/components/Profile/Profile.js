@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import "./Profile.css"
 export const Profile = () => {
     const params = useParams()
     const userId = params.id
+
     console.log(params)
+    const navigate = useNavigate()
     const [userData, setUserData] = useState({
         birthday: '',
         email: '',
@@ -17,10 +19,10 @@ export const Profile = () => {
     })
     useEffect(() => {
         const getData = async () => {
-            
+
             console.log(`http://localhost:3031/profile/${userId}`)
 
-            const {data, status} = await axios.get(`http://localhost:3031/profile/${userId}`)
+            const { data, status } = await axios.get(`http://localhost:3031/profile/${userId}`)
 
             console.log(data)
             setUserData({
@@ -32,11 +34,11 @@ export const Profile = () => {
                 _id: data._id,
                 bio: data.bio
             })
-            
+
         }
         getData()
-
     }, []);
+
     return (
         <>
             <div className="container emp-profile">
@@ -44,8 +46,10 @@ export const Profile = () => {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="profile-img">
-                                
-                                <img className="profile-pic" src={userData.pic} />
+
+                                <a href={userData.pic}>
+                                    <img className="profile-pic" src={userData.pic} />
+                                </a>
 
                             </div>
                         </div>
@@ -60,7 +64,7 @@ export const Profile = () => {
 
                             </div>
                         </div>
-                        <div className="col-md-2">  
+                        <div className="col-md-2">
                             <Link to="/" className="homepage-btn">✘</Link>
                         </div>
 

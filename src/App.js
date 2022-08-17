@@ -42,11 +42,7 @@ function App() {
                     <Route path="/nft/catalog/:id" element={
                         <Details />
                     }/>
-                    <Route path="/profile/:id" element={
-                        <UserGuard>
-                            <Profile />
-                        </UserGuard>
-                    } />
+                    <Route path="/profile/:id" element={<Profile />} />
                     <Route path="/nft/catalog/:id/edit" element={
                         <Edit />
                     } />

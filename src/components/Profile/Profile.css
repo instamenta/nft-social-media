@@ -4,6 +4,7 @@ div.container {
     margin: 50px;
     border-radius: 20px;
     box-shadow: 5px 5px 2px rgb(104, 123, 127);
+
 }
 .profile-bio {
 
@@ -20,6 +21,10 @@ div.container {
     border: 5px solid rgb(219, 228, 231);
     width: 235px;
     height: 235px;
+    
+}
+.profile-img {
+    user-select: none;
 }
 .aligner {
     display: inline-block;
@@ -81,4 +86,13 @@ div.container {
 .homepage-btn:hover{
     font-weight: 1000;
     color: red;
+}
+h5 {
+    user-select: none;
+}
+h6 {
+    user-select: none;
+}
+p {
+    user-select: none;
 }

@@ -10,7 +10,12 @@ export const Details = () => {
     const [editUrl, setEditUrl] = useState('/')
     const [creatorName, setCreatorName] = useState('')
     const [creatorId, setCreatorId] = useState('')
-
+    const [liked, setLiked] = useState(false)
+    const [owned, setOwned] = useState(false)
+    const [isOwner, setIsOwner] = useState(false)
+    const [likeState, setLikeState] = useState(0)
+    const [ownState, setOwnState] = useState(0)
+    const [isGuest, setIsGuest ] = useState(false)
     const navigate = useNavigate()
 
     const [nftData, setNftData] = useState({
@@ -22,14 +27,37 @@ export const Details = () => {
         pic: '',
         price: '',
         ready: false,
+        currentUser: ''
     })
 
     useEffect(() => {
+
+        const userDataJSON = localStorage.getItem('userData')
+        if(!userDataJSON ) {
+            setIsGuest(true)
+        } 
+        let username
+        if(userDataJSON) {
+            username = JSON.parse(userDataJSON?.username)
+        }
         const getData = async () => {
+
             const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
             console.log(data)
             setEditUrl(`/nft/catalog/${params.id}/edit`)
-
+            setCreatorId(data.creator)
+            if(username) {
+                if (data.owners.includes(username)) {
+                    setOwned(true)
+                } else {
+                    setOwned(false)
+                }
+                if (data.likes.includes(username)) {
+                    setLiked(true)
+                } else {
+                    setLiked(false)
+                }
+            }
             setNftData({
                 _id: data._id,
                 info: data.info,
@@ -41,33 +69,78 @@ export const Details = () => {
                 ready: true,
                 creator: data.creator,
                 description: data.description,
+                currentUser: username
             })
-            console.log(`http://localhost:3031/profile/${data.creator.toString()}`)
 
-            const userObject = await axios.get(`http://localhost:3031/profile/${data.creator.toString()}`)
-
-            setCreatorName(userObject.data.username,)
-            setCreatorId(userObject.data._id)     
+            const userObject = await axios.get(`http://localhost:3031/profile/${data.creator}`)
+            console.log('CreatorUsername:' + userObject.data.username)
+            console.log('Current User: ', username)
+            if (userObject.data.username === username) {
+                setIsOwner(true)
+                console.log(userObject.data.username === username)
+            }
+            setCreatorName(userObject.data.username)
         }
         getData()
-
     }, []);
+
     const deleteHandler = async (e) => {
         e.preventDefault()
-
         const data = await axios.get(`http://localhost:3031/nft/catalog/${params.id}/delete`)
-
         navigate('/nft/catalog')
     }
-    const likeHandler = (e) => {
+    const likeHandler = async (e) => {
         e.preventDefault()
-        console.log('click')
-    }
-    const ownHandler = (e) => {
-        e.preventDefault()
-        console.log('click')
-    }
 
+        const { username } = JSON.parse(localStorage.getItem('userData'))
+        console.log('user: ', username)
+        try {
+            const config = {
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }
+            const data = await axios.post(`http://localhost:3031/nft/like/${nftData._id}/${username}=${creatorName}`,
+                { username, creatorName },
+                config
+            )
+            if (liked === true) {
+                console.log('liked=true')
+                setLiked(false)
+                setLikeState(state => state - 1)
+            } else {
+                console.log('liked=false')
+                setLiked(true)
+                setLikeState(state => state + 1)
+            }
+        } catch (error) {
+        }
+    }
+    const ownHandler = async (e) => {
+        e.preventDefault()
+        const { username } = JSON.parse(localStorage.getItem('userData'))
+        const picUrl = nftData.pic
+        try {
+            const config = {
+                headers: { "Content-type": "application/json" }
+            }
+            const data = await axios.post(`http://localhost:3031/nft/own/${nftData._id}/${username}=${creatorName}`,
+                { picUrl },
+                config
+            )
+            if (owned === true) {
+                console.log('owned=false')
+
+                setOwnState(state => state - 1)
+                setOwned(false)
+            } else {
+                console.log('owned=true')
+                setOwnState(state => state + 1)
+                setOwned(true)
+            }
+        } catch (error) {
+        }
+    }
     return (
         <>
             <div className="container emp-profile">
@@ -79,7 +152,6 @@ export const Details = () => {
                                     <img className="details-pic" src={nftData.pic} />
                                 </a>
                             </div>
-
                             <div className="details-info-container">
                                 <div className="details-top">
                                     <h1 className="details-name">{nftData.name}</h1>
@@ -91,33 +163,43 @@ export const Details = () => {
                                         : <></>
                                     }
                                     <h1 className="details-creator">Made By: <Link to={`/profile/` + creatorId} >{creatorName}</Link></h1>
+                                    <h1 className="details-creator">Likes: {nftData.likes.length + likeState} ♥</h1>
+                                    <h1 className="details-creator">Owners: {nftData.owners.length + ownState} #</h1>
                                 </div>
                                 <div className="details-action-btn">
+                                    {isGuest 
+                                    ?   <>
+                                        
+                                    </>
+                                    :   <>  
                                     <button onClick={likeHandler} className="like-btn">
-                                        Like
+                                        {liked
+                                            ? 'liked'
+                                            : 'like'}
                                     </button>
                                     <button onClick={ownHandler} className="own-btn">
-                                        Own
+                                        {owned
+                                            ? 'owned'
+                                            : 'own'}
                                     </button>
+                                    </>
+                                    }
+                                    
                                 </div>
                                 <div>
                                     <h1 className="details-price">${nftData.price}</h1>
-
                                 </div>
-
                             </div>
-
                             <div className="details-btn-container">
                                 <Link to="/nft/catalog" className="go-back-btn">✘</Link>
-
-                                <Link to={editUrl} className="details-options-btn">Edit</Link>
-                                <button onClick={deleteHandler} className="details-options-btn">Delete</button>
-
-
-
+                                {isOwner
+                                        ? <>
+                                            <Link to={editUrl} className="details-options-btn">Edit</Link>
+                                            <button onClick={deleteHandler} className="details-options-btn">Delete</button>
+                                        </>
+                                        : <></>}
                             </div>
                         </div>
-
                         : <h1>Not found</h1>
                     }
                 </form>
