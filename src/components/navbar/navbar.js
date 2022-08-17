@@ -10,8 +10,10 @@ export const Navbar = () => {
     const [userName, setUserName] = useState('')
     useEffect(() => {
         const [cookieName, cookieValue] = document.cookie.split('=')
-        if ((cookieValue)) {
-            const { username, _id } = JSON.parse(localStorage.getItem('userData'))
+        const userDataJSON = localStorage.getItem('userData')
+        if (cookieValue && userDataJSON) {
+
+            const { username, _id } = JSON.parse(userDataJSON)
 
             
             setUserId(_id)
@@ -41,7 +43,7 @@ export const Navbar = () => {
                 {logInfo === true ?
                     <>
                         <li className="nav_item"><Link to="/nft/upload" className="nav_link">Upload</Link></li>
-                        <li className="nav_item"><Link to="/user-list/:userId" className="nav_link">My Collection</Link></li>
+                        <li className="nav_item"><Link to={"/profile/" + userId + "/collection"} className="nav_link">My Collection</Link></li>
                         <li className="nav_item"><Link to={"/profile/" + userId} className="nav_link">Profile</Link></li>
                     </>
                     : <></>}

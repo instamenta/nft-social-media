@@ -50,7 +50,7 @@ export const Catalog = () => {
                         {ntfComponents}
                     </div>
                     : <div className="wrapper-card">
-                        <h1>Nft in no available nft in your region</h1>
+                        <h1>No available nft in your region</h1>
                     </div>}
 
             </form>

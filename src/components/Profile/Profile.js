@@ -8,6 +8,8 @@ export const Profile = () => {
 
     console.log(params)
     const navigate = useNavigate()
+
+    const [isOwner, setIsOwner ] = useState(false)
     const [userData, setUserData] = useState({
         birthday: '',
         email: '',
@@ -17,6 +19,17 @@ export const Profile = () => {
         _id: '',
         bio: ''
     })
+    useEffect(() => {
+
+        const userDataJSON = localStorage.getItem("userData")
+            if(userDataJSON) {
+                const currentUser = JSON.parse(userDataJSON)
+                if(currentUser._id === userId) {
+                    setIsOwner(true)
+                    console.log(true)
+                }
+            }
+    },[])
     useEffect(() => {
         const getData = async () => {
 
@@ -66,6 +79,11 @@ export const Profile = () => {
                         </div>
                         <div className="col-md-2">
                             <Link to="/" className="homepage-btn">✘</Link>
+                            {isOwner 
+                            ?   <><Link to={"/profile/"+userData._id+"/select-profile-picture"}>select-profile-pic</Link></>
+                            :   <></>
+                            }
+                            
                         </div>
 
                     </div>
@@ -93,8 +111,17 @@ export const Profile = () => {
 
 
                                         <div className="aligner">
+                                        {isOwner 
+                                            ? <>
                                             <input className="user-data" value={userData.username} placeholder="Please fill field!"></input>
                                             <button className="confirm-button">✓</button>
+                                            </>
+                                            : <>
+                                            <input disabled className="user-data" value={userData.username} placeholder="Please fill field!"></input>
+
+                                            </>
+                                            }
+                                            
                                         </div>
                                     </div>
                                     <div className="grid-box">
@@ -103,8 +130,17 @@ export const Profile = () => {
                                         </div>
 
                                         <div className="aligner">
+                                        {isOwner 
+                                            ?   <>
                                             <input className="user-data" value={userData.email} placeholder="Please fill field!"></input>
                                             <button className="confirm-button">✓</button>
+                                                </>
+                                            : <>
+                                            <input disabled className="user-data" value={userData.username} placeholder="Please fill field!"></input>
+
+                                            </>
+                                            }
+                                            
                                         </div>
                                     </div>
                                     <div className="grid-box" >

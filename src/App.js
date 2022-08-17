@@ -9,11 +9,12 @@ import { Profile } from './components/Profile/Profile';
 import { Catalog } from './components/Catalog/Catalog';
 import { Upload } from './components/Upload/Upload';
 import { Details } from './components/Details/Details';
+import { SelectPicture } from './components/SelectPicture/SelectPicture';
+import { Edit } from './components/Edit/Edit';
 
 import "./App.css"
 import { UserGuard } from './guards/UserGuard';
 import { GuestGuard } from './guards/GuestGuards';
-import { Edit } from './components/Edit/Edit';
 function App() {
 
     return (
@@ -43,6 +44,7 @@ function App() {
                         <Details />
                     }/>
                     <Route path="/profile/:id" element={<Profile />} />
+                    <Route path="/profile/:id/select-profile-picture" element={<SelectPicture />} />
                     <Route path="/nft/catalog/:id/edit" element={
                         <Edit />
                     } />

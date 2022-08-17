@@ -38,7 +38,13 @@ export const Details = () => {
         } 
         let username
         if(userDataJSON) {
-            username = JSON.parse(userDataJSON?.username)
+            const userObject = JSON.parse(userDataJSON)
+            if(userObject.username) {
+                username = userObject.username
+            } else {
+                setIsGuest(true)
+            }
+            
         }
         const getData = async () => {
 
