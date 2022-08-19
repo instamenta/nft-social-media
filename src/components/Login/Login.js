@@ -41,11 +41,13 @@ export const Login = () => {
         const { username, password } = Object.fromEntries(formData.entries())
 
         try {
+
             const config = {
                 headers: {
                     "Content-type": "application/json"
                 }
             }
+            
             const data = await axios.post('http://localhost:3031/users/login',
                 {
                     username,
@@ -53,7 +55,8 @@ export const Login = () => {
                 },
                 config
             )
-            if(data.status === 203) {
+
+            if(data.status === 203 || data.data.message === "Invalid username or password") {
                 setErrors('Invalid username or password')   
             } else {
                 if (data) {

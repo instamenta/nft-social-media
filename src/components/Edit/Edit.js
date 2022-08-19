@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
-import jwt_decode from 'jwt-decode'
+
 export const Edit = () => {
     const params = useParams()
 

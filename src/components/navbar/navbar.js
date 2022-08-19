@@ -16,7 +16,6 @@ export const Navbar = () => {
 
             const { username, _id } = JSON.parse(userDataJSON)
 
-            
             setUserId(_id)
             setUserName(username)
             setLogInfo(true)
@@ -44,7 +43,6 @@ export const Navbar = () => {
                 {logInfo === true ?
                     <>
                         <li className="nav_item"><Link to="/nft/upload" className="nav_link">Upload</Link></li>
-                        <li className="nav_item"><Link to={"/profile/" + userId + "/collection"} className="nav_link">Collection</Link></li>
                         <li className="nav_item"><Link to={"/profile/" + userId} className="nav_link">Profile</Link></li>
                     </>
                     : <></>}

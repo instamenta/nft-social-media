@@ -2,11 +2,10 @@ const User = require('../models/UserModel')
 const bcrypt = require('bcrypt');
 const generateToken = require('../utils/generateToken');
 const registerUser = async (req, res) => {
-
     let { username, email, birthday, password } = req.body;
     const salt = await bcrypt.genSalt(10);
 
-    if (password) {
+    if (password < 25 && password > 6) {
         password = await bcrypt.hash(password, salt)
     }
     let user
@@ -19,10 +18,10 @@ const registerUser = async (req, res) => {
         })
     } catch (err) {
         res.status(203)
-        console.log('Error with register')
+        res.end()
     }
     if (user) {
-        res.status(201).json({
+        res.status(200).json({
             _id: user._id,
             username: user.username,
             birthday: user.birthday,
@@ -30,26 +29,35 @@ const registerUser = async (req, res) => {
         })
     } else {
         res.status(203)
-        console.log('Error with register')
+        res.end()
     }
 
 }
 const authUser = async (req, res) => {
-    const { username, password } = req.body;
-    let user
+    try {
+        const { username, password } = req.body;
+        let user
+        if (!username || !password) {
+            throw {
+                message: 'Invalid username or password'
+            }
+        }
+        if (username) {
+            user = await User.findOne({ username });
+        }
+        if (!user) {
+            throw { message: 'Invalid username or password' }
+        }
 
-    if (username) {
-        user = await User.findOne({ username });
-    }
-    if (user) {
         const valid = await bcrypt.compare(password, user.password)
 
-        if (user && valid) {
+        if (valid) {
             const token = await generateToken(user)
 
             res.cookie('accessToken', token, {
                 httpOnly: true,
             })
+
             res.json({
                 _id: user._id,
                 username: user.username,
@@ -57,15 +65,16 @@ const authUser = async (req, res) => {
                 pic: user.pic,
                 token: token
             })
+
         } else {
-            res.status(203) 
+            throw { message: 'Invalid username or password' }
         }
 
-
-    } else {
-        res.status(203)
-        console.log('Invalid username or password')
+    } catch (error) {
+        res.status = 203
+        res.json(error)
     }
+
 }
 
 module.exports = { registerUser, authUser }

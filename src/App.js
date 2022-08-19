@@ -45,11 +45,21 @@ function App() {
                         <Details />
                     }/>
                     <Route path="/profile/:id" element={<Profile />} />
-                    <Route path="/profile/:id/select-profile-picture" element={<SelectPicture />} />
-                    <Route path="/nft/catalog/:id/edit" element={
-                        <Edit />
+                    <Route path="/profile/:id/select-profile-picture" element={
+                    <UserGuard>
+                    <SelectPicture />
+                        
+                    </UserGuard>
                     } />
-                    <Route path="/nft/catalog/most-wanted" element={<MostWanted />}/>
+                    <Route path="/nft/catalog/:id/edit" element={
+                        <UserGuard>
+                        <Edit />
+                        </UserGuard>
+                    } />
+                    <Route path="/nft/catalog/most-wanted" element={
+                    
+                    <MostWanted />}/>
+
                 </Routes>
             </main>
             <Footer />

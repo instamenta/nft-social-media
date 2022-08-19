@@ -23,6 +23,7 @@ const nftSchema = mongoose.Schema({
     pic: {
         type: String,
         required: true,
+        unique: true
     },
     creator: {
         type: String,
