@@ -49,7 +49,6 @@ export const Details = () => {
         const getData = async () => {
 
             const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
-            console.log(data)
             setEditUrl(`/nft/catalog/${params.id}/edit`)
             setCreatorId(data.creator)
             if(username) {
@@ -79,11 +78,10 @@ export const Details = () => {
             })
 
             const userObject = await axios.get(`http://localhost:3031/profile/${data.creator}`)
-            console.log('CreatorUsername:' + userObject.data.username)
-            console.log('Current User: ', username)
+
             if (userObject.data.username === username) {
                 setIsOwner(true)
-                console.log(userObject.data.username === username)
+
             }
             setCreatorName(userObject.data.username)
         }
@@ -99,7 +97,7 @@ export const Details = () => {
         e.preventDefault()
 
         const { username } = JSON.parse(localStorage.getItem('userData'))
-        console.log('user: ', username)
+
         try {
             const config = {
                 headers: {
@@ -111,11 +109,9 @@ export const Details = () => {
                 config
             )
             if (liked === true) {
-                console.log('liked=true')
                 setLiked(false)
                 setLikeState(state => state - 1)
             } else {
-                console.log('liked=false')
                 setLiked(true)
                 setLikeState(state => state + 1)
             }
@@ -135,16 +131,14 @@ export const Details = () => {
                 config
             )
             if (owned === true) {
-                console.log('owned=false')
-
                 setOwnState(state => state - 1)
                 setOwned(false)
             } else {
-                console.log('owned=true')
                 setOwnState(state => state + 1)
                 setOwned(true)
             }
         } catch (error) {
+            console.log(error)
         }
     }
     return (

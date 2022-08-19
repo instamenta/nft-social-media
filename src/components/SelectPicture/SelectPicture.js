@@ -6,7 +6,6 @@ export const SelectPicture = () => {
     const params = useParams()
     const userId = params.id
 
-    
     const navigate = useNavigate()
     const [userData, setUserData] = useState({
         birthday: '',
@@ -38,7 +37,7 @@ export const SelectPicture = () => {
 
         let eventHandler = async (e) => {
             e.preventDefault()
-            console.log(nftUrl)
+
             const currentUser = localStorage.getItem('userData')
             try {
                 if(currentUser) {

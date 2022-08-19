@@ -63,7 +63,6 @@ export const Login = () => {
                 }
                 
             }
-            console.log(data.data)
         } catch (error) {
             setErrors('Invalid username or password')
         }

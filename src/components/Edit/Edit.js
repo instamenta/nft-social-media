@@ -10,7 +10,6 @@ export const Edit = () => {
     useEffect(() => {
         const getData = async () => {
             const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
-            console.log(data)
 
             setValues({
                 info: data.info,
@@ -89,8 +88,6 @@ export const Edit = () => {
         const formData = new FormData(e.target)
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
 
-        console.log(Object.fromEntries(formData.entries()))
-
         const userData = localStorage.getItem('userData')
 
         try {
@@ -104,7 +101,7 @@ export const Edit = () => {
                 { name, info, description, price, pic, userData },
                 config
             )
-            console.log(data)
+
             if (data.status === 200) {
                 navigate(`/nft/catalog/${params.id}`)
             } else {

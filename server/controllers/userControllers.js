@@ -17,7 +17,6 @@ const registerUser = async (req, res) => {
             birthday,
             password
         })
-        console.log(user)
     } catch (err) {
         res.status(203)
         console.log('Error with register')
@@ -44,8 +43,6 @@ const authUser = async (req, res) => {
     }
     if (user) {
         const valid = await bcrypt.compare(password, user.password)
-
-        console.log(valid)
 
         if (user && valid) {
             const token = await generateToken(user)

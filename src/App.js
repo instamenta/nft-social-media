@@ -11,6 +11,7 @@ import { Upload } from './components/Upload/Upload';
 import { Details } from './components/Details/Details';
 import { SelectPicture } from './components/SelectPicture/SelectPicture';
 import { Edit } from './components/Edit/Edit';
+import { MostWanted } from './components/MostWanted/MostWanted';
 
 import "./App.css"
 import { UserGuard } from './guards/UserGuard';
@@ -48,7 +49,7 @@ function App() {
                     <Route path="/nft/catalog/:id/edit" element={
                         <Edit />
                     } />
-                    <Route path="/nft/catalog/most-wanted" />
+                    <Route path="/nft/catalog/most-wanted" element={<MostWanted />}/>
                 </Routes>
             </main>
             <Footer />

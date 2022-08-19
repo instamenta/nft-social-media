@@ -59,7 +59,7 @@ div.container {
 }
 .confirm-button:hover {
     box-shadow: 2px 2px 1px rgb(104, 123, 127);
-    background-color: rgb(163, 159, 187);;
+    background-color: rgb(163, 159, 187);
 }
 .user-data {
     border-radius: 10px 0px;
@@ -81,11 +81,31 @@ div.container {
     background-color: whitesmoke;
     text-align: center;
     color: black;
-    
+    user-select: none;
 }
 .homepage-btn:hover{
     font-weight: 1000;
     color: red;
+}
+.select-pic-btn {
+    border: 2px solid rgb(163, 159, 187);;
+    position: absolute;
+    right: 30px;
+    top: 65%;
+    font-size: 20px;
+    border-radius: 20px;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: rgb(31, 179, 228);
+    user-select: none;
+}
+.select-pic-btn:hover {
+    color: rgb(34, 134, 168);
+    text-decoration: none;
+    box-shadow: 1px 1px 1px rgb(31, 179, 228);
+}
+.profile-work {
+    user-select: none;
 }
 h5 {
     user-select: none;

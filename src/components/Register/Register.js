@@ -93,7 +93,7 @@ export const Register = () => {
                 document.cookie = `USER_DATA=${data.data.token}`
                 navigate('/')
             }
-            console.log(data)
+
         } catch (error) {
             setErrors('Register error')
         }

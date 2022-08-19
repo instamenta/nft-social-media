@@ -8,6 +8,7 @@ export const Navbar = () => {
     const [logInfo, setLogInfo] = useState(false)
     const [userId, setUserId] = useState('')
     const [userName, setUserName] = useState('')
+    
     useEffect(() => {
         const [cookieName, cookieValue] = document.cookie.split('=')
         const userDataJSON = localStorage.getItem('userData')
@@ -27,7 +28,7 @@ export const Navbar = () => {
         e.preventDefault();
 
         document.cookie = "USER_DATA=trash; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
-        console.log(document.cookie)
+
         localStorage.removeItem('userData')
         fetch('/')
         setLogInfo(false)
@@ -43,7 +44,7 @@ export const Navbar = () => {
                 {logInfo === true ?
                     <>
                         <li className="nav_item"><Link to="/nft/upload" className="nav_link">Upload</Link></li>
-                        <li className="nav_item"><Link to={"/profile/" + userId + "/collection"} className="nav_link">My Collection</Link></li>
+                        <li className="nav_item"><Link to={"/profile/" + userId + "/collection"} className="nav_link">Collection</Link></li>
                         <li className="nav_item"><Link to={"/profile/" + userId} className="nav_link">Profile</Link></li>
                     </>
                     : <></>}

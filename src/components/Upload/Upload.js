@@ -69,9 +69,9 @@ export const Upload = () => {
 
         const formData = new FormData(e.target)
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
-        console.log(Object.fromEntries(formData.entries()))
+
         const userData = localStorage.getItem('userData')
-        console.log(userData)
+
         try {
             const config = {
                 headers: {
@@ -82,11 +82,11 @@ export const Upload = () => {
                 { name, info, description, price, pic , userData},
                 config
             )
-            console.log(data)
+
             if (data.status === 203) {
             setErrors('Updating Failed!')
             }
-            console.log(data.data)
+
             navigate('/nft/catalog/' + data.data.post._id)
 
         } catch (error) {

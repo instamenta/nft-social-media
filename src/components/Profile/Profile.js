@@ -6,7 +6,6 @@ export const Profile = () => {
     const params = useParams()
     const userId = params.id
 
-    console.log(params)
     const navigate = useNavigate()
 
     const [isOwner, setIsOwner ] = useState(false)
@@ -26,18 +25,15 @@ export const Profile = () => {
                 const currentUser = JSON.parse(userDataJSON)
                 if(currentUser._id === userId) {
                     setIsOwner(true)
-                    console.log(true)
+
                 }
             }
     },[])
     useEffect(() => {
         const getData = async () => {
 
-            console.log(`http://localhost:3031/profile/${userId}`)
-
             const { data, status } = await axios.get(`http://localhost:3031/profile/${userId}`)
 
-            console.log(data)
             setUserData({
                 birthday: data.birthday,
                 email: data.email,
@@ -80,7 +76,9 @@ export const Profile = () => {
                         <div className="col-md-2">
                             <Link to="/" className="homepage-btn">✘</Link>
                             {isOwner 
-                            ?   <><Link to={"/profile/"+userData._id+"/select-profile-picture"}>select-profile-pic</Link></>
+                            ?   <><Link to={"/profile/"+userData._id+"/select-profile-picture"} className="select-pic-btn">
+                                Choose Nft
+                                </Link></>
                             :   <></>
                             }
                             
