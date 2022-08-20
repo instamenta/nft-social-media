@@ -20,6 +20,11 @@ export const Navbar = () => {
             setUserName(username)
             setLogInfo(true)
 
+        } else {
+            document.cookie = "USER_DATA=trash; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
+            fetch('/')
+            setLogInfo(false)
+            navigate('/users/login')
         }
     }, [document.cookie])
 

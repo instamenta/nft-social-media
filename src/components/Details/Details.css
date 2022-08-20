@@ -2,6 +2,7 @@
     width: 430px;
     height: 430px;
     border-radius: 20px;
+    user-select: none;
 
 }
 
@@ -35,14 +36,15 @@
     letter-spacing: 4px;
     font-family: "Times New Roman", Times, serif;
     text-shadow: 2px 2px rgb(149, 135, 145);
-
     -webkit-text-stroke: 2px black;
+
 }
 
 .details-info {
     font-size: 30px;
     text-align: center;
     padding-bottom: 20px;
+    user-select: none;
 }
 
 .details-description {
@@ -51,7 +53,7 @@
 }
 
 .details-creator {
-
+    user-select: none;
     text-align: center;
 }
 
@@ -60,6 +62,7 @@
     font-size: 40px;
     text-align: center;
     font-weight: 700;
+    user-select: none;
 }
 
 .go-back-btn {
@@ -75,6 +78,7 @@
     color: black;
     justify-content: center;
     margin: 20px;
+    user-select: none;
 }
 
 .go-back-btn:hover {
@@ -90,6 +94,7 @@
     text-align: center;
     border-top: 3px solid rgb(195, 194, 201);
     border-bottom: 3px solid rgb(195, 194, 201);
+    user-select: none;
 }
 
 .details-options-btn {
@@ -98,6 +103,7 @@
     border: none;
     color: rgb(31, 179, 228);
     height: 30px;
+    user-select: none;
 }
 
 .details-options-btn:hover {
@@ -112,6 +118,7 @@
     justify-content: center;
     align-items: center;
     font-size: 30px;
+    user-select: none;
 
 }
 
@@ -126,6 +133,7 @@
     font-family: "Times New Roman", Times, serif;
     text-shadow: 2px 2px rgb(149, 135, 145);
     border-radius: 70%;
+    user-select: none;
 }
 
 .own-btn {
@@ -142,6 +150,7 @@
     text-shadow: 2px 2px rgb(149, 135, 145);
     margin-left: 40px;
     border-radius: 70%;
+    user-select: none;
 }
 
 .like-btn:hover {

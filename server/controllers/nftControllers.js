@@ -17,7 +17,7 @@ const uploadNft = async (req, res) => {
 
 const catalogNft = async (req, res) => {
 
-    const nftList = await Nft.find()
+    const nftList = await Nft.find().sort({_id: -1})
     res.json(nftList)
 }
 const detailsNft = async (req, res) => {

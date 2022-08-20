@@ -1,3 +1,20 @@
+# Basic Architecture Explanation
+
+    * public - for static images and css + index.html
+
+    * server - contains the REST server 
+            * routes - handles route redirecting to the corresponding request addres based on first parameter
+            * utils - containes JsonWebToken functionality
+            * models - keeps the Mongoose Schemas 
+            * controllers - find the specific fetched route and handles the REST request
+  
+
+    * src - handles the react-app + cleint side rendering
+            * components - exports all components need for client side rendering also handles evets and requests data to the server
+                        * components.css - keeps all css for specific page
+            * guards - guards user to acces parts based on condition
+            * App.js - handles client side routing and uses routeGuards
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
