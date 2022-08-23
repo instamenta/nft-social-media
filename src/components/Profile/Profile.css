@@ -5,35 +5,50 @@ div.container {
     border-radius: 20px;
     box-shadow: 5px 5px 2px rgb(104, 123, 127);
 }
+
 .profile-error {
     color: red;
 }
+
 .profile-error-container {
     height: 24px;
     margin-bottom: 3px;
 }
+
 .profile-bio {
-        word-wrap: break-word;
-        text-align: center;
-        width: 340px;
-        height: 150px;
-        font-style: italic;
-        text-overflow: clip;
-        
+    word-wrap: break-word;
+    text-align: center;
+    width: 340px;
+    height: 125px;
+    font-style: italic;
+    text-overflow: clip;
+
+}
+.bio-textarea {
+    border-radius: 10px 0px;
+    height: 120px;
+    border: 1px solid rgb(8, 7, 10);
+}
+.bio-textarea:hover {
+    box-shadow: 2px 2px 1px rgb(104, 123, 127);
 }
 .profile-pic {
     border-radius: 20px;
     border: 5px solid rgb(219, 228, 231);
     width: 235px;
     height: 235px;
-    
+    padding: 0px;
+    margin: 0px;
 }
+
 .profile-img {
     user-select: none;
 }
+
 .aligner {
     display: inline-block;
 }
+
 .label-data {
     text-align: right;
     padding-right: 30px;
@@ -42,17 +57,20 @@ div.container {
     user-select: none;
     font-family: 'Trebuchet MS', sans-serif;
     padding-top: 3px;
-    
+
 }
+
 .grid-box {
     display: grid;
     grid-template-columns: 250px 250px;
     padding: 5px;
 }
+
 .about-info {
     border-top: 3px solid rgb(195, 194, 201);
     border-bottom: 3px solid rgb(195, 194, 201);
 }
+
 .confirm-button {
     border: none;
     background-color: rgb(195, 194, 201);
@@ -62,19 +80,23 @@ div.container {
     border-radius: 50%;
     text-align: center;
 }
+
 .confirm-button:hover {
     box-shadow: 2px 2px 1px rgb(104, 123, 127);
     background-color: rgb(163, 159, 187);
 }
+
 .user-data {
     border-radius: 10px 0px;
     padding-left: 8px;
     padding-bottom: 5px;
     border: 1px solid rgb(8, 7, 10);
 }
+
 .user-data:hover {
     box-shadow: 2px 2px 1px rgb(104, 123, 127);
 }
+
 .homepage-btn {
     border: none;
     position: absolute;
@@ -88,14 +110,16 @@ div.container {
     color: black;
     user-select: none;
 }
-.homepage-btn:hover{
+
+.homepage-btn:hover {
     font-weight: 1000;
     color: red;
 }
+
 .select-pic-btn {
-    border: 2px solid rgb(163, 159, 187);;
+    border: 2px solid rgb(163, 159, 187);
     position: absolute;
-    right: 30px;
+    width: 102px;
     top: 65%;
     font-size: 20px;
     border-radius: 20px;
@@ -104,20 +128,68 @@ div.container {
     color: rgb(31, 179, 228);
     user-select: none;
 }
+
+.edit-bio-btn {
+    border: 2px solid rgb(163, 159, 187);;
+    position: absolute;
+    top: 82%;
+    width: 102px;
+    font-size: 20px;
+    border-radius: 20px;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color: rgb(31, 179, 228);
+    user-select: none;
+}
+.edit-bio-btn:hover {
+    color: rgb(34, 134, 168);
+    text-decoration: none;
+    box-shadow: 1px 1px 1px rgb(31, 179, 228);
+}
+
 .select-pic-btn:hover {
     color: rgb(34, 134, 168);
     text-decoration: none;
     box-shadow: 1px 1px 1px rgb(31, 179, 228);
 }
+
 .profile-work {
     user-select: none;
 }
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.like-data {
+    text-align: left;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    user-select: none;
+    font-weight: 550;
+}
+
+.nft-data {
+    text-align: right;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 1px;
+    user-select: none;
+    font-weight: 550;
+}
+
 h5 {
+    font-weight: 500;
     user-select: none;
+    letter-spacing: 1px;
 }
+
 h6 {
+    font-weight: 500;
     user-select: none;
+    letter-spacing: 1px;
 }
+
 p {
     user-select: none;
 }

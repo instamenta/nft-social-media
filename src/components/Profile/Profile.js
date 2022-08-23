@@ -8,8 +8,10 @@ export const Profile = () => {
 
     // const navigate = useNavigate()
 
-    const [errors, setErrors] = useState('')
-    const [isOwner, setIsOwner] = useState(false)
+    const [errors, setErrors ] = useState('')
+    const [isOwner, setIsOwner ] = useState(false)
+    const [editBio, setEditBio ] = useState(false)
+    const [editBtnText, setEditBtnText] = useState('Edit Bio')
     const [userData, setUserData] = useState({
         birthday: '',
         email: '',
@@ -48,7 +50,6 @@ export const Profile = () => {
     }, []);
     const handleProfileData = async (e) => {
         e.preventDefault()
-        console.log('click')
 
         const formData = new FormData(e.target)
         let { username, email } = Object.fromEntries(formData.entries())
@@ -82,6 +83,19 @@ export const Profile = () => {
     const onChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value })
     }
+    const editBioHandler = async (e) => {
+        e.preventDefault()
+        if(editBio === true) {
+            setEditBio(false)
+            setEditBtnText('Edit Bio')
+
+        } else {
+            setEditBio(true)
+            setEditBtnText('Confirm')
+
+        }
+    } 
+
     return (
         <>
             <div className="container emp-profile">
@@ -99,7 +113,17 @@ export const Profile = () => {
                             <div className="profile-head">
                                 <h5>NFT hunter</h5>
                                 <h6>web developer</h6>
-                                <p className="profile-bio mt-3 mb-5 ">~ " {userData.bio.slice(0, 230)} " ~</p>
+                                {editBio 
+                                ? <textarea className="profile-bio mt-3 mb-5 bio-textarea" defaultValue={userData.bio}></textarea>
+                                : <p className="profile-bio mt-3 mb-5 ">~ " {userData.bio.slice(0, 230)} " ~</p>}
+                                <div className="info-grid">
+                                    <p className="like-data">
+                                        Likes given: 10
+                                    </p>
+                                    <p className="nft-data">
+                                        Owner of 10 NFT
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
@@ -108,7 +132,11 @@ export const Profile = () => {
                             {isOwner
                                 ? <><Link to={"/profile/" + userData._id + "/select-profile-picture"} className="select-pic-btn">
                                     Choose Nft
-                                </Link></>
+                                </Link>
+                                <button className="edit-bio-btn" onClick={editBioHandler} >
+                                    {editBtnText}
+                                </button>
+                                </>
                                 : <></>}
                         </div>
                     </div>
