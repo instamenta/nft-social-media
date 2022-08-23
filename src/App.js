@@ -20,8 +20,8 @@ function App() {
 
     return (
         <div id="box" className='box'>
-            <Navbar />
 
+            <Navbar />
             <main id="main-content" className='main-content'>
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -41,10 +41,9 @@ function App() {
                         </UserGuard>
                     } />
                     <Route path="/nft/catalog" element={<Catalog />} />
-                    <Route path="/nft/catalog/:id" element={
-                        <Details />
-                    } />
+                    <Route path="/nft/catalog/:id" element={<Details />} />
                     <Route path="/profile/:id" element={<Profile />} />
+
                     <Route path="/profile/:id/select-profile-picture" element={
                         <UserGuard>
                             <SelectPicture />
@@ -58,7 +57,7 @@ function App() {
                     <Route path="/nft/catalog/most-wanted" element={<MostWanted />} />
                 </Routes>
             </main>
-            <Footer />
+            <Footer/>
         </div>
 
     );

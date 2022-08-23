@@ -21,7 +21,7 @@ export const Navbar = () => {
             setLogInfo(true)
 
         } else {
-            document.cookie = "USER_DATA=trash; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
+            document.cookie = "USER_DATA=expired; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
             fetch('/')
             setLogInfo(false)
             navigate('/users/login')
@@ -31,8 +31,8 @@ export const Navbar = () => {
     const logout = (e) => {
         e.preventDefault();
 
-        document.cookie = "USER_DATA=trash; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
-
+        document.cookie = "USER_DATA=expired; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
+        document.cookie = ''
         localStorage.removeItem('userData')
         fetch('/')
         setLogInfo(false)

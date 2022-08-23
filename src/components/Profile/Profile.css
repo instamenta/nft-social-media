@@ -4,10 +4,15 @@ div.container {
     margin: 50px;
     border-radius: 20px;
     box-shadow: 5px 5px 2px rgb(104, 123, 127);
-
+}
+.profile-error {
+    color: red;
+}
+.profile-error-container {
+    height: 24px;
+    margin-bottom: 3px;
 }
 .profile-bio {
-
         word-wrap: break-word;
         text-align: center;
         width: 340px;

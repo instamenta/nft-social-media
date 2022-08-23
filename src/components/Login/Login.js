@@ -4,10 +4,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FormInput } from "../FormInput/FormInput"
 
 export const Login = () => {
+
     const navigate = useNavigate();
 
     const [errors, setErrors] = useState('')
-
     const [values, setValues] = useState({
         username: '',
         password: '',
@@ -39,15 +39,12 @@ export const Login = () => {
 
         const formData = new FormData(e.target)
         const { username, password } = Object.fromEntries(formData.entries())
-
         try {
-
             const config = {
                 headers: {
                     "Content-type": "application/json"
                 }
             }
-            
             const data = await axios.post('http://localhost:3031/users/login',
                 {
                     username,
@@ -55,11 +52,12 @@ export const Login = () => {
                 },
                 config
             )
-
+            
             if(data.status === 203 || data.data.message === "Invalid username or password") {
                 setErrors('Invalid username or password')   
             } else {
                 if (data) {
+                    console.log('setUserData:')
                     localStorage.setItem('userData', JSON.stringify(data.data))
                     document.cookie = `USER_DATA=${data.data.token}`
                     navigate('/')

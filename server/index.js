@@ -22,13 +22,12 @@ async function start() {
     app.use(cookieParser())
     app.use(express.urlencoded({ extended: true }));
     app.use(express.json());
-  
+
     app.use('/users', userRoutes)
-    app.use('/nft', nftRoutes )
-    app.use('/profile',profileRoutes )
+    app.use('/nft', nftRoutes)
+    app.use('/profile',profileRoutes)
 
     app.listen(3031, () => console.log('REST Service started on port 3031'));
 }
-
 
 start();

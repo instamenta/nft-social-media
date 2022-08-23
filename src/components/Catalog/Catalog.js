@@ -1,15 +1,15 @@
-import "./Catalog.css"
-import { Link, useNavigate} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { Card } from "./Card/Card"
 import axios from 'axios'
 import { useEffect, useState } from "react"
+
+import "./Catalog.css"
 export const Catalog = () => {
 
     const navigate = useNavigate()
 
     const [nftList, setNftList] = useState([])
-    
-    
+
     const ntfComponents = nftList.map((card) => {
 
         const price = card.price.toString()
@@ -54,8 +54,6 @@ export const Catalog = () => {
                     </div>}
 
             </form>
-
         </div>
-
     )
 }

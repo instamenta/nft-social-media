@@ -1,16 +1,26 @@
 const Nft = require('../models/NftModel')
 const User = require('../models/UserModel')
 const uploadNft = async (req, res) => {
-    let { name, info, description, price, pic, userData } = req.body;
+    let { 
+        name, 
+        info, 
+        description, 
+        price, 
+        pic, 
+        userData 
+        } = req.body;
+
     price = Number(price)
+
     const userInfo = JSON.parse(userData)
     const creator = userInfo._id
+
     try {
         let post = await Nft.create({ name, info, description, price, pic, creator })
 
         res.json({ post })
-    } catch (err) {
 
+    } catch (err) {
         res.status(203)
     }
 }
@@ -23,7 +33,6 @@ const catalogNft = async (req, res) => {
 const detailsNft = async (req, res) => {
 
     const nftId = req.params.id
-
     const data = await Nft.findById(nftId)
 
     res.json(data)
@@ -32,8 +41,6 @@ const editNft = async (req, res) => {
 
     const nftId = req.params.id
     const data = req.body
-
-    const user = JSON.parse(req.body.userData)
 
     Nft.findByIdAndUpdate(nftId, {
         name: data.name,

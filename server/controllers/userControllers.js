@@ -24,7 +24,9 @@ const registerUser = async (req, res) => {
         res.status(200).json({
             _id: user._id,
             username: user.username,
+            email: user.email,
             birthday: user.birthday,
+            pic: user.pic,
             token: generateToken(user._id)
         })
     } else {
@@ -61,6 +63,7 @@ const authUser = async (req, res) => {
             res.json({
                 _id: user._id,
                 username: user.username,
+                email: user.email,
                 birthday: user.birthday,
                 pic: user.pic,
                 token: token

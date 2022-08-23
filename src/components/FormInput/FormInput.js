@@ -1,10 +1,11 @@
 import { useState } from "react"
+
 import "./FormInput.css"
 export const FormInput = (props) => {
     const [focused, setFocused] = useState(false)
     const {label, errorMessage, onChange, id, ...inputProps} = props
 
-    const handleFocus = ( e ) => {
+    const handleFocus = (e) => {
         setFocused(true)
     }
     return(

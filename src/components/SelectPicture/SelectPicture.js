@@ -40,14 +40,14 @@ export const SelectPicture = () => {
 
             const currentUser = localStorage.getItem('userData')
             try {
-                if(currentUser) {
+                if (currentUser) {
                     const config = {
                         headers: {
                             "Content-type": "application/json"
                         }
                     }
                     const data = await axios.post(`http://localhost:3031/profile/${userData._id}/select-profile-picture`,
-                        {currentUser, nftUrl},
+                        { currentUser, nftUrl },
                         config
                     )
                     navigate('/profile/' + userData._id)
@@ -55,37 +55,30 @@ export const SelectPicture = () => {
             } catch (error) {
             }
         }
-        
+
         return (
             <div className="select-profile-pic-container">
-                        <img onClick={eventHandler} src={nftUrl} alt="profile-picture" className="select-profile-pic-img"/>
-                    </div>
+                <img onClick={eventHandler} src={nftUrl} alt="profile-picture" className="select-profile-pic-img" />
+            </div>
         )
     })
-    
+
     return (
-        <>
             <div className="container emp-profile">
-                <form method="">
-                                    <h1 className="select-star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
-                <h1 className="select-photo-message">Select Profile Picture</h1>
+                <form method="">    
+                    <h1 className="select-star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+                    <h1 className="select-photo-message">Select Profile Picture</h1>
                     <div className="select-pic-grid">
-                    {ntfComponents
-                    ? <>
-                    {ntfComponents}
-                    </>
-                    : 
-                    <>
-                    <h1>No nfts</h1>
-                    </>
-                    
-                    }
+                        {ntfComponents
+                            ? <>
+                                {ntfComponents}
+                            </>
+                            : <>
+                                <h1>No nfts</h1>
+                            </> }
                     </div>
                     <h1 className="select-star-message-bottom">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
-
                 </form>
-
             </div>
-        </>
     )
 }

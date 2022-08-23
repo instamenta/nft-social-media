@@ -169,7 +169,6 @@ export const Details = () => {
                                 <div className="details-action-btn">
                                     {isGuest 
                                     ?   <>
-                                        
                                     </>
                                     :   <>  
                                     <button onClick={likeHandler} className="like-btn">
@@ -203,7 +202,6 @@ export const Details = () => {
                         : <h1>Not found</h1>
                     }
                 </form>
-
             </div>
         </>
     )

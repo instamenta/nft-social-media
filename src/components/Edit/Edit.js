@@ -25,8 +25,6 @@ export const Edit = () => {
     const navigate = useNavigate()
 
     const [errors, setErrors] = useState('')
-
-
     const [values, setValues] = useState({
         name: '',
         info: '',
@@ -89,7 +87,6 @@ export const Edit = () => {
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
 
         const userData = localStorage.getItem('userData')
-
         try {
             const config = {
                 headers: {
@@ -101,7 +98,6 @@ export const Edit = () => {
                 { name, info, description, price, pic, userData },
                 config
             )
-
             if (data.status === 200) {
                 navigate(`/nft/catalog/${params.id}`)
             } else {
@@ -137,12 +133,9 @@ export const Edit = () => {
                             value={values[input.name]}
                             onChange={onChange} />
                     ))}
-
                     <button className='submit-button'>Upload</button>
                 </form>
             </div>
-
-
         </div>
     )
 }

@@ -79,12 +79,12 @@ export const Upload = () => {
                 }
             }
             const data = await axios.post('http://localhost:3031/nft/upload',
-                { name, info, description, price, pic , userData},
+                { name, info, description, price, pic, userData },
                 config
             )
 
             if (data.status === 203) {
-            setErrors('Updating Failed!')
+                setErrors('Updating Failed!')
             }
 
             navigate('/nft/catalog/' + data.data.post._id)
@@ -119,12 +119,9 @@ export const Upload = () => {
                             value={values[input.name]}
                             onChange={onChange} />
                     ))}
-
                     <button className='submit-button'>Upload</button>
                 </form>
             </div>
-
-
         </div>
     )
 }

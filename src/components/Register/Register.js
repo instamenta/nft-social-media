@@ -1,9 +1,9 @@
-import "./Register.css"
-
 import { useState } from 'react'
 import axios from "axios"
 import { FormInput } from "../FormInput/FormInput"
 import { Link, useNavigate } from "react-router-dom"
+
+import "./Register.css"
 
 export const Register = () => {
     const navigate = useNavigate()
@@ -85,30 +85,28 @@ export const Register = () => {
                 },
                 config
             )
-            if(data.status === 203) {
+            if (data.status === 203) {
                 setErrors('Register error')
-                
+
             } else {
+                console.log('setUserData:')
                 localStorage.setItem('userData', JSON.stringify(data.data))
                 document.cookie = `USER_DATA=${data.data.token}`
                 navigate('/')
             }
-
         } catch (error) {
             setErrors('Register error')
         }
-
     }
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
-
     return (
         <div>
             <form onSubmit={handleSubmit} className="form-container">
                 <h1 className="auth-h1">Register</h1>
-                
-<h2 className='try-again-message'>{errors}</h2>
+
+                <h2 className='try-again-message'>{errors}</h2>
                 {inputs.map((input) => (
                     <FormInput
                         key={input.id}
