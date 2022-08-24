@@ -82,11 +82,13 @@ const likeNft = async (req, res) => {
 
     if (nftData.likes.includes(user)) {
         const responce = await Nft.findOneAndUpdate({ _id: nftId }, { $pull: { likes: user } }).lean();
+        await User.findOneAndUpdate({ username: user }, { $pull: { likedNft: nftId } }).lean();
         res.status = 200
         res.json(responce)
 
     } else {
         const responce = await Nft.findOneAndUpdate({ _id: nftId }, { $push: { likes: user } }).lean();
+        await User.findOneAndUpdate({ username: user }, { $push: { likedNft: nftId } }).lean();
         res.status = 200
         res.json(responce)
     }

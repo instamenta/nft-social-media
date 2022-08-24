@@ -37,6 +37,11 @@ const userSchema = mongoose.Schema({
         {
             type: String,
         }
+    ],
+    likedNft: [
+        {
+            type: String,
+        }
     ]
 })
 userSchema.pre('save', async function (next) {

@@ -13,11 +13,12 @@ export const Profile = () => {
     const [userData, setUserData] = useState({
         birthday: '',
         email: '',
-        ownedNft: [],
         pic: 'https://preview.redd.it/xayxvj1j4in71.jpg?width=640&crop=smart&auto=webp&s=38949b716e2e55c93fdd0c2ea636e0e70b92d356',
         username: '',
         _id: '',
-        bio: ''
+        bio: '',
+        ownedNft: [],
+        likedNft: [],
     })
     useEffect(() => {
         const userDataJSON = localStorage.getItem("userData")
@@ -31,14 +32,16 @@ export const Profile = () => {
     useEffect(() => {
         const getData = async () => {
             const { data, status } = await axios.get(`http://localhost:3031/profile/${userId}`)
+            console.log(data)
             setUserData({
                 birthday: data.birthday,
                 email: data.email,
-                ownedNft: data.ownedNft,
                 pic: data.pic,
                 username: data.username,
                 _id: data._id,
-                bio: data.bio
+                bio: data.bio,
+                ownedNft: data.ownedNft,
+                likedNft: data.likedNft,
             })
         }
         getData()
@@ -51,7 +54,8 @@ export const Profile = () => {
 
         try {
             const config = {
-                headers: { "Content-type": "application/json" }}
+                headers: { "Content-type": "application/json" }
+            }
             const data = await axios.post(`http://localhost:3031/profile/${userData._id}/edit`,
                 { username, email },
                 config
@@ -91,7 +95,7 @@ export const Profile = () => {
                     localStorage.removeItem('userData')
                     localStorage.setItem('userData', JSON.stringify(data.data))
 
-                    setUserData({...userData, bio: data.data.bio})
+                    setUserData({ ...userData, bio: data.data.bio })
                 }
             } catch (error) {
             }
@@ -123,10 +127,10 @@ export const Profile = () => {
                                     : <p className="profile-bio mt-3 mb-5 ">~ " {userData.bio.slice(0, 230)} " ~</p>}
                                 <div className="info-grid">
                                     <p className="like-data">
-                                        Likes given: 10
+                                        Likes given: {userData.likedNft.length}
                                     </p>
                                     <p className="nft-data">
-                                        Owner of 10 NFT
+                                        NFT owned: {userData.ownedNft.length}
                                     </p>
                                 </div>
                             </div>
