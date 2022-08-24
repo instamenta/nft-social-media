@@ -1,16 +1,14 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import "./Profile.css"
 export const Profile = () => {
     const params = useParams()
     const userId = params.id
 
-    // const navigate = useNavigate()
-
-    const [errors, setErrors ] = useState('')
-    const [isOwner, setIsOwner ] = useState(false)
-    const [editBio, setEditBio ] = useState(false)
+    const [errors, setErrors] = useState('')
+    const [isOwner, setIsOwner] = useState(false)
+    const [editBio, setEditBio] = useState(false)
     const [editBtnText, setEditBtnText] = useState('Edit Bio')
     const [userData, setUserData] = useState({
         birthday: '',
@@ -21,7 +19,6 @@ export const Profile = () => {
         _id: '',
         bio: ''
     })
-
     useEffect(() => {
         const userDataJSON = localStorage.getItem("userData")
         if (userDataJSON) {
@@ -33,9 +30,7 @@ export const Profile = () => {
     }, [])
     useEffect(() => {
         const getData = async () => {
-
             const { data, status } = await axios.get(`http://localhost:3031/profile/${userId}`)
-
             setUserData({
                 birthday: data.birthday,
                 email: data.email,
@@ -54,27 +49,19 @@ export const Profile = () => {
         const formData = new FormData(e.target)
         let { username, email } = Object.fromEntries(formData.entries())
 
-        const userData = JSON.parse(localStorage.getItem('userData'))
-
         try {
             const config = {
-                headers: {
-                    "Content-type": "application/json"
-                }
-
-            }
+                headers: { "Content-type": "application/json" }}
             const data = await axios.post(`http://localhost:3031/profile/${userData._id}/edit`,
-                { userData, username, email },
+                { username, email },
                 config
             )
-            console.log(data)
-            console.log(data.data)
-            if(data.data.message) {
+            if (data.data.message) {
                 setErrors(data.data.message)
             } else {
                 setErrors('Updating successful')
-                    localStorage.removeItem('userData')
-                    localStorage.setItem('userData', JSON.stringify(data.data))
+                localStorage.removeItem('userData')
+                localStorage.setItem('userData', JSON.stringify(data.data))
             }
         } catch (error) {
             setErrors('Updating Failed!')
@@ -85,16 +72,34 @@ export const Profile = () => {
     }
     const editBioHandler = async (e) => {
         e.preventDefault()
-        if(editBio === true) {
+        if (editBio === true) {
             setEditBio(false)
             setEditBtnText('Edit Bio')
 
+            const editArea = document.querySelector('.bio-textarea').value
+
+            const userData = JSON.parse(localStorage.getItem('userData'))
+            try {
+                const config = {
+                    headers: { "Content-type": "application/json" }
+                }
+                const data = await axios.post(`http://localhost:3031/profile/${userData._id}/edit-bio`,
+                    { editArea }, config)
+
+                if (data.data) {
+
+                    localStorage.removeItem('userData')
+                    localStorage.setItem('userData', JSON.stringify(data.data))
+
+                    setUserData({...userData, bio: data.data.bio})
+                }
+            } catch (error) {
+            }
         } else {
             setEditBio(true)
             setEditBtnText('Confirm')
-
         }
-    } 
+    }
 
     return (
         <>
@@ -113,9 +118,9 @@ export const Profile = () => {
                             <div className="profile-head">
                                 <h5>NFT hunter</h5>
                                 <h6>web developer</h6>
-                                {editBio 
-                                ? <textarea className="profile-bio mt-3 mb-5 bio-textarea" defaultValue={userData.bio}></textarea>
-                                : <p className="profile-bio mt-3 mb-5 ">~ " {userData.bio.slice(0, 230)} " ~</p>}
+                                {editBio
+                                    ? <textarea className="profile-bio mt-3 mb-5 bio-textarea" defaultValue={userData.bio}></textarea>
+                                    : <p className="profile-bio mt-3 mb-5 ">~ " {userData.bio.slice(0, 230)} " ~</p>}
                                 <div className="info-grid">
                                     <p className="like-data">
                                         Likes given: 10
@@ -133,9 +138,9 @@ export const Profile = () => {
                                 ? <><Link to={"/profile/" + userData._id + "/select-profile-picture"} className="select-pic-btn">
                                     Choose Nft
                                 </Link>
-                                <button className="edit-bio-btn" onClick={editBioHandler} >
-                                    {editBtnText}
-                                </button>
+                                    <button className="edit-bio-btn" onClick={editBioHandler} >
+                                        {editBtnText}
+                                    </button>
                                 </>
                                 : <></>}
                         </div>

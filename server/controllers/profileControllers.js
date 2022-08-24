@@ -50,34 +50,47 @@ const editUser = async (req, res) => {
         let changeState = false
 
         const userData = await User.findById(userId)
-        console.log(userData)
 
         if (newUsername !== userData.username) {
             await User.findByIdAndUpdate(userId, { username: newUsername }).lean();
-
-            console.log(userData.username + " + " + newUsername)
             changeState = true
         }
 
         if (newEmail !== userData.email) {
-            console.log(userData.email + " + " + newEmail)
-
             await User.findByIdAndUpdate(userId, { email: newEmail }).lean();
             changeState = true
         }
         if (changeState === false) {
-
-            res.json({message: 'Nothing to update'})
+            res.json({ message: 'Nothing to update' })
         } else {
             const newUser = await User.findById(userId)
-
             res.json(newUser)
         }
     } catch (err) {
-        res.json({message: 'Updating error'})
-
+        res.json({ message: 'Updating error' })
         res.end()
     }
-
 }
-module.exports = { getUser, setPictureUser, editUser }
+const editBioUser = async (req, res) => {
+    try {
+        const userId = req.params.id
+        const newBio = req.body.editArea
+        let changeState = false
+
+        const userData = await User.findById(userId)
+
+        if (newBio !== userData.bio) {
+            await User.findByIdAndUpdate(userId, { bio: newBio }).lean();
+            changeState = true
+            if (changeState === false) {
+                res.json()
+            } else {
+                const newUser = await User.findById(userId)
+                res.json(newUser)
+            }
+        }
+    } catch (err) {
+        res.json()
+    }
+}
+module.exports = { getUser, setPictureUser, editUser, editBioUser }

@@ -57,7 +57,6 @@ export const Login = () => {
                 setErrors('Invalid username or password')   
             } else {
                 if (data) {
-                    console.log('setUserData:')
                     localStorage.setItem('userData', JSON.stringify(data.data))
                     document.cookie = `USER_DATA=${data.data.token}`
                     navigate('/')

@@ -89,7 +89,6 @@ export const Register = () => {
                 setErrors('Register error')
 
             } else {
-                console.log('setUserData:')
                 localStorage.setItem('userData', JSON.stringify(data.data))
                 document.cookie = `USER_DATA=${data.data.token}`
                 navigate('/')
