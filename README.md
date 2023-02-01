@@ -1,22 +1,22 @@
-# "The Bigger Picture" is a SPA Website with a frontend and backend side both made by me!
+# "The Bigger Picture" is a SPA Website with a frontend and backend side build upon Node.js, both made by me!
 
     * Frontend - React.js, HTML & CSS
     * Backend - Express.js, MongoDB
     
 # Website has the following pages: 
 
-    * Home - Welcoming page available for both Users and Guests and 
-      it has interactive image sliding deck where the most wanted NFT's are displayed.
+    * Home - Welcoming page available for both Users and Guests and with interactive
+      image sliding deck in which the most wanted NFT's are displayed.
     
-    * Catalog - The main part of the website from where both Users and Guest can see
-      the list of every NFT uploaded to the website.
+    * Catalog - The main part of the website which both Users and Guest can access
+      and see the complete list of every NFT uploaded to the website.
     
     * Details -  Shows the most important info about selected NFT. Guests can see
       how much likes and owns it has as well as the price and the name of the person
       who uploaded it which leads to his personal Profile page, Users can see this
-      info too and gain the power to Own and Like. Liking NFT is adds it to your 
-      "Liked List' and owning NFT does the same as well as giving you the option 
-      to pick it as your profile picture to add a unique self expression customization.
+      info too and gain the power to Own and Like. Liking NFT adds it to your "Liked List" 
+      and owning NFT adds it to your "Owned List" but also gives you the ability to pick
+      it as your profile picture to add a unique self expression customization.
     
     * Profile - Every User his own personal profile page, here Guest can see the User's name, 
       description and picture as well as how much NFT's they own and like, as a User you can 
@@ -55,7 +55,7 @@
 
     * Guest part - As a guest you are given a lot of freedom, you can visit the 
       homepage, catalog , the most wanted list, detail pages and users profiles
-      but you can't interact in any way.
+      but you can't like, own, upload, edit or comment the NFT's.
     
 # Basic Architecture Explanation
 
