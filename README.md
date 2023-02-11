@@ -107,13 +107,16 @@ comment the NFT's.
 ## Server 
 ### contains the REST server 
 * routes 
-      ** handles route redirecting to the corresponding request addres based on first parameter
+    * handles route redirecting to the corresponding request addres based on first parameter
+      
 * utils 
-      ** containes JsonWebToken functionality
+    * containes JsonWebToken functionality
+      
 * models 
-      * keeps the Mongoose Schemas 
+ 
+    * keeps the Mongoose Schemas 
 * controllers - find the specific fetched route and handles the REST request
-  
+     
 
     * src - handles the react-app + cleint side rendering
             * components - exports all components need for client side rendering also handles evets and requests data to the server
