@@ -18,64 +18,101 @@
 Welcoming page available for both Users and Guests and with interactive
       image sliding deck in which the most wanted NFT's are displayed.
 ```     
-    * Catalog - The main part of the website which both Users and Guest can access
+* Catalog 
+```
+The main part of the website which both Users and Guest can access
       and see the complete list of every NFT uploaded to the website.
-    
-    * Details -  Shows the most important info about selected NFT. Guests can see
-      how much likes and owns it has as well as the price and the name of the person
-      who uploaded it which leads to his personal Profile page, Users can see this
-      info too and gain the power to Own and Like. Liking NFT adds it to your "Liked List" 
-      and owning NFT adds it to your "Owned List" but also gives you the ability to pick
-      it as your profile picture to add a unique self expression customization.
-    
-    * Profile - Every User his own personal profile page, here Guest can see the User's name, 
-      description and picture as well as how much NFT's they own and like, as a User you can 
-      change your picture, description, email, username and password as long as they remain unique.
-    
-    * Upload - Available only for Users after either Login or Register. This is from 
-      where you can upload your own NFT. After uploading you are redirected to your 
-      newly created details page of the NFT from where you can always edit it or delete it. 
-      Every NFT you upload is automatically added your own list.
-    
-    * Edit - This is where you can edit the uploaded NFT's to your liking.
-    
-    * Register - sends the data  to the server if the form is filled correctly.
-      Checks if the username and email are unique, and hashes your password,
-      after that creates the user profile and stores the data in the MongoDB database.
-      After successful register it redirects you to your newly created user profile. 
-    
-    * Login - sends the data to the backend server where it checks for the email 
-      in the database, if there is match takes the passwords and compares them. 
-      If the password match a JWT Cookie token is created and send to the Client for 
-      authorization this gives access to the interactive part of the social media website.
-    
-    * Select Profile Picture - this is where Users can select their profile picture 
-      from list of all the uploaded and owned NFT's by them.
-    
-    * Most Wanted - Variation of the Catalog page accessible for both Users and Guests.
-      The NFT's are dispalyed in different order starting from the most expensive and popular.
-    
+```
+* Details
+```
+Shows the most important info about selected NFT. Guests can see
+how much likes and owns it has as well as the price and the name of the person
+who uploaded it which leads to his personal Profile page, Users can see this
+info too and gain the power to Own and Like. Liking NFT adds it to your "Liked List" 
+and owning NFT adds it to your "Owned List" but also gives you the ability to pick
+it as your profile picture to add a unique self expression customization.
+```
+* Profile
+```
+Every User his own personal profile page, here Guest can see the User's name, 
+description and picture as well as how much NFT's they own and like, as a User you can 
+change your picture, description, email, username and password as long as they remain unique.
+```
+* Upload
+```
+Available only for Users after either Login or Register. This is from 
+where you can upload your own NFT. After uploading you are redirected to your 
+newly created details page of the NFT from where you can always edit it or delete it. 
+Every NFT you upload is automatically added your own list.
+```
+* Edit 
+```
+This is where you can edit the uploaded NFT's to your liking.
+```
+* Register
+```
+sends the data  to the server if the form is filled correctly.
+Checks if the username and email are unique, and hashes your password,
+after that creates the user profile and stores the data in the MongoDB database.
+After successful register it redirects you to your newly created user profile.      
+```
+* Login - 
+```
+sends the data to the backend server where it checks for the email 
+in the database, if there is match takes the passwords and compares them. 
+If the password match a JWT Cookie token is created and send to the Client for 
+authorization this gives access to the interactive part of the social media website.
+```
+* Select Profile Picture
+```
+this is where Users can select their profile picture 
+from list of all the uploaded and owned NFT's by them.
+```
+
+* Most Wanted - 
+```
+Variation of the Catalog page accessible for both Users and Guests.
+The NFT's are dispalyed in different order starting from the most expensive and popular.
+```
+
 # The website has two parts:
 
-    * User part - After either Login or Register in the website you will be granted with access to:
-       - your personal profile where you can customize your profile picture, description,
-         username and email to your liking.
-       - the ability like and own NFT's uploaded by other users and create and edit your own NFT's.
-       - cookie used for authorization.
+## User part 
+### After either Login or Register in the website you will be granted with access to:
+* your personal profile where you can customize your profile picture, description,
+* username and email to your liking.
+* the ability like and own NFT's uploaded by other users and create and edit your own NFT's.
+* cookie used for authorization.
 
-    * Guest part - As a guest you are given a lot of freedom, you can visit the 
-      homepage, catalog , the most wanted list, detail pages and users profiles
-      but you can't like, own, upload, edit or comment the NFT's.
+## Guest part 
+### As a guest you are given a lot of freedom, you can visit the 
+
+* homepage
+* catalog
+* the most wanted list
+* detail pages
+* users profiles
+! but you can't 
+* like
+* own
+* upload
+* edit
+comment the NFT's.
     
 # Basic Architecture Explanation
 
-    * public - for static images and css + index.html
+##public
+* for static images and css + index.html
 
-    * server - contains the REST server 
-             * routes - handles route redirecting to the corresponding request addres based on first parameter
-             * utils - containes JsonWebToken functionality
-             * models - keeps the Mongoose Schemas 
-             * controllers - find the specific fetched route and handles the REST request
+##server 
+###contains the REST server 
+* routes 
+      * handles route redirecting to the corresponding request addres based on first parameter
+* utils 
+      * containes JsonWebToken functionality
+* models 
+      * keeps the Mongoose Schemas 
+* controllers - find the specific fetched route and handles the REST request
   
 
     * src - handles the react-app + cleint side rendering
