@@ -101,15 +101,15 @@ comment the NFT's.
     
 # Basic Architecture Explanation
 
-##public
+## public
 * for static images and css + index.html
 
-##server 
-###contains the REST server 
+## server 
+### contains the REST server 
 * routes 
-      * handles route redirecting to the corresponding request addres based on first parameter
+      ** handles route redirecting to the corresponding request addres based on first parameter
 * utils 
-      * containes JsonWebToken functionality
+      ** containes JsonWebToken functionality
 * models 
       * keeps the Mongoose Schemas 
 * controllers - find the specific fetched route and handles the REST request
