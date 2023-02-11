@@ -1,8 +1,4 @@
 # "The Bigger Picture" is a SPA Website with a frontend and backend side build upon Node.js, both made by me!
-
-    * Frontend - React.js, HTML & CSS
-    * Backend - Express.js, MongoDB
-    
 ### Built With
 * ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 * ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
