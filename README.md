@@ -109,3 +109,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
+
+## Contact
+
+Jan Milenkov - [https://github.com/instamenta](https://github.com/instamenta) - instamenta@abv.bg
+
+Project Link - [https://github.com/instamenta/NFT-Social-Trading-System](https://github.com/instamenta/NFT-Social-Trading-System)
+
