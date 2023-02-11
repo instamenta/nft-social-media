@@ -101,10 +101,10 @@ comment the NFT's.
     
 # Basic Architecture Explanation
 
-## public
+## Public
 * for static images and css + index.html
 
-## server 
+## Server 
 ### contains the REST server 
 * routes 
       ** handles route redirecting to the corresponding request addres based on first parameter
