@@ -13,9 +13,11 @@
       
 # Website has the following pages: 
 
-    * Home - Welcoming page available for both Users and Guests and with interactive
+* Home 
+```
+Welcoming page available for both Users and Guests and with interactive
       image sliding deck in which the most wanted NFT's are displayed.
-    
+```     
     * Catalog - The main part of the website which both Users and Guest can access
       and see the complete list of every NFT uploaded to the website.
     
