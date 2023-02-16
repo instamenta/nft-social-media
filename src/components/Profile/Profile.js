@@ -124,7 +124,7 @@ export const Profile = () => {
                                 <h6>web developer</h6>
                                 {editBio
                                     ? <textarea className="profile-bio mt-3 mb-5 bio-textarea" defaultValue={userData.bio}></textarea>
-                                    : <p className="profile-bio mt-3 mb-5 ">~ " {userData.bio.slice(0, 230)} " ~</p>}
+                                    : <p className="profile-bio mt-3 mb-5 ">~ " {userData?.bio?.slice(0, 230)} " ~</p>}
                                 <div className="info-grid">
                                     <p className="like-data">
                                         Likes given: {userData.likedNft.length}
