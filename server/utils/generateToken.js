@@ -13,6 +13,9 @@ const generateToken = async (user) => {
     
     return token;
 }
-module.exports = generateToken
+const decodeToken = async (token) => {
+
+}
+module.exports = generateToken, decodeToken
 
 

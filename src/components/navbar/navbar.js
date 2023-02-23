@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css"
@@ -10,23 +11,26 @@ export const Navbar = () => {
     const [userName, setUserName] = useState('')
     
     useEffect(() => {
-        const [cookieName, cookieValue] = document.cookie.split('=')
-        const userDataJSON = localStorage.getItem('userData')
-        if (cookieValue && userDataJSON) {
+        // const [cookieName, cookieValue] = document.cookie.split('=')
+        // const userDataJSON = localStorage.getItem('userData')
+        const cookieData = Cookies.get('user')
+        
+        console.log(cookieData)
+        // if (cookieValue && userDataJSON) {
 
-            const { username, _id } = JSON.parse(userDataJSON)
+        //     const { username, _id } = JSON.parse(userDataJSON)
 
-            setUserId(_id)
-            setUserName(username)
-            setLogInfo(true)
+        //     setUserId(_id)
+        //     setUserName(username)
+        //     setLogInfo(true)
 
-        } else {
-            document.cookie = "USER_DATA=expired; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
-            fetch('/')
-            setLogInfo(false)
-            navigate('/users/login')
-        }
-    }, [document.cookie])
+        // } else {
+        //     document.cookie = "USER_DATA=expired; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
+        //     fetch('/')
+        //     setLogInfo(false)
+        //     navigate('/users/login')
+        // }
+    }, [])
 
     const logout = (e) => {
         e.preventDefault();

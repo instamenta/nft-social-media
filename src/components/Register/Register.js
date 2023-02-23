@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import axios from "axios"
 import { FormInput } from "../FormInput/FormInput"
 import { Link, useNavigate } from "react-router-dom"
+import Cookies from 'js-cookie'
+import { registerUser } from '../../services/UserService'
 
 import "./Register.css"
 
@@ -66,35 +67,19 @@ export const Register = () => {
     ]
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const userData = new FormData(e.target)
+        const { username, email, birthday, password } = Object.fromEntries(userData.entries());
 
-        const data = new FormData(e.target)
-        const { username, email, birthday, password } = Object.fromEntries(data.entries());
+        const data = await registerUser(
+            username, email,
+            birthday, password, )
 
-        try {
-            const config = {
-                headers: {
-                    "Content-type": "application/json"
-                }
-            }
-            const data = await axios.post('http://localhost:3031/users/register',
-                {
-                    username,
-                    email,
-                    birthday,
-                    password
-                },
-                config
-            )
-            if (data.status === 203) {
-                setErrors('Register error')
-
-            } else {
-                localStorage.setItem('userData', JSON.stringify(data.data))
-                document.cookie = `USER_DATA=${data.data.token}`
-                navigate('/')
-            }
-        } catch (error) {
+        if (data?.token) {
+            Cookies.set("user", data.token)
+            navigate('/')
+        } else {
             setErrors('Register error')
+           
         }
     }
     const onChange = (e) => {

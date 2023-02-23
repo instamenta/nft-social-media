@@ -1,6 +1,7 @@
-import axios from 'axios'
+import Cookies from 'js-cookie'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { loginUser } from '../../services/UserService'
 import { FormInput } from "../FormInput/FormInput"
 
 export const Login = () => {
@@ -38,30 +39,13 @@ export const Login = () => {
 
         const formData = new FormData(e.target)
         const { username, password } = Object.fromEntries(formData.entries())
-        try {
-            const config = {
-                headers: {
-                    "Content-type": "application/json"
-                }
-            }
-            const data = await axios.post('http://localhost:3031/users/login',
-                {
-                    username,
-                    password
-                },
-                config
-            )
-            if(data.status === 203 || data.data.message === "Invalid username or password") {
-                setErrors('Invalid username or password')   
-            } else {
-                if (data) {
-                    localStorage.setItem('userData', JSON.stringify(data.data))
-                    document.cookie = `USER_DATA=${data.data.token}`
-                    navigate('/')
-                }
-            }
-        } catch (error) {
+
+        const data = await loginUser(username, password)
+        if (data === 'Invalid username or password') {
             setErrors('Invalid username or password')
+        } else {
+            Cookies.set('user',data.token)
+            navigate('/')
         }
     }
     const onChange = (e) => {
@@ -69,20 +53,20 @@ export const Login = () => {
     }
     return (
         <div>
-            <form 
-            // onSubmit={handleSubmit} 
-            className='form-container'>
+            <form
+                onSubmit={handleSubmit}
+                className='form-container'>
                 <h1 className='auth-h1'>Login</h1>
                 <h2 className='try-again-message'>
                     {errors}
                 </h2>
-                { inputs.map((input) => (
+                {inputs.map((input) => (
                     <FormInput
                         key={input.id}
                         {...input}
                         value={values[input.name]}
                         onChange={onChange}
-                    /> ))}
+                    />))}
                 <Link to="/users/register" className='auth-redirect'>
                     Redirect to register
                 </Link>

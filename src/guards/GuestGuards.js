@@ -1,13 +1,10 @@
+import Cookies from "js-cookie";
 import { Navigate, Outlet } from "react-router-dom";
 
 export function GuestGuard({ children }) { 
-    const [cookieName, cookieValue] = document.cookie.split('=');
-    const userData = localStorage.getItem('userData')
-    if(cookieValue) {
-        if(!userData) {
-            document.cookie = "USER_DATA=trash; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
-            fetch('/')
-        }
+    const cookieData = Cookies.get('user')
+    console.log(cookieData)
+    if(cookieData) {
         return <Navigate to='/' replace />;
     }
     return children ? children : <Outlet />
