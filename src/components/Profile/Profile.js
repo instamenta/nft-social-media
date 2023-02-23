@@ -151,7 +151,7 @@ export const Profile = () => {
                     </div>
 
                     <div className="row">
-                        <div className="col-md-4">
+                        {/* <div className="col-md-4">
                             <div className="profile-work">
                                 <p> Social Medias: </p>
                                 <Link to="" target="_Jam">YouTube</Link> <br />
@@ -160,7 +160,7 @@ export const Profile = () => {
                                 <Link to="" target="_Jam">Twitter</Link> <br />
                                 <Link to="" target="_Jam">Telegram</Link> <br />
                             </div>
-                        </div>
+                        </div> */}
 
                         <div className="col-md-8 pl-5 about-info ">
                             <div className="tab-content profile-tab" id="myTabContent">

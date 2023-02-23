@@ -38,8 +38,7 @@ export const Catalog = () => {
     return (
         <div className="catalog-container">
             <form className='catalog-form'>
-                <h1 className="star-message">
-                    ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+
                 <h1 className="message-catalog">
                     ONLY FOR THE REAL HUNTERS</h1>
                 {ntfComponents

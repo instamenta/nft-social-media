@@ -1,7 +1,7 @@
 
 export const Card = (props) => {
     return (
-<div className="card" onClick={props.eventHandler}> 
+    <div className="card" onClick={props.eventHandler}> 
         <img src={props.img} className="card-img" alt="card-img"/>
         <div className="card-body">
             <h2 className="card-title">{props?.title?.slice(0,15)}</h2>
