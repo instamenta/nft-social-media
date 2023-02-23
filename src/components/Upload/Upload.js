@@ -3,12 +3,12 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
-
 import "./Upload.css"
+
 export const Upload = () => {
     const navigate = useNavigate()
+    
     const [errors, setErrors] = useState('')
-
     const [values, setValues] = useState({
         name: '',
         info: '',

@@ -2,21 +2,17 @@ import { useNavigate} from "react-router-dom"
 import { Card } from "./Card/Card"
 import axios from 'axios'
 import { useEffect, useState } from "react"
-
 import "./Catalog.css"
+
 export const Catalog = () => {
 
     const navigate = useNavigate()
-
     const [nftList, setNftList] = useState([])
-
     const ntfComponents = nftList.map((card) => {
-
         const price = card.price.toString()
         let eventHandler = () => {
             navigate(`/nft/catalog/${card._id}`)
         }
-        
         return (
             <Card
                 key={card._id}
@@ -36,15 +32,16 @@ export const Catalog = () => {
                 setNftList(res.data)
             }
         }
-        fetchData();
+        fetchData()
     }, [])
 
     return (
-        <div>
-            <form className='form-container'>
-                <h1 className="star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
-                <h1 className="message-catalog">ONLY FOR THE REAL HUNTERS</h1>
-
+        <div className="catalog-container">
+            <form className='catalog-form'>
+                <h1 className="star-message">
+                    ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+                <h1 className="message-catalog">
+                    ONLY FOR THE REAL HUNTERS</h1>
                 {ntfComponents
                     ? <div className="wrapper-card">
                         {ntfComponents}
@@ -52,7 +49,6 @@ export const Catalog = () => {
                     : <div className="wrapper-card">
                         <h1>No available nft in your region</h1>
                     </div>}
-
             </form>
         </div>
     )

@@ -5,12 +5,21 @@ import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
 
 export const Edit = () => {
+
     const params = useParams()
+    const navigate = useNavigate()
+    const [errors, setErrors] = useState('')
+    const [values, setValues] = useState({
+        name: '',
+        info: '',
+        description: '',
+        price: '',
+        pic: '',
+    })
 
     useEffect(() => {
         const getData = async () => {
             const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
-
             setValues({
                 info: data.info,
                 name: data.name,
@@ -21,18 +30,6 @@ export const Edit = () => {
         }
         getData()
     }, []);
-    
-    const navigate = useNavigate()
-
-    const [errors, setErrors] = useState('')
-    const [values, setValues] = useState({
-        name: '',
-        info: '',
-        description: '',
-        price: '',
-        pic: '',
-    })
-
     const inputs = [
         {
             id: 1,
@@ -85,14 +82,12 @@ export const Edit = () => {
 
         const formData = new FormData(e.target)
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
-
         const userData = localStorage.getItem('userData')
         try {
             const config = {
                 headers: {
                     "Content-type": "application/json"
                 }
-                
             }
             const data = await axios.post(`http://localhost:3031/nft/catalog/${params.id}/edit`,
                 { name, info, description, price, pic, userData },
@@ -108,12 +103,17 @@ export const Edit = () => {
         }
     }
     const onChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value })
+        setValues({ 
+            ...values, 
+            [e.target.name]: e.target.value 
+        })
     }
     return (
         <div>
             <div className='nft-preview'>
-                <h1 className='nft-preview-text'>preview</h1>
+                <h1 className='nft-preview-text'>
+                    Preview
+                </h1>
                 <Card
                     img={values.pic}
                     title={values.name}
@@ -121,7 +121,6 @@ export const Edit = () => {
                     price={values.price}
                 />
             </div>
-
             <div>
                 <form onSubmit={handleSubmit} className='form-container'>
                     <h1 className='auth-h1'>Edit your NFT</h1>
@@ -133,7 +132,9 @@ export const Edit = () => {
                             value={values[input.name]}
                             onChange={onChange} />
                     ))}
-                    <button className='submit-button'>Upload</button>
+                    <button className='submit-button'>
+                        Upload
+                    </button>
                 </form>
             </div>
         </div>

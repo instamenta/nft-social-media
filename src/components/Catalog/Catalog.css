@@ -1,4 +1,4 @@
-.wrapper-card {
+/* .wrapper-card {
     margin: 2rem;
     margin-top: 10px;
     padding-top: 0px;
@@ -7,29 +7,23 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: center;
     padding-bottom: 30px;
+} */
+.catalog-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-.card {
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 0 10px 5px lightgray;
-    border-radius: 20px;
-    margin: 10px;
-}
-.card:hover {
-    box-shadow: 0 0 10px 5px rgb(31, 179, 228);
-}
-
 .card-img {
     object-fit: cover;
-    width: 230px;
-    height: 230px;
+    max-width: 80vw;
+    height: auto;
+    aspect-ratio: 1/1;
     border-radius: 20px 20px 0px 0px;
     user-select: none;
 }
+
 .card-body {
     margin: 1rem;
-    flex-grow: 1;
     user-select: none;
 }
 
@@ -43,12 +37,14 @@
     line-height: 1.2rem;
     user-select: none;
 }
+
 .card-price {
     font-size: 1.4rem;
     user-select: none;
     margin-top: 0.6rem;
 
 }
+
 .card-price::before {
     content: "$";
     font-size: 1rem;
@@ -57,6 +53,7 @@
     user-select: none;
     padding-right: 0.1rem;
 }
+
 .card-btn {
     border: none;
     border-top: 1px solid gainsboro;
@@ -72,9 +69,10 @@
     user-select: none;
     height: 50%;
 }
+
 .card-btn:hover {
     color: black;
-    background-color:  whitesmoke;
+    background-color: whitesmoke;
     border-radius: 50%;
 }
 
@@ -88,8 +86,82 @@
     font-weight: 700;
     letter-spacing: 3px;
     user-select: none;
-    
+
 }
+
 .message-catalog:hover {
     color: rgb(31, 179, 228);
 }
+
+
+/* responsive */
+.wrapper-card {
+    margin: 2rem;
+    margin-top: 10px;
+    padding-top: 0px;
+    display: grid;
+    
+    grid-template-columns: 1fr;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .wrapper-card {
+        grid-template-columns: 1fr;
+        background-color: red;
+        gap: 0;
+    }
+    .card {
+        max-width: 80vw;
+    }
+}
+
+@media (min-width: 600px) {
+    .wrapper-card {
+        grid-template-columns: 1fr 1fr;
+        background-color: black;
+        gap: 1rem;
+        
+    }
+    .card {
+        /* max-width: 40vw; */
+    }
+}
+
+@media (min-width: 900px) {
+    .wrapper-card {
+        grid-template-columns: 1fr 1fr 1fr;
+        background-color: yellow;
+
+    }
+}
+@media (min-width: 1350px) {
+    .wrapper-card {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        background-color: aqua;
+
+    }
+}
+
+.card {
+
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px 5px lightgray;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.card:hover {
+    box-shadow: 0 0 10px 5px rgb(31, 179, 228);
+}
+
+.catalog-container {
+    display: flex;
+    align-items: center;
+}
+/* 
+  
+
+ */

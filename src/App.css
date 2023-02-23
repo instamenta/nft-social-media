@@ -1,6 +1,5 @@
 .main-content {
     display: grid;
-    
     align-items: center;
     justify-content: center;
     min-height: 110vh;
@@ -11,7 +10,6 @@
 }
 .box {
         display: flex;
-
         flex-direction: column;
         justify-content: space-between;
 }

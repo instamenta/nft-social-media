@@ -6,7 +6,6 @@ import { FormInput } from "../FormInput/FormInput"
 export const Login = () => {
 
     const navigate = useNavigate();
-
     const [errors, setErrors] = useState('')
     const [values, setValues] = useState({
         username: '',
@@ -52,7 +51,6 @@ export const Login = () => {
                 },
                 config
             )
-            
             if(data.status === 203 || data.data.message === "Invalid username or password") {
                 setErrors('Invalid username or password')   
             } else {
@@ -61,35 +59,37 @@ export const Login = () => {
                     document.cookie = `USER_DATA=${data.data.token}`
                     navigate('/')
                 }
-                
             }
         } catch (error) {
             setErrors('Invalid username or password')
         }
-        
-        
-        
     }
     const onChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
     }
     return (
         <div>
-            <form onSubmit={handleSubmit} className='form-container'>
+            <form 
+            // onSubmit={handleSubmit} 
+            className='form-container'>
                 <h1 className='auth-h1'>Login</h1>
-                <h2 className='try-again-message'>{errors}</h2>
-                {inputs.map((input) => (
+                <h2 className='try-again-message'>
+                    {errors}
+                </h2>
+                { inputs.map((input) => (
                     <FormInput
                         key={input.id}
                         {...input}
                         value={values[input.name]}
-                        onChange={onChange} />
-                ))}
+                        onChange={onChange}
+                    /> ))}
                 <Link to="/users/register" className='auth-redirect'>
-                    Redirect to register</Link>
-                <button className='submit-button'>Login</button>
+                    Redirect to register
+                </Link>
+                <button className='submit-button'>
+                    Login
+                </button>
             </form>
-
         </div>
     )
 }

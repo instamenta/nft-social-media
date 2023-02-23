@@ -2,11 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ImageSlider } from "./Deck/ImageSlider";
-
 import "./Home.css";
+
 export const Home = () => {
 
-    const [logInfo, setLogInfo] = useState('false')
+    const [logInfo, setLogInfo] = useState(false)
     const [userId, setUserId] = useState('')
     const [nftList, setNftList] = useState([])
     useEffect(() => {
@@ -28,9 +28,12 @@ export const Home = () => {
     return (
         <div>
             <form className="home-form">
-                <h1 className="star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
-                <h1 className="site-welcome">The Bigger Picture</h1>
-                <h1 className="star-message bottom">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+                <h1 className="star-message">   
+                ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+                <h1 className="site-welcome">
+                    The Bigger Picture</h1>
+                <h1 className="star-message bottom">
+                    ★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
                 <div className="welcome-message">
                     <h1 className="left-message">
                         LOOKING<br />FOR<br />THE<br />MOST<br />WANTED<br />NFT?
@@ -60,5 +63,5 @@ export const Home = () => {
                 <h1 className="star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
             </form>
         </div>
-    );
+    )
 }

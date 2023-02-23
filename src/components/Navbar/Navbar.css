@@ -2,10 +2,10 @@
 
 *,*::after, *::before {
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: content-box;
 }
 html {
-    font-size: 62.5%;
+    font-size: 16px;
 }
 
 body {

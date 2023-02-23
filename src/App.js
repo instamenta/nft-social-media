@@ -16,51 +16,51 @@ import { MostWanted } from './components/MostWanted/MostWanted';
 import "./App.css"
 import { UserGuard } from './guards/UserGuard';
 import { GuestGuard } from './guards/GuestGuards';
-function App() {
 
+function App() {
     return (
         <div id="box" className='box'>
-
             <Navbar />
             <main id="main-content" className='main-content'>
                 <Routes>
                     <Route path="/" element={<Home />} />
+
                     <Route path="/users/login" element={
                         <GuestGuard>
                             <Login />
-                        </GuestGuard>
-                    } />
+                        </GuestGuard>} />
+
                     <Route path="/users/register" element={
                         <GuestGuard>
                             <Register />
-                        </GuestGuard>
-                    } />
+                        </GuestGuard>} />
+
                     <Route path="/nft/upload" element={
                         <UserGuard>
                             <Upload />
-                        </UserGuard>
-                    } />
+                        </UserGuard>} />
+
                     <Route path="/nft/catalog" element={<Catalog />} />
+
                     <Route path="/nft/catalog/:id" element={<Details />} />
+
                     <Route path="/profile/:id" element={<Profile />} />
 
                     <Route path="/profile/:id/select-profile-picture" element={
                         <UserGuard>
                             <SelectPicture />
-                        </UserGuard>
-                    } />
+                        </UserGuard>} />
+
                     <Route path="/nft/catalog/:id/edit" element={
                         <UserGuard>
                             <Edit />
-                        </UserGuard>
-                    } />
+                        </UserGuard>} />
+
                     <Route path="/nft/catalog/most-wanted" element={<MostWanted />} />
                 </Routes>
             </main>
-            <Footer/>
+            <Footer />
         </div>
-
-    );
+    )
 }
-
 export default App;
