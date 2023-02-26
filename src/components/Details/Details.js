@@ -1,6 +1,8 @@
 import axios from "axios"
+import Cookies from "js-cookie"
 import { useEffect, useState } from "react"
 import { Link, useParams, useNavigate } from "react-router-dom"
+import { decodeToken } from "../../services/NftService"
 import "./Details.css"
 
 export const Details = () => {
@@ -27,57 +29,71 @@ export const Details = () => {
         ready: false,
         currentUser: '',
     })
-    useEffect(() => {
-        const userDataJSON = localStorage.getItem('userData')
-        if (!userDataJSON) {
-            setIsGuest(true)
-        }
-        let username
-        if (userDataJSON) {
-            const userObject = JSON.parse(userDataJSON)
-            if (userObject.username) {
-                username = userObject.username
-            } else {
-                setIsGuest(true)
-            }
-        }
-        const getData = async () => {
-            const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
-            setEditUrl(`/nft/catalog/${params.id}/edit`)
-            setCreatorId(data.creator)
-            if (username) {
-                if (data.owners.includes(username)) {
-                    setOwned(true)
-                } else {
-                    setOwned(false)
-                }
-                if (data.likes.includes(username)) {
-                    setLiked(true)
-                } else {
-                    setLiked(false)
-                }
-            }
-            setNftData({
-                _id: data._id,
-                info: data.info,
-                likes: data.likes,
-                name: data.name,
-                owners: data.owners,
-                pic: data.pic,
-                price: data.price,
-                ready: true,
-                creator: data.creator,
-                description: data.description,
-                currentUser: username
-            })
-            const userObject = await axios.get(`http://localhost:3031/profile/${data.creator}`)
-            if (userObject.data.username === username) {
-                setIsOwner(true)
-            }
-            setCreatorName(userObject.data.username)
-        }
-        getData()
-    }, []);
+    // useEffect(() => {
+    //     const cookie = Cookies.get('user')
+    //     if(cookie) {
+    //         const getUserData = async (cookie) => {
+    //             const decodedData = await decodeToken(cookie)
+    //             return decodedData
+    //         }
+    //         console.log(getUserData)
+    //     } else {
+    //         setIsGuest(true)
+    //     }
+    // },[])
+
+    // useEffect(() => {
+    //     const userDataJSON = localStorage.getItem('userData')
+    //     if (!userDataJSON) {
+    //         setIsGuest(true)
+    //     }
+    //     let username
+    //     if (userDataJSON) {
+    //         const userObject = JSON.parse(userDataJSON)
+    //         if (userObject.username) {
+    //             username = userObject.username
+    //         } else {
+    //             setIsGuest(true)
+    //         }
+    //     }
+    //     const getData = async () => {
+    //         const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
+    //         setEditUrl(`/nft/catalog/${params.id}/edit`)
+    //         setCreatorId(data.creator)
+    //         if (username) {
+    //             if (data.owners.includes(username)) {
+    //                 setOwned(true)
+    //             } else {
+    //                 setOwned(false)
+    //             }
+    //             if (data.likes.includes(username)) {
+    //                 setLiked(true)
+    //             } else {
+    //                 setLiked(false)
+    //             }
+    //         }
+    //         setNftData({
+    //             _id: data._id,
+    //             info: data.info,
+    //             likes: data.likes,
+    //             name: data.name,
+    //             owners: data.owners,
+    //             pic: data.pic,
+    //             price: data.price,
+    //             ready: true,
+    //             creator: data.creator,
+    //             description: data.description,
+    //             currentUser: username
+    //         })
+    //         const userObject = await axios.get(`http://localhost:3031/profile/${data.creator}`)
+    //         if (userObject.data.username === username) {
+    //             setIsOwner(true)
+    //         }
+    //         setCreatorName(userObject.data.username)
+    //     }
+    //     getData()
+    // }, []);
+
 
     const deleteHandler = async (e) => {
         e.preventDefault()

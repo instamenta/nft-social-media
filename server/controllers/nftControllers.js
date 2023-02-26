@@ -31,7 +31,6 @@ const catalogNft = async (req, res) => {
     res.json(nftList)
 }
 const detailsNft = async (req, res) => {
-
     const nftId = req.params.id
     const data = await Nft.findById(nftId)
 

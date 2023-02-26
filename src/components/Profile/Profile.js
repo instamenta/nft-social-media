@@ -1,14 +1,16 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import AuthContext from "../../context/AuthProvider"
+import { getUser } from "../../services/ProfileService"
 import "./Profile.css"
 export const Profile = () => {
     const params = useParams()
+    const { auth, setAuth } = useContext(AuthContext)
     const userId = params.id
 
-    const [errors, setErrors] = useState('')
+    // const [errors, setErrors] = useState('')
     const [isOwner, setIsOwner] = useState(false)
-    const [editBio, setEditBio] = useState(false)
+    // const [editBio, setEditBio] = useState(false)
     const [editBtnText, setEditBtnText] = useState('Edit Bio')
     const [userData, setUserData] = useState({
         birthday: '',
@@ -21,18 +23,15 @@ export const Profile = () => {
         likedNft: [],
     })
     useEffect(() => {
-        const userDataJSON = localStorage.getItem("userData")
-        if (userDataJSON) {
-            const currentUser = JSON.parse(userDataJSON)
-            if (currentUser._id === userId) {
+        if (auth) {
+            if (auth._id === userId) {
                 setIsOwner(true)
             }
         }
-    }, [])
+    }, [auth, setAuth])
     useEffect(() => {
         const getData = async () => {
-            const { data, status } = await axios.get(`http://localhost:3031/profile/${userId}`)
-            console.log(data)
+            const data = await getUser(userId)
             setUserData({
                 birthday: data.birthday,
                 email: data.email,
@@ -49,60 +48,60 @@ export const Profile = () => {
     const handleProfileData = async (e) => {
         e.preventDefault()
 
-        const formData = new FormData(e.target)
-        let { username, email } = Object.fromEntries(formData.entries())
+        // const formData = new FormData(e.target)
+        // let { username, email } = Object.fromEntries(formData.entries())
 
-        try {
-            const config = {
-                headers: { "Content-type": "application/json" }
-            }
-            const data = await axios.post(`http://localhost:3031/profile/${userData._id}/edit`,
-                { username, email },
-                config
-            )
-            if (data.data.message) {
-                setErrors(data.data.message)
-            } else {
-                setErrors('Updating successful')
-                localStorage.removeItem('userData')
-                localStorage.setItem('userData', JSON.stringify(data.data))
-            }
-        } catch (error) {
-            setErrors('Updating Failed!')
-        }
+        // try {
+        //     const config = {
+        //         headers: { "Content-type": "application/json" }
+        //     }
+        //     const data = await axios.post(`http://localhost:3031/profile/${userData._id}/edit`,
+        //         { username, email },
+        //         config
+        //     )
+        //     if (data.data.message) {
+        //         setErrors(data.data.message)
+        //     } else {
+        //         setErrors('Updating successful')
+        //         localStorage.removeItem('userData')
+        //         localStorage.setItem('userData', JSON.stringify(data.data))
+        //     }
+        // } catch (error) {
+        //     setErrors('Updating Failed!')
+        // }
     }
     const onChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value })
     }
     const editBioHandler = async (e) => {
         e.preventDefault()
-        if (editBio === true) {
-            setEditBio(false)
-            setEditBtnText('Edit Bio')
+        // if (editBio === true) {
+        //     setEditBio(false)
+        //     setEditBtnText('Edit Bio')
 
-            const editArea = document.querySelector('.bio-textarea').value
+        //     const editArea = document.querySelector('.bio-textarea').value
 
-            const userData = JSON.parse(localStorage.getItem('userData'))
-            try {
-                const config = {
-                    headers: { "Content-type": "application/json" }
-                }
-                const data = await axios.post(`http://localhost:3031/profile/${userData._id}/edit-bio`,
-                    { editArea }, config)
+        //     const userData = JSON.parse(localStorage.getItem('userData'))
+        //     try {
+        //         const config = {
+        //             headers: { "Content-type": "application/json" }
+        //         }
+        //         const data = await axios.post(`http://localhost:3031/profile/${userData._id}/edit-bio`,
+        //             { editArea }, config)
 
-                if (data.data) {
+        //         if (data.data) {
 
-                    localStorage.removeItem('userData')
-                    localStorage.setItem('userData', JSON.stringify(data.data))
+        //             localStorage.removeItem('userData')
+        //             localStorage.setItem('userData', JSON.stringify(data.data))
 
-                    setUserData({ ...userData, bio: data.data.bio })
-                }
-            } catch (error) {
-            }
-        } else {
-            setEditBio(true)
-            setEditBtnText('Confirm')
-        }
+        //             setUserData({ ...userData, bio: data.data.bio })
+        //         }
+        //     } catch (error) {
+        //     }
+        // } else {
+        //     setEditBio(true)
+        //     setEditBtnText('Confirm')
+        // }
     }
 
     return (
@@ -113,7 +112,7 @@ export const Profile = () => {
                         <div className="col-md-4">
                             <div className="profile-img">
                                 <a href={userData.pic}>
-                                    <img className="profile-pic" src={userData.pic} />
+                                    <img className="profile-pic" src={userData.pic} alt='not-found' />
                                 </a>
                             </div>
                         </div>
@@ -122,9 +121,17 @@ export const Profile = () => {
                             <div className="profile-head">
                                 <h5>NFT hunter</h5>
                                 <h6>web developer</h6>
-                                {editBio
-                                    ? <textarea className="profile-bio mt-3 mb-5 bio-textarea" defaultValue={userData.bio}></textarea>
-                                    : <p className="profile-bio mt-3 mb-5 ">~ " {userData?.bio?.slice(0, 230)} " ~</p>}
+                                {
+                                    // editBio
+                                    false
+                                        ? <textarea
+                                            className="profile-bio mt-3 mb-5 bio-textarea"
+                                            defaultValue={userData.bio}>
+                                        </textarea>
+                                        : <p className="profile-bio mt-3 mb-5 ">
+                                            ~ " {userData?.bio?.slice(0, 230)} " ~
+                                        </p>
+                                }
                                 <div className="info-grid">
                                     <p className="like-data">
                                         Likes given: {userData.likedNft.length}
@@ -137,9 +144,12 @@ export const Profile = () => {
                         </div>
 
                         <div className="col-md-2">
-                            <Link to="/" className="homepage-btn">✘</Link>
+                            {/* <Link to="/" className="homepage-btn">✘</Link> */}
                             {isOwner
-                                ? <><Link to={"/profile/" + userData._id + "/select-profile-picture"} className="select-pic-btn">
+                                ? <>
+                                <Link 
+                                to={"/profile/" + userData._id + "/select-profile-picture"} 
+                                className="select-pic-btn">
                                     Choose Nft
                                 </Link>
                                     <button className="edit-bio-btn" onClick={editBioHandler} >
@@ -169,7 +179,9 @@ export const Profile = () => {
                                         <div>
                                         </div>
                                         <div className="profile-error-container">
-                                            <span className="profile-error">{errors}</span>
+                                            <span className="profile-error">
+                                                {/* {errors} */}
+                                            </span>
                                         </div>
                                         <div className="aligner label-data">
                                             <label>Username :</label>
@@ -178,11 +190,23 @@ export const Profile = () => {
                                         <div className="aligner">
                                             {isOwner
                                                 ? <>
-                                                    <input onChange={onChange} type="text" className="user-data" value={userData.username} placeholder="Please fill field!" name='username'></input>
+                                                    <input 
+                                                    onChange={onChange} 
+                                                    type="text" 
+                                                    className="user-data" 
+                                                    value={userData.username} 
+                                                    placeholder="Please fill field!" 
+                                                    name='username'
+                                                    />
                                                     <button className="confirm-button" type="submit">✓</button>
                                                 </>
                                                 : <>
-                                                    <input disabled className="user-data" value={userData.username} placeholder="Please fill field!"></input>
+                                                    <input 
+                                                    disabled 
+                                                    className="user-data" 
+                                                    value={userData.username} 
+                                                    placeholder="Please fill field!"
+                                                    />
                                                 </>}
                                         </div>
                                     </div>
@@ -195,11 +219,21 @@ export const Profile = () => {
                                         <div className="aligner">
                                             {isOwner
                                                 ? <>
-                                                    <input onChange={onChange} type="text" className="user-data" value={userData.email} placeholder="Please fill field!" name="email"></input>
+                                                    <input
+                                                        onChange={onChange}
+                                                        type="text"
+                                                        className="user-data"
+                                                        value={userData.email}
+                                                        placeholder="Please fill field!"
+                                                        name="email" />
                                                     <button className="confirm-button" type="submit">✓</button>
                                                 </>
                                                 : <>
-                                                    <input disabled className="user-data" value={userData.username} placeholder="Please fill field!"></input>
+                                                    <input
+                                                        disabled
+                                                        className="user-data"
+                                                        value={userData.username}
+                                                        placeholder="Please fill field!" />
                                                 </>}
                                         </div>
                                     </div>

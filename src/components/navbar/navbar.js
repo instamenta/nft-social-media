@@ -1,47 +1,48 @@
 import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../context/AuthProvider";
+import { decodeToken } from "../../services/NftService";
 import "./Navbar.css"
 export const Navbar = () => {
 
     const navigate = useNavigate();
+    const { auth ,setAuth} = useContext(AuthContext)
 
     const [logInfo, setLogInfo] = useState(false)
     const [userId, setUserId] = useState('')
-    const [userName, setUserName] = useState('')
-    
+
     useEffect(() => {
-        // const [cookieName, cookieValue] = document.cookie.split('=')
-        // const userDataJSON = localStorage.getItem('userData')
-        const cookieData = Cookies.get('user')
-        
-        console.log(cookieData)
-        // if (cookieValue && userDataJSON) {
+        const cookie = Cookies.get('user', {signed: true})
 
-        //     const { username, _id } = JSON.parse(userDataJSON)
-
-        //     setUserId(_id)
-        //     setUserName(username)
-        //     setLogInfo(true)
-
-        // } else {
-        //     document.cookie = "USER_DATA=expired; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
-        //     fetch('/')
-        //     setLogInfo(false)
-        //     navigate('/users/login')
-        // }
-    }, [])
+        if (cookie) {
+            async function userData() {
+                const { user } = await decodeToken(cookie)
+                if (user) {
+                    setUserId(user._id)
+                    setLogInfo(true)
+                } else {
+                    setUserId('')
+                    setLogInfo(false)
+                }
+            }
+            userData()
+        } else {
+            setUserId('')
+            setLogInfo(false)
+        }
+    }, [auth, setAuth])
 
     const logout = (e) => {
         e.preventDefault();
-
-        document.cookie = "USER_DATA=expired; expires=Thu, 01 Jan 1970 00:00:00 UTC;max-age=0";
-        document.cookie = ''
-        localStorage.removeItem('userData')
-        fetch('/')
+        console.log('logout')
         setLogInfo(false)
+        setUserId('')
+        setAuth({})
+        Cookies.remove('user', { path: '/'})
         navigate('/users/login')
     }
+
     return (
         <nav className="nav">
             <Link to="/" className="brand"></Link>
@@ -65,7 +66,6 @@ export const Navbar = () => {
                     <li className="nav_item"><Link to="#" onClick={logout} className="nav_link">Logout</Link></li>
                     : <></>}
             </ul>
-
         </nav>
     )
 }

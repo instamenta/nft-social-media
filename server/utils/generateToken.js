@@ -6,16 +6,13 @@ const generateToken = async (user) => {
         username: user.username,
         _id: user._id,
     };
-
     const token = jwt.sign(payload, "SOMERANDOMSECRET", {
         expiresIn: '60 days',
     });
     
     return token;
 }
-const decodeToken = async (token) => {
 
-}
-module.exports = generateToken, decodeToken
+module.exports = generateToken
 
 

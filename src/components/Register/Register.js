@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { FormInput } from "../FormInput/FormInput"
 import { Link, useNavigate } from "react-router-dom"
 import Cookies from 'js-cookie'
 import { registerUser } from '../../services/UserService'
+import AuthContext from '../../context/AuthProvider'
 
 import "./Register.css"
 
 export const Register = () => {
     const navigate = useNavigate()
+    const { auth, setAuth } = useContext(AuthContext)
     const [errors, setErrors] = useState('')
 
     const [values, setValues] = useState({
@@ -67,19 +69,22 @@ export const Register = () => {
     ]
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const userData = new FormData(e.target)
-        const { username, email, birthday, password } = Object.fromEntries(userData.entries());
 
-        const data = await registerUser(
-            username, email,
-            birthday, password, )
+        const formData = new FormData(e.target)
+        const { username, email, birthday, password } = Object.fromEntries(formData.entries());
 
-        if (data?.token) {
-            Cookies.set("user", data.token)
+        const registerData = await registerUser(
+            username,
+            email,
+            birthday,
+            password,
+        )
+        if (registerData?.token) {
+            Cookies.set("user", registerData.token)
+            setAuth(registerData)
             navigate('/')
         } else {
             setErrors('Register error')
-           
         }
     }
     const onChange = (e) => {
@@ -89,7 +94,6 @@ export const Register = () => {
         <div>
             <form onSubmit={handleSubmit} className="form-container">
                 <h1 className="auth-h1">Register</h1>
-
                 <h2 className='try-again-message'>{errors}</h2>
                 {inputs.map((input) => (
                     <FormInput

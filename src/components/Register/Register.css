@@ -41,11 +41,11 @@ button.submit-button:hover {
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .auth-redirect {
-    color: black;
+    color: rgb(150, 150, 235);
     text-align: center;
 }
 .auth-redirect:hover {
-    color: darkslategray;
+    color: rgb(53, 53, 218);
 }
 
 .try-again-message {

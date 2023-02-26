@@ -1,12 +1,16 @@
 import Cookies from 'js-cookie'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../../services/UserService'
-import { FormInput } from "../FormInput/FormInput"
+import { FormInput } from '../FormInput/FormInput'
 
+import AuthContext from '../../context/AuthProvider'
 export const Login = () => {
 
     const navigate = useNavigate();
+
+    const { auth, setAuth } = useContext(AuthContext)
+
     const [errors, setErrors] = useState('')
     const [values, setValues] = useState({
         username: '',
@@ -40,11 +44,13 @@ export const Login = () => {
         const formData = new FormData(e.target)
         const { username, password } = Object.fromEntries(formData.entries())
 
-        const data = await loginUser(username, password)
-        if (data === 'Invalid username or password') {
+        const loginData = await loginUser(username, password)
+
+        if (loginData === 'Invalid username or password') {
             setErrors('Invalid username or password')
         } else {
-            Cookies.set('user',data.token)
+            Cookies.set('user',loginData.token)
+            setAuth(loginData)
             navigate('/')
         }
     }

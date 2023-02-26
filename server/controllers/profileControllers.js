@@ -1,17 +1,22 @@
-const { findByIdAndUpdate, findById } = require('../models/UserModel')
+// const { findByIdAndUpdate, findById } = require('../models/UserModel')
 const User = require('../models/UserModel')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
+
 const getUser = async (req, res) => {
-
-    const userId = req.params.id
-    const userData = await User.findOne({ _id: userId })
-
-    if (userData) {
-        res.status = 200
-        res.json(userData)
-    } else {
-        res.status = 204
+    try {
+        const userId = req.params.id
+        const userData = await User.findOne({ _id: userId })
+    
+        if (userData) {
+            res.status = 200
+            res.json(userData)
+        } else {
+            res.json({ message: "Invalid" })
+        }
+    } catch (err) {
+        res.json({ message: "Invalid" })
     }
+    
 }
 const setPictureUser = async (req, res) => {
 
@@ -67,8 +72,7 @@ const editUser = async (req, res) => {
             res.json(newUser)
         }
     } catch (err) {
-        res.json({ message: 'Updating error' })
-        res.end()
+        res.json({ message: "Invalid" })
     }
 }
 const editBioUser = async (req, res) => {

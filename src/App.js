@@ -20,8 +20,8 @@ import { GuestGuard } from './guards/GuestGuards';
 function App() {
     return (
         <div id="box" className='box'>
-            <Navbar />
-            <main id="main-content" className='main-content'>
+            <Navbar  />
+            <main id="main-content" className='main-content' >
                 <Routes>
                     <Route path="/" element={<Home />} />
 
