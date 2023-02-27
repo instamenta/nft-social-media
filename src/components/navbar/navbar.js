@@ -1,20 +1,20 @@
 import Cookies from "js-cookie";
+import AuthContext from "../../context/AuthProvider";
+
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AuthContext from "../../context/AuthProvider";
 import { decodeToken } from "../../services/NftService";
+
 import "./Navbar.css"
 export const Navbar = () => {
-
     const navigate = useNavigate();
-    const { auth ,setAuth} = useContext(AuthContext)
+    const { auth, setAuth } = useContext(AuthContext)
 
     const [logInfo, setLogInfo] = useState(false)
     const [userId, setUserId] = useState('')
 
     useEffect(() => {
-        const cookie = Cookies.get('user', {signed: true})
-
+        const cookie = Cookies.get('user', { signed: true })
         if (cookie) {
             async function userData() {
                 const { user } = await decodeToken(cookie)
@@ -35,35 +35,62 @@ export const Navbar = () => {
 
     const logout = (e) => {
         e.preventDefault();
-        console.log('logout')
         setLogInfo(false)
         setUserId('')
+        Cookies.remove('user', { path: '/' })
         setAuth({})
-        Cookies.remove('user', { path: '/'})
         navigate('/users/login')
     }
 
     return (
         <nav className="nav">
-            <Link to="/" className="brand"></Link>
-
+            <Link to="/" className="brand">
+                THE BIGGER PICTURE
+            </Link>
             <ul className="nav_menu">
-                <li className="nav_item"><Link to="/nft/catalog" className="nav_link">Catalog</Link></li>
-                <li className="nav_item"><Link to="/nft/catalog/most-wanted" className="nav_link">Most-Wanted</Link></li>
+                <li className="nav_item">
+                    <Link to="/nft/catalog" className="nav_link">
+                        Catalog
+                    </Link>
+                </li>
+                <li className="nav_item">
+                    <Link to="/nft/catalog/most-wanted" className="nav_link">
+                        Most-Wanted
+                    </Link>
+                </li>
                 {logInfo === true ?
                     <>
-                        <li className="nav_item"><Link to="/nft/upload" className="nav_link">Upload</Link></li>
-                        <li className="nav_item"><Link to={"/profile/" + userId} className="nav_link">Profile</Link></li>
+                        <li className="nav_item">
+                            <Link to="/nft/upload" className="nav_link">
+                                Upload
+                            </Link>
+                        </li>
+                        <li className="nav_item">
+                            <Link to={"/profile/" + userId} className="nav_link">
+                                Profile</Link>
+                        </li>
                     </>
                     : <></>}
                 {logInfo === false ?
                     <>
-                        <li className="nav_item"><Link to="/users/login" className="nav_link">Login</Link></li>
-                        <li className="nav_item"><Link to="/users/register" className="nav_link">Register</Link></li>
+                        <li className="nav_item">
+                            <Link to="/users/login" className="nav_link">
+                                Login
+                            </Link>
+                        </li>
+                        <li className="nav_item">
+                            <Link to="/users/register" className="nav_link">
+                                Register
+                            </Link>
+                        </li>
                     </>
                     : <></>}
                 {logInfo === true ?
-                    <li className="nav_item"><Link to="#" onClick={logout} className="nav_link">Logout</Link></li>
+                    <li className="nav_item">
+                        <Link to="#" onClick={logout} className="nav_link">
+                            Logout
+                        </Link>
+                    </li>
                     : <></>}
             </ul>
         </nav>

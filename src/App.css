@@ -1,15 +1,30 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-size: 1.6rem;
+}
+
 .main-content {
+    padding-top: 24px;
     display: grid;
     align-items: center;
     justify-content: center;
     min-height: 110vh;
-    background-image: url('https://wallpaperaccess.com/full/6602516.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position-x: center;
+    background-image: linear-gradient(to bottom, #000000, #2e2e2e, #585858, #878787, #b9b9b9, #b9b9b9, #b9b9b9, #b9b9b9, #878787, #585858, #2e2e2e, #000000);
 }
+
 .box {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

@@ -42,7 +42,7 @@ export const MostWanted = () => {
     return (
         <div>
             <form className='form-container'>
-                <h1 className="star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+
                 <h1 className="message-catalog">MOST-WANTED NFT</h1>
 
                 {ntfComponents

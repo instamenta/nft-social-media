@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 .image {
   width: 500px;
@@ -11,44 +12,56 @@
   border-radius: 20px;
   user-select: none;
   cursor: pointer;
+  transition: all 300ms ease;
 }
 .image:hover {
-  box-shadow:  2px 2px 6px 2px rgb(105, 210, 255);
+  transform: scale(0.9) rotate(10deg);
 }
 
 .right-arrow {
+  margin-right: 7rem;
   position: absolute;
   top: 50%;
   right: 32px;
-  font-size: 3rem;
-  color: #000;
+  font-size: 4rem;
+  color: rgb(53, 53, 53)(0, 0, 0, 0.7);
   z-index: 10;
   cursor: pointer;
   user-select: none;
-  height: 40px;
-  width: 40px;
+  height: 64px;
+  width: 64px;
+  transition: all 300ms ease;
+
 }
 
 .left-arrow {
+  margin-left: 7rem;
+
   position: absolute;
   top: 50%;
   left: 32px;
-  font-size: 3rem;
-  color: #000;
+  font-size: 4rem;
+  color: rgb(53, 53, 53)(0, 0, 0, 0.7);
   z-index: 10;
   cursor: pointer;
   user-select: none;
-  height: 40px;
-  width: 40px;
+  height: 64px;
+  width: 64px;
+  transition: all 300ms ease;
 }
 .left-arrow:hover {
-  
-  box-shadow:  2px 2px 5px 2px rgb(159, 197, 205);
+  transform: scale(1.4);
+
+
   border-radius: 50%;
+  color: #000000;
 }
 .right-arrow:hover {
-  box-shadow:  2px 2px 5px 2px rgb(159, 197, 205);
+
   border-radius: 50%;
+  transform: scale(1.4);
+  color: #000000;
+
 }
 .slide {
   opacity: 0;
@@ -62,20 +75,20 @@
 }
 
 .most-wanted-label {
+  background-color: rgba(0, 0, 0, 0.3) ;
   font-size: 40px;
   margin-top: 30px;
     text-align: center;
     letter-spacing: 4px;
   font-weight: 700;
   position: absolute;
-  background-color: rgb(231, 198, 229);
   height: 100%;
   padding: 15px;
   margin-bottom: 30px;
   vertical-align: top;
   border-radius: 20px;
   width: 792px;
-  box-shadow:  2px 2px 5px 2px rgb(159, 197, 205);
+  color: white;
   user-select: none;
   font-family: "Times New Roman", Times, serif;
   text-shadow: 2px 2px rgb(143, 142, 142);

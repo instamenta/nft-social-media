@@ -38,9 +38,8 @@ export const Catalog = () => {
     return (
         <div className="catalog-container">
             <form className='catalog-form'>
-
                 <h1 className="message-catalog">
-                    ONLY FOR THE REAL HUNTERS</h1>
+                    FIND ALL NFT</h1>
                 {ntfComponents
                     ? <div className="wrapper-card">
                         {ntfComponents}

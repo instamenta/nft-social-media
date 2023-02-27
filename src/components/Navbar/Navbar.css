@@ -1,42 +1,13 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
-
-*
-,*::after
-, *::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: content-box;
-}
-html {
-    font-size: 16px;
-}
-
-body {
-    font-size: 1.6rem;
-}
-li.nav_item {
-    list-style: none;
-}
-a.nav_link {
-    font-size: 30px;
-    font-family: "Times New Roman", Times, serif;
-    text-decoration: none;
-    text-shadow: 1px 1px rgb(143, 142, 142);
-    color: rgb(31, 179, 228);
-    user-select: none;
-}
-a.nav_link:hover {
-    color: black;
-}
+@import url('https://fonts.googleapis.com/css2?family=Gajraj+One&display=swap');
 .nav{
-    font-weight:700;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    background-color: white;
-    border-bottom: 5px solid rgb(31, 179, 228);
-
-
+    justify-content: space-between;
+    padding: 8px 3rem;
+    background-color: #3c3c3c;
+    border-bottom: 5px solid white;
+    font-family: 'Gajraj One', cursive;
 }
 .nav_brand {
     text-transform: uppercase;
@@ -46,20 +17,49 @@ a.nav_link:hover {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    gap: 3rem;
+    padding: 0;
+    margin: 0;
 }
 
 .brand {
-    background-image: url('./site-logo.png');
+    font-size: 28px;
+    padding: 0 4rem;
+    margin: 0;
+    letter-spacing: 4px;
+    text-shadow: 2px 2px rgb(109, 100, 187);
+    color: rgb(196, 196, 196);
     user-select: none;
-    background-size: cover;
-    width: 110px;
-    height: 90px;
-    background-position: center;
-    background-color: white;
-    border-radius: 80%;
+    
+    transition: all 300ms ease;
+
 }
 .brand:hover {
-    background-color: whitesmoke;
-    box-shadow: 0px 1px 2px 2px rgb(152, 147, 168);
+    color: white;
+    transform: scale(1.2);
+    text-decoration: none;
+    
+}
+
+li.nav_item {
+    list-style: none;
+    padding: 0 14px;
+    transition: all 300ms ease;
+    border-left: rgb(90, 90, 90) 2px solid;
+    border-right: rgb(90, 90, 90) 2px solid;
+}
+/* li.nav_item:last-of-type { */
+    /* border-right: rgb(90, 90, 90) 2px solid; */
+/* } */
+a.nav_link {
+    font-size: 28px;
+    text-decoration: none;
+    text-shadow: 2px 2px rgb(109, 100, 187);
+    color: rgb(196, 196, 196);
+    user-select: none;
+    
+}
+li.nav_item:hover {
+    color: white;
+    transform: scale(1.1);
+    background-color: #3c3c3c;
 }
