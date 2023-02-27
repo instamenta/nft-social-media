@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
                 }
             }
             getData()
-        }
+        }   
     }, [auth, setAuth])
 
     return (

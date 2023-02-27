@@ -1,12 +1,15 @@
-import axios from 'axios'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import AuthContext from '../../context/AuthProvider'
+import { uploadNft } from '../../services/NftService'
 import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
+
 import "./Upload.css"
 
 export const Upload = () => {
     const navigate = useNavigate()
+    const { auth } = useContext(AuthContext)
     
     const [errors, setErrors] = useState('')
     const [values, setValues] = useState({
@@ -66,29 +69,17 @@ export const Upload = () => {
     ]
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        try {
         const formData = new FormData(e.target)
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
 
-        const userData = localStorage.getItem('userData')
+            const { data, status } = await uploadNft(name, info, description, price, pic, auth)
 
-        try {
-            const config = {
-                headers: {
-                    "Content-type": "application/json"
-                }
-            }
-            const data = await axios.post('http://localhost:3031/nft/upload',
-                { name, info, description, price, pic, userData },
-                config
-            )
-
-            if (data.status === 203) {
+            if (status === 203) {
                 setErrors('Updating Failed!')
+            } else {
+                navigate('/nft/catalog/' + data.post._id)
             }
-
-            navigate('/nft/catalog/' + data.data.post._id)
-
         } catch (error) {
             setErrors('Updating Failed!')
         }

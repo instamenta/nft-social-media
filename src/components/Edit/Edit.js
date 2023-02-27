@@ -1,13 +1,15 @@
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import AuthContext from '../../context/AuthProvider'
+import { editNft, getNftById } from '../../services/NftService'
 import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
 
 export const Edit = () => {
-
     const params = useParams()
     const navigate = useNavigate()
+    const { auth } = useContext(AuthContext)
+
     const [errors, setErrors] = useState('')
     const [values, setValues] = useState({
         name: '',
@@ -16,10 +18,12 @@ export const Edit = () => {
         price: '',
         pic: '',
     })
-
     useEffect(() => {
         const getData = async () => {
-            const { data } = await axios.get(`http://localhost:3031/nft/catalog/${params.id}`)
+            const data = await getNftById(params.id)
+            if(data.messages) {
+                return
+            }
             setValues({
                 info: data.info,
                 name: data.name,
@@ -82,18 +86,11 @@ export const Edit = () => {
 
         const formData = new FormData(e.target)
         let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
-        const userData = localStorage.getItem('userData')
+
         try {
-            const config = {
-                headers: {
-                    "Content-type": "application/json"
-                }
-            }
-            const data = await axios.post(`http://localhost:3031/nft/catalog/${params.id}/edit`,
-                { name, info, description, price, pic, userData },
-                config
-            )
-            if (data.status === 200) {
+            const status  = await editNft(params.id, name, info, description, price, pic, auth)
+            console.log(status)
+            if (status === 200) {
                 navigate(`/nft/catalog/${params.id}`)
             } else {
                 setErrors('Updating Failed')

@@ -20,9 +20,13 @@ export async function getUserByName (username, password) {
 }
 
 
-export async function editUserPicture (id, username, password) {
-    // not added
-    const { data } = await axios.post(`http://localhost:3031/profile/${id}/edit-user-picture`, {username,password})
+export async function editUserPicture (id, auth, nftUrl) {
+    console.log('in')
+    console.log(id)
+    console.log(auth)
+    console.log(nftUrl)
+    const { data } = await axios.post(`http://localhost:3031/profile/${id}/edit-user-picture`, {auth, nftUrl})
+    console.log(data)
     if (data?.message) {
         return data.message
     } else {
@@ -46,7 +50,3 @@ export async function editUserBio (id, username, bio ) {
         return data
     }
 }
-// router.route('/:id/edit-user-picture').post(editUserPicture)
-
-// router.route('/:id/edit-user-name').post(editUserName)
-// router.route('/:id/edit-user-bio').post(editBioUser)

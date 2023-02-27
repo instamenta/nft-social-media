@@ -49,19 +49,15 @@ export const Profile = () => {
     }, []);
 
     useEffect(() => {
-        console.log(3)
-        if (auth?._id === userId && isOwner=== false ) {
-                setIsOwner(true)
+        if (auth?._id === userId && isOwner === false) {
+            setIsOwner(true)
         }
-    }, [])
+    }, [formData])
     async function handleUserData(e) {
         e.preventDefault()
-        console.log(2)
-
         try {
             const formDataValue = new FormData(e.target)
             let { username, email } = Object.fromEntries(formDataValue.entries())
-
             const data = await editUserData(auth._id, username, email)
 
             if (data?.message) {
@@ -74,15 +70,10 @@ export const Profile = () => {
             setErrors(true)
         }
     }
-    // async function onChange(e) {
-    //     setFormData({ ...formData, [e.target.name]: e.target.value })
-    // }
     async function handleUserBio(e) {
         e.preventDefault()
         try {
-            console.log(1)
             const bioData = document.querySelector('.bio-textarea').value
-
             const data = await editUserBio(auth._id, auth.username, bioData)
 
             if (data?.message) {
@@ -132,14 +123,13 @@ export const Profile = () => {
                         </div>
 
                         <div className="col-md-2">
-                            {isOwner
-                                ?
+                            {isOwner ?
                                 <>
                                     <Link
                                         to={"/profile/" + userData._id + "/select-profile-picture"}
                                         className="select-pic-btn"
                                     >
-                                        Choose Nft
+                                        Choose Nft11111111111111111111111111111111111111111
                                     </Link>
                                     <button className="edit-bio-btn" onClick={handleUserBio} >
                                         Edit Bio
@@ -224,7 +214,7 @@ export const Profile = () => {
                                                     <input
                                                         disabled
                                                         className="user-data"
-                                                        defaultValue={userData.username}
+                                                        defaultValue={userData.email}
                                                         placeholder="Please fill field!" />
                                                 </>}
                                         </div>

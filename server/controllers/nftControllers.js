@@ -7,12 +7,12 @@ const uploadNft = async (req, res) => {
         description, 
         price, 
         pic, 
-        userData 
+        auth
         } = req.body;
 
     price = Number(price)
 
-    const userInfo = JSON.parse(userData)
+    const userInfo = auth
     const creator = userInfo._id
 
     try {

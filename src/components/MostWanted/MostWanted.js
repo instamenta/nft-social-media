@@ -1,7 +1,7 @@
 import { useNavigate} from "react-router-dom";
 import { Card } from "../Catalog/Card/Card";
-import axios from 'axios';
 import { useEffect, useState } from "react";
+import { getMostWanted } from "../../services/NftService";
 
 export const MostWanted = () => {
 
@@ -29,10 +29,12 @@ export const MostWanted = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const res = await axios.get('http://localhost:3031/nft/catalog/most-wanted')
-            if (res.status === 200) {
-                setNftList(res.data)
-            }
+            const data = await getMostWanted()
+                if (data?.message) {
+                    console.log('No Data')
+                } else {
+                    setNftList(data)
+                }
         }
         fetchData();
     }, [])

@@ -6,7 +6,7 @@ const getUser = async (req, res) => {
     try {
         const userId = req.params.id
         const userData = await User.findOne({ _id: userId })
-    
+
         if (userData) {
             res.status = 200
             res.json(userData)
@@ -16,33 +16,33 @@ const getUser = async (req, res) => {
     } catch (err) {
         res.json({ message: "Invalid" })
     }
-    
+
 }
 const editUserPicture = async (req, res) => {
+    try {
+        const nftUrl = req.body.nftUrl
+        const ownerId = req.params.id
+        const currentUser = req.body.auth
 
-    if (req.params && req.body) {
-        if (req.params.id && req.body.currentUser && req.body.nftUrl) {
-
-            const nftUrl = req.body.nftUrl
-            const ownerId = req.params.id
-            const currentUser = JSON.parse(req.body.currentUser)
-
-            if (ownerId === currentUser._id) {
-                User.findByIdAndUpdate(ownerId, {
-                    pic: nftUrl
-                }, function (err, docs) {
-                    if (err) {
-                        console.log(err)
-                        res.status = 203
-                        res.json()
-                    } else {
-                        console.log("Updated userData: " + docs);
-                        res.status = 200
-                        res.json()
-                    }
-                })
-            }
+        console.log(currentUser)
+        console.log(nftUrl)
+        console.log(ownerId)
+        
+        if (ownerId === currentUser._id) {
+            User.findByIdAndUpdate(ownerId, {
+                pic: nftUrl
+            }, function (err, docs) {
+                if (err) {
+                    console.log(err)
+                    res.json({ message: "Invalid" })
+                } else {
+                    console.log("Updated userData: " + docs);
+                    res.json(currentUser)
+                }
+            })
         }
+    } catch (err) {
+        res.json({ message: "Invalid" })
     }
 }
 
@@ -88,7 +88,7 @@ const editUserBio = async (req, res) => {
             await User.findByIdAndUpdate(userId, { bio: newBio }).lean();
             changeState = true
             if (changeState === false) {
-                res.json({message: "No Change"})
+                res.json({ message: "No Change" })
             } else {
                 const newUser = await User.findById(userId)
                 res.json(newUser)

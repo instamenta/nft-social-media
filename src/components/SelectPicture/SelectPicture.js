@@ -1,12 +1,15 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
+import AuthContext from "../../context/AuthProvider"
+import { editUserPicture, getUser } from "../../services/ProfileService"
 import "./SelectPicture.css"
 export const SelectPicture = () => {
     const params = useParams()
     const userId = params.id
+    const { auth } = useContext(AuthContext)
 
     const navigate = useNavigate()
+
     const [userData, setUserData] = useState({
         birthday: '',
         email: '',
@@ -18,7 +21,7 @@ export const SelectPicture = () => {
     })
     useEffect(() => {
         const getData = async () => {
-            const { data, status } = await axios.get(`http://localhost:3031/profile/${userId}`)
+            const data = await getUser(userId)
 
             setUserData({
                 birthday: data.birthday,
@@ -35,50 +38,52 @@ export const SelectPicture = () => {
 
     const ntfComponents = userData.ownedNft.map((nftUrl) => {
 
-        let eventHandler = async (e) => {
+        const eventHandler = async (e) => {
             e.preventDefault()
 
-            const currentUser = localStorage.getItem('userData')
             try {
-                if (currentUser) {
-                    const config = {
-                        headers: {
-                            "Content-type": "application/json"
-                        }
+                if (auth) {
+                    const data = await editUserPicture(userData._id, auth, nftUrl)
+                    console.log(data)
+                    if (data.message) {
+                        console.log('error')
+                    } else {
+                        navigate('/profile/' + userData._id)
                     }
-                    const data = await axios.post(`http://localhost:3031/profile/${userData._id}/select-profile-picture`,
-                        { currentUser, nftUrl },
-                        config
-                    )
-                    navigate('/profile/' + userData._id)
                 }
             } catch (error) {
+                console.log('error')
             }
         }
 
         return (
-            <div className="select-profile-pic-container">
-                <img onClick={eventHandler} src={nftUrl} alt="profile-picture" className="select-profile-pic-img" />
+            <div key={nftUrl} className="select-profile-pic-container">
+                <img
+                    onClick={eventHandler}
+                    src={nftUrl}
+                    alt="profilepic"
+                    className="select-profile-pic-img"
+                    />
             </div>
         )
     })
 
     return (
-            <div className="container emp-profile">
-                <form method="">    
-                    <h1 className="select-star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
-                    <h1 className="select-photo-message">Select Profile Picture</h1>
-                    <div className="select-pic-grid">
-                        {ntfComponents
-                            ? <>
-                                {ntfComponents}
-                            </>
-                            : <>
-                                <h1>No nfts</h1>
-                            </> }
-                    </div>
-                    <h1 className="select-star-message-bottom">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
-                </form>
-            </div>
+        <div className="container emp-profile">
+            <form method="">
+                <h1 className="select-star-message">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+                <h1 className="select-photo-message">Select Profile Picture</h1>
+                <div className="select-pic-grid">
+                    {ntfComponents
+                        ? <>
+                            {ntfComponents}
+                        </>
+                        : <>
+                            <h1>No nfts</h1>
+                        </>}
+                </div>
+                <h1 className="select-star-message-bottom">★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★☆★</h1>
+            </form>
+        </div>
     )
 }

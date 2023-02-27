@@ -22,7 +22,7 @@ export const Footer = () => {
                 </ul>
             </div>
             <div className='footer-copyright'>
-                <span className="footer-span">Copyright &copy; 2022, Softuni-React-Exam.</span>
+                <span className="footer-span">Copyright &copy; 2022, Jan Milenkov.</span>
             </div>
         </footer>
     )
