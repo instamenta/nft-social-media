@@ -18,7 +18,7 @@ const getUser = async (req, res) => {
     }
     
 }
-const setPictureUser = async (req, res) => {
+const editUserPicture = async (req, res) => {
 
     if (req.params && req.body) {
         if (req.params.id && req.body.currentUser && req.body.nftUrl) {
@@ -46,12 +46,13 @@ const setPictureUser = async (req, res) => {
     }
 }
 
-const editUser = async (req, res) => {
-
+const editUserData = async (req, res) => {
     try {
         const userId = req.params.id
+
         let newUsername = req.body.username
         let newEmail = req.body.email
+
         let changeState = false
 
         const userData = await User.findById(userId)
@@ -75,10 +76,10 @@ const editUser = async (req, res) => {
         res.json({ message: "Invalid" })
     }
 }
-const editBioUser = async (req, res) => {
+const editUserBio = async (req, res) => {
     try {
         const userId = req.params.id
-        const newBio = req.body.editArea
+        const newBio = req.body.bioData
         let changeState = false
 
         const userData = await User.findById(userId)
@@ -87,14 +88,14 @@ const editBioUser = async (req, res) => {
             await User.findByIdAndUpdate(userId, { bio: newBio }).lean();
             changeState = true
             if (changeState === false) {
-                res.json()
+                res.json({message: "No Change"})
             } else {
                 const newUser = await User.findById(userId)
                 res.json(newUser)
             }
         }
     } catch (err) {
-        res.json()
+        res.json({ message: "Invalid" })
     }
 }
-module.exports = { getUser, setPictureUser, editUser, editBioUser }
+module.exports = { getUser, editUserPicture, editUserData, editUserBio }

@@ -1,12 +1,12 @@
 const express = require('express');
-const { getUser, setPictureUser, editUser, editBioUser} = require('../controllers/profileControllers');
+const { getUser, editUserPicture, editUserData, editUserBio} = require('../controllers/profileControllers');
 
 const router = express.Router()
 
 router.route('/:id').get(getUser)
-router.route('/:id/select-profile-picture').post(setPictureUser)
+router.route('/:id/edit-user-picture').post(editUserPicture)
 
-router.route('/:id/edit').post(editUser)
-router.route('/:id/edit-bio').post(editBioUser)
+router.route('/:id/edit-user-data').post(editUserData)
+router.route('/:id/edit-user-bio').post(editUserBio)
 
 module.exports = router
