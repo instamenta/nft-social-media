@@ -1,24 +1,18 @@
 form.form-container {
     background-color: rgb(43, 43, 43);
     padding: 0px 60px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 2px rgb(104, 123, 127);
 }
 
 h1.auth-h1 {
-
-    padding-top: 15px;
 
     text-align: center;
     font-family: 'Gajraj One', cursive;
     letter-spacing: 4px;
     text-shadow: 2px 2px rgb(109, 100, 187);
-        color: rgb(196, 196, 196);
-        user-select: none;
-        
-        transition: all 300ms ease;
+    color: rgb(196, 196, 196);
+    user-select: none;
+
+    transition: all 300ms ease;
 }
 
 h1.auth-h1:hover {
@@ -27,7 +21,7 @@ h1.auth-h1:hover {
 }
 
 
-button.submit-button{
+button.submit-button {
     width: 90%;
     height: 50px;
     padding: 10px;
@@ -42,11 +36,11 @@ button.submit-button{
     margin: 16px 0;
 
     font-family: 'Gajraj One', cursive;
-letter-spacing: 4px;
-text-shadow: 2px 2px rgb(109, 100, 187);
+    letter-spacing: 4px;
+    text-shadow: 2px 2px rgb(109, 100, 187);
     color: rgb(196, 196, 196);
     user-select: none;
-    
+
     transition: all 300ms ease;
 }
 
@@ -54,10 +48,12 @@ button.submit-button:hover {
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
+
 .auth-redirect {
     color: rgb(150, 150, 235);
     text-align: center;
 }
+
 .auth-redirect:hover {
     color: rgb(53, 53, 218);
 }
@@ -66,4 +62,15 @@ button.submit-button:hover {
     font-size: 15px;
     color: red;
     text-align: center;
+}
+
+.login-decoration {
+    padding: 30px 0;
+    background-color: black;
+
+}
+
+.login-decoration-bottom {
+    padding: 30px 0;
+    background-color: black;
 }
