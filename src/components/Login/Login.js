@@ -77,7 +77,7 @@ export const Login = () => {
                     Redirect to register
                 </Link>
                 <button className='submit-button'>
-                    Login
+                    Sign In
                 </button>
             </form>
         </div>
