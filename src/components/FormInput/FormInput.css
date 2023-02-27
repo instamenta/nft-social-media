@@ -5,7 +5,7 @@
 }
 input.auth-input{
     padding: 15px;
-    padding: 10px 0px;
+    margin: 10px 0px;
     border-radius: 10px 0px;
     border: 1px solid rgb(8, 7, 10);
 }
