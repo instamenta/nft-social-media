@@ -129,6 +129,7 @@ div.container {
     text-align: center;
     color: rgb(31, 179, 228);
     user-select: none;
+    z-index: 1000;
 }
 
 .edit-bio-btn {

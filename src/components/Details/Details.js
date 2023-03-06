@@ -4,15 +4,12 @@ import { deleteNft, getNftById, likeNft, ownNft } from "../../services/NftServic
 import { getUser } from "../../services/ProfileService"
 import { useSelector } from "react-redux"
 
-
 import "./Details.css"
 
 export const Details = () => {
     const params = useParams()
     const navigate = useNavigate()
     const user = useSelector((state) => state.user.value)
-
-
 
     const [creatorName, setCreatorName] = useState('')
     const [creatorId, setCreatorId] = useState('')
@@ -25,8 +22,7 @@ export const Details = () => {
 
     const [nftData, setNftData] = useState({
         _id: '', info: '', likes: [],
-        name: '', owner: '', currentUser: '',
-        price: '', ready: false, pic: '',
+        name: '', owner: '', price: '', pic: '',
     })
 
     useEffect(() => {
@@ -53,19 +49,8 @@ export const Details = () => {
                 else
                     setLiked(false)
             }
-            setNftData({
-                _id: data._id,
-                info: data.info,
-                likes: data.likes,
-                name: data.name,
-                owners: data.owners,
-                pic: data.pic,
-                price: data.price,
-                ready: true,
-                creator: data.creator,
-                description: data.description,
-                currentUser: username,
-            })
+            console.log(data)
+            setNftData(data)
             const userObject = await getUser(data.creator)
             if (userObject?.username === username) {
                 setIsOwner(true)
@@ -115,7 +100,7 @@ export const Details = () => {
         <>
             <div className="container emp-profile">
                 <form method="">
-                    {nftData.ready === true
+                    {nftData._id.length > 0
                         ? <div className="details-grid">
                             <div className='details-pic-container'>
                                 <img className="details-pic" src={nftData.pic} alt="details-pic" />
@@ -170,11 +155,12 @@ export const Details = () => {
                                 </Link>
                                 {isOwner ?
                                     <>
-                                        <Link to={`/nft/catalog/${params?.id}/edit`} className="details-options-btn">
+                                        <Link to={`/nft/catalog/${params?.id}/edit`}
+                                            className="details-options-btn"
+                                        >
                                             Edit
                                         </Link>
-                                        <button onClick={deleteHandler}
-                                            className="details-options-btn">
+                                        <button onClick={deleteHandler} className="details-options-btn" >
                                             Delete
                                         </button>
                                     </>

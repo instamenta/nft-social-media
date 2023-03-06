@@ -14,14 +14,13 @@ export const Navbar = () => {
     const navigate = useNavigate();
 
     const { auth, setAuth } = useContext(AuthContext)
-
     const [logInfo, setLogInfo] = useState(false)
     const [userId, setUserId] = useState('')
 
     useEffect(() => {
         const cookie = Cookies.get('user', { signed: true })
         if (cookie) {
-            async function userData() {
+            (async function userData() {
                 const { user } = await decodeToken(cookie)
                 if (user) {
                     setUserId(user._id)
@@ -30,11 +29,9 @@ export const Navbar = () => {
                     setUserId('')
                     setLogInfo(false)
                 }
-            }
-            userData()
+            })()
         } else {
             setUserId('')
-
             setLogInfo(false)
         }
     }, [auth, setAuth])

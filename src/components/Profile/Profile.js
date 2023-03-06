@@ -2,12 +2,10 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import AuthContext from "../../context/AuthProvider"
 import { editUserData, editUserBio, getUser } from "../../services/ProfileService"
-import { useSelector } from "react-redux"
 
 import "./Profile.css"
 export const Profile = () => {
     const params = useParams()
-    const user = useSelector((state) => state.user.value)
     const userId = params.id
     const { auth, setAuth } = useContext(AuthContext)
 
@@ -116,7 +114,7 @@ export const Profile = () => {
                                     to={"/profile/" + userData._id + "/select-profile-picture"}
                                     className="select-pic-btn"
                                 >
-                                    Choose Nft11111111111111111111111111111111111111111
+                                    Choose NFT
                                 </Link>
                                 <button className="edit-bio-btn" onClick={handleUserBio} >
                                     Edit Bio

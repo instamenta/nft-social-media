@@ -9,15 +9,12 @@ import "./Register.css"
 
 export const Register = () => {
     const navigate = useNavigate()
-    const { auth, setAuth } = useContext(AuthContext)
-    const [errors, setErrors] = useState('')
+    const { setAuth } = useContext(AuthContext)
 
+    const [errors, setErrors] = useState('')
     const [values, setValues] = useState({
-        username: '',
-        email: '',
-        birthday: '',
-        password: '',
-        confirmPassword: '',
+        username: '', email: '', birthday: '',
+        password: '', confirmPassword: '',
     })
     const inputs = [
         {
@@ -69,9 +66,8 @@ export const Register = () => {
     ]
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const formData = new FormData(e.target)
-        const { username, email, birthday, password } = Object.fromEntries(formData.entries());
+        const { username, email, birthday, password } = Object.fromEntries(formData.entries())
 
         const registerData = await registerUser(
             username,
@@ -87,9 +83,9 @@ export const Register = () => {
             setErrors('Register error')
         }
     }
-    const onChange = (e) => {
+    const onChange = (e) =>
         setValues({ ...values, [e.target.name]: e.target.value })
-    }
+
     return (
         <div>
             <form onSubmit={handleSubmit} className="form-container">
@@ -103,8 +99,11 @@ export const Register = () => {
                         onChange={onChange} />
                 ))}
                 <Link to="/users/login" className='auth-redirect'>
-                    Redirect to login</Link>
-                <button className="submit-button">Register</button>
+                    Redirect to login
+                </Link>
+                <button className="submit-button">
+                    Register
+                </button>
             </form>
         </div>
     )

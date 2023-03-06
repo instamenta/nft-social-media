@@ -1,14 +1,14 @@
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import AuthContext from '../../context/AuthProvider'
 import { editNft, getNftById } from '../../services/NftService'
 import { Card } from '../Catalog/Card/Card'
 import { FormInput } from "../FormInput/FormInput"
+import { useSelector } from "react-redux"
 
 export const Edit = () => {
     const params = useParams()
     const navigate = useNavigate()
-    const { auth } = useContext(AuthContext)
+    const user = useSelector((state) => state.user.value)
 
     const [errors, setErrors] = useState('')
     const [values, setValues] = useState({
@@ -21,7 +21,7 @@ export const Edit = () => {
     useEffect(() => {
         const getData = async () => {
             const data = await getNftById(params.id)
-            if(data.messages) {
+            if (data.messages) {
                 return
             }
             setValues({
@@ -85,24 +85,22 @@ export const Edit = () => {
         e.preventDefault();
 
         const formData = new FormData(e.target)
-        let { name, info, description, price, pic } = Object.fromEntries(formData.entries())
+        const { name, info, description, price, pic } = Object.fromEntries(formData.entries())
 
         try {
-            const status  = await editNft(params.id, name, info, description, price, pic, auth)
-            console.log(status)
-            if (status === 200) {
+            const status = await editNft(params.id, name, info, description, price, pic, user)
+            if (status === 200) 
                 navigate(`/nft/catalog/${params.id}`)
-            } else {
+             else 
                 setErrors('Updating Failed')
-            }
         } catch (error) {
             setErrors('Updating Failed!')
         }
     }
     const onChange = (e) => {
-        setValues({ 
-            ...values, 
-            [e.target.name]: e.target.value 
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value
         })
     }
     return (

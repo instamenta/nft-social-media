@@ -3,14 +3,10 @@ import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../../services/UserService'
 import { FormInput } from '../FormInput/FormInput'
-
 import AuthContext from '../../context/AuthProvider'
 
 export const Login = () => {
-
-    
     const navigate = useNavigate();
-
     const { setAuth } = useContext(AuthContext)
 
     const [errors, setErrors] = useState('')
