@@ -1,18 +1,19 @@
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Card } from "./Card/Card"
-import axios from 'axios'
 import { useEffect, useState } from "react"
+
 import "./Catalog.css"
+import { getNfts } from "../../services/NftService"
 
 export const Catalog = () => {
-
     const navigate = useNavigate()
     const [nftList, setNftList] = useState([])
+
     const ntfComponents = nftList.map((card) => {
-        const price = card.price.toString()
-        let eventHandler = () => {
+        const price = card.price?.toString()
+        const eventHandler = () =>
             navigate(`/nft/catalog/${card._id}`)
-        }
+
         return (
             <Card
                 key={card._id}
@@ -26,13 +27,11 @@ export const Catalog = () => {
     })
 
     useEffect(() => {
-        async function fetchData() {
-            const res = await axios.get('http://localhost:3031/nft/catalog')
-            if (res.status === 200) {
-                setNftList(res.data)
-            }
-        }
-        fetchData()
+        (async function getData() {
+            const data = await getNfts()
+            if (data.status === 200)
+                setNftList(data.data)
+        })()
     }, [])
 
     return (

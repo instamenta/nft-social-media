@@ -1,62 +1,57 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useParams, useNavigate } from "react-router-dom"
-import AuthContext from "../../context/AuthProvider"
 import { deleteNft, getNftById, likeNft, ownNft } from "../../services/NftService"
 import { getUser } from "../../services/ProfileService"
+import { useSelector } from "react-redux"
+
+
 import "./Details.css"
 
 export const Details = () => {
     const params = useParams()
     const navigate = useNavigate()
-    const { auth, } = useContext(AuthContext)
+    const user = useSelector((state) => state.user.value)
 
-    const [editUrl, setEditUrl] = useState('/')
+
+
     const [creatorName, setCreatorName] = useState('')
     const [creatorId, setCreatorId] = useState('')
     const [liked, setLiked] = useState(false)
     const [owned, setOwned] = useState(false)
-    const [isOwner, setIsOwner] = useState(false)
     const [likeState, setLikeState] = useState(0)
     const [ownState, setOwnState] = useState(0)
     const [isGuest, setIsGuest] = useState(false)
+    const [isOwner, setIsOwner] = useState(false)
+
     const [nftData, setNftData] = useState({
-        _id: '',
-        info: '',
-        likes: [],
-        name: '',
-        owner: '',
-        pic: '',
-        price: '',
-        ready: false,
-        currentUser: '',
+        _id: '', info: '', likes: [],
+        name: '', owner: '', currentUser: '',
+        price: '', ready: false, pic: '',
     })
 
     useEffect(() => {
         let username
-        if (!auth) {
+        if (user._id === '') {
             setIsGuest(true)
         } else {
-            username = auth?.username
+            username = user?.username
             setIsGuest(false)
         }
-        const getData = async () => {
+        (async function getData() {
             const data = await getNftById(params.id)
-            if (data?.message) {
-                return
-            }
-            setEditUrl(`/nft/catalog/${params.id}/edit`)
+            if (data?.message) return
             setCreatorId(data.creator)
+
             if (username) {
-                if (data.owners.includes(username)) {
+                if (data.owners?.includes(username))
                     setOwned(true)
-                } else {
+                else
                     setOwned(false)
-                }
-                if (data.likes.includes(username)) {
+
+                if (data.likes?.includes(username))
                     setLiked(true)
-                } else {
+                else
                     setLiked(false)
-                }
             }
             setNftData({
                 _id: data._id,
@@ -70,28 +65,25 @@ export const Details = () => {
                 creator: data.creator,
                 description: data.description,
                 currentUser: username,
-            })            
+            })
             const userObject = await getUser(data.creator)
             if (userObject?.username === username) {
                 setIsOwner(true)
             }
             setCreatorName(userObject?.username)
-        }
-        getData()
+        })()
     }, []);
 
     const deleteHandler = async (e) => {
         e.preventDefault()
         const data = await deleteNft(params.id)
-        if (data.message) {
-            return
-        }
+        if (data.message) return
         navigate('/nft/catalog')
     }
     const likeHandler = async (e) => {
         e.preventDefault()
         try {
-            await likeNft(nftData._id, auth.username, creatorName)
+            await likeNft(nftData._id, user.username, creatorName)
             if (liked === true) {
                 setLiked(false)
                 setLikeState(state => state - 1)
@@ -107,7 +99,7 @@ export const Details = () => {
         e.preventDefault()
         try {
             const picUrl = nftData.pic
-            await ownNft(nftData._id, auth.username, creatorName, picUrl)
+            await ownNft(nftData._id, user.username, creatorName, picUrl)
             if (owned === true) {
                 setOwnState(state => state - 1)
                 setOwned(false)
@@ -126,36 +118,45 @@ export const Details = () => {
                     {nftData.ready === true
                         ? <div className="details-grid">
                             <div className='details-pic-container'>
-                                <a href={nftData.pic}>
-                                    <img className="details-pic" src={nftData.pic} alt="details-pic" />
-                                </a>
+                                <img className="details-pic" src={nftData.pic} alt="details-pic" />
                             </div>
                             <div className="details-info-container">
                                 <div className="details-top">
-                                    <h1 className="details-name">{nftData.name}</h1>
-                                    <h1 className="details-info">( {nftData.info} )</h1>
+                                    <h1 className="details-name">
+                                        {nftData.name}
+                                    </h1>
+                                    <h1 className="details-info">
+                                        ( {nftData.info} )
+                                    </h1>
                                 </div>
                                 <div>
-                                    {nftData.description.length > 0
-                                        ? <h1 className="details-description">"{nftData.description.trim()}"</h1>
-                                        : <></>
+                                    {nftData.description?.length > 0
+                                        ? <h1 className="details-description">
+                                            "{nftData.description?.trim()}"
+                                        </h1>
+                                        : null
                                     }
-                                    <h1 className="details-creator">Made By: <Link to={`/profile/` + creatorId} >{creatorName}</Link></h1>
-                                    <h1 className="details-creator">Likes: {nftData.likes.length + likeState} ♥</h1>
-                                    <h1 className="details-creator">Owners: {nftData.owners.length + ownState} #</h1>
+                                    <h1 className="details-creator">
+                                        Made By:
+                                        <Link to={`/profile/` + creatorId} >
+                                            {creatorName}
+                                        </Link>
+                                    </h1>
+                                    <h1 className="details-creator">
+                                        Likes: {nftData.likes?.length + likeState} ♥
+                                    </h1>
+                                    <h1 className="details-creator">
+                                        Owners: {nftData.owners?.length + ownState} #
+                                    </h1>
                                 </div>
                                 <div className="details-action-btn">
                                     {(isGuest || isOwner) ? <></>
                                         : <>
                                             <button onClick={likeHandler} className="like-btn">
-                                                {liked
-                                                    ? 'liked'
-                                                    : 'like'}
+                                                {liked ? 'liked' : 'like'}
                                             </button>
                                             <button onClick={ownHandler} className="own-btn">
-                                                {owned
-                                                    ? 'owned'
-                                                    : 'own'}
+                                                {owned ? 'owned' : 'own'}
                                             </button>
                                         </>}
                                 </div>
@@ -164,16 +165,25 @@ export const Details = () => {
                                 </div>
                             </div>
                             <div className="details-btn-container">
-                                <Link to="/nft/catalog" className="go-back-btn">✘</Link>
+                                <Link to="/nft/catalog" className="go-back-btn">
+                                    ✘
+                                </Link>
                                 {isOwner ?
                                     <>
-                                        <Link to={editUrl} className="details-options-btn">Edit</Link>
-                                        <button onClick={deleteHandler} className="details-options-btn">Delete</button>
+                                        <Link to={`/nft/catalog/${params?.id}/edit`} className="details-options-btn">
+                                            Edit
+                                        </Link>
+                                        <button onClick={deleteHandler}
+                                            className="details-options-btn">
+                                            Delete
+                                        </button>
                                     </>
-                                    : <></>}
+                                    : null}
                             </div>
                         </div>
-                        : <h1>Not found</h1>}
+                        : <h1>
+                            Not found
+                        </h1>}
                 </form>
             </div>
         </>

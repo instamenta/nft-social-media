@@ -28,6 +28,7 @@ div.container {
     border-radius: 10px 0px;
     height: 120px;
     border: 1px solid rgb(8, 7, 10);
+    
 }
 .bio-textarea:hover {
     box-shadow: 2px 2px 1px rgb(104, 123, 127);
@@ -79,6 +80,7 @@ div.container {
     width: 30px;
     border-radius: 50%;
     text-align: center;
+    
 }
 
 .confirm-button:hover {
@@ -140,6 +142,8 @@ div.container {
     text-align: center;
     color: rgb(31, 179, 228);
     user-select: none;
+
+    z-index: 1000;
 }
 .edit-bio-btn:hover {
     color: rgb(34, 134, 168);

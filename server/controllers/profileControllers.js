@@ -1,6 +1,4 @@
-// const { findByIdAndUpdate, findById } = require('../models/UserModel')
 const User = require('../models/UserModel')
-// const mongoose = require('mongoose')
 
 const getUser = async (req, res) => {
     try {
@@ -24,10 +22,6 @@ const editUserPicture = async (req, res) => {
         const ownerId = req.params.id
         const currentUser = req.body.auth
 
-        console.log(currentUser)
-        console.log(nftUrl)
-        console.log(ownerId)
-        
         if (ownerId === currentUser._id) {
             User.findByIdAndUpdate(ownerId, {
                 pic: nftUrl
@@ -49,10 +43,8 @@ const editUserPicture = async (req, res) => {
 const editUserData = async (req, res) => {
     try {
         const userId = req.params.id
-
-        let newUsername = req.body.username
-        let newEmail = req.body.email
-
+        const newUsername = req.body.username
+        const newEmail = req.body.email
         let changeState = false
 
         const userData = await User.findById(userId)
@@ -79,11 +71,10 @@ const editUserData = async (req, res) => {
 const editUserBio = async (req, res) => {
     try {
         const userId = req.params.id
-        const newBio = req.body.bioData
+        const newBio = req.body.bio
         let changeState = false
 
         const userData = await User.findById(userId)
-
         if (newBio !== userData.bio) {
             await User.findByIdAndUpdate(userId, { bio: newBio }).lean();
             changeState = true

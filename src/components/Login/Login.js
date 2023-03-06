@@ -3,23 +3,18 @@ import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../../services/UserService'
 import { FormInput } from '../FormInput/FormInput'
-import { useDispatch } from 'react-redux'
-import { login } from '../../features/user'
 
 import AuthContext from '../../context/AuthProvider'
 
 export const Login = () => {
 
-    const dispatch = useDispatch()
+    
     const navigate = useNavigate();
 
-    const { auth, setAuth } = useContext(AuthContext)
+    const { setAuth } = useContext(AuthContext)
 
     const [errors, setErrors] = useState('')
-    const [values, setValues] = useState({
-        username: '',
-        password: '',
-    })
+    const [values, setValues] = useState({ username: '', password: '' })
     const inputs = [
         {
             id: 1,
@@ -42,19 +37,16 @@ export const Login = () => {
             required: true,
         },
     ]
-    const handleSubmit = async (e) => {
+    const loginHandler = async (e) => {
         e.preventDefault();
-
         const formData = new FormData(e.target)
         const { username, password } = Object.fromEntries(formData.entries())
-
         const loginData = await loginUser(username, password)
 
         if (loginData === 'Invalid username or password') {
             setErrors('Invalid username or password')
         } else {
-            dispatch(login(loginData))
-            Cookies.set('user',loginData.token)
+            Cookies.set('user', loginData.token)
             setAuth(loginData)
             navigate('/')
         }
@@ -65,7 +57,7 @@ export const Login = () => {
     return (
         <div>
             <form
-                onSubmit={handleSubmit}
+                onSubmit={loginHandler}
                 className='form-container'>
                 <h1 className='auth-h1'>Login</h1>
                 <h2 className='try-again-message'>
