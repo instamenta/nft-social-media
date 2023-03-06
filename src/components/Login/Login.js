@@ -3,10 +3,14 @@ import { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../../services/UserService'
 import { FormInput } from '../FormInput/FormInput'
+import { useDispatch } from 'react-redux'
+import { login } from '../../features/user'
 
 import AuthContext from '../../context/AuthProvider'
+
 export const Login = () => {
 
+    const dispatch = useDispatch()
     const navigate = useNavigate();
 
     const { auth, setAuth } = useContext(AuthContext)
@@ -49,6 +53,7 @@ export const Login = () => {
         if (loginData === 'Invalid username or password') {
             setErrors('Invalid username or password')
         } else {
+            dispatch(login(loginData))
             Cookies.set('user',loginData.token)
             setAuth(loginData)
             navigate('/')

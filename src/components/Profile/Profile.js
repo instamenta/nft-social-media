@@ -2,9 +2,13 @@ import { useContext, useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import AuthContext from "../../context/AuthProvider"
 import { editUserData, editUserBio, getUser } from "../../services/ProfileService"
+import { useSelector } from "react-redux"
+
 import "./Profile.css"
 export const Profile = () => {
     const params = useParams()
+    const user = useSelector((state) => state.user.value)
+
     const { auth, setAuth } = useContext(AuthContext)
     const userId = params.id
 
@@ -92,8 +96,8 @@ export const Profile = () => {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="profile-img">
-                                <a href={userData.pic}>
-                                    <img className="profile-pic" src={userData.pic} alt='not-found' />
+                                <a href={user.pic}>
+                                    <img className="profile-pic" src={user.pic} alt='not-found' />
                                 </a>
                             </div>
                         </div>
@@ -105,18 +109,18 @@ export const Profile = () => {
                                 {isOwner
                                     ? <textarea
                                         className="profile-bio mt-3 mb-5 bio-textarea"
-                                        defaultValue={userData.bio}>
+                                        defaultValue={user.bio}>
                                     </textarea>
                                     : <p className="profile-bio mt-3 mb-5 ">
-                                        ~ " {userData?.bio?.slice(0, 230)} " ~
+                                        ~ " {user?.bio?.slice(0, 230)} " ~
                                     </p>
                                 }
                                 <div className="info-grid">
                                     <p className="like-data">
-                                        Likes given: {userData.likedNft.length}
+                                        Likes given: {user.likedNft?.length}
                                     </p>
                                     <p className="nft-data">
-                                        NFT owned: {userData.ownedNft.length}
+                                        NFT owned: {user.ownedNft?.length}
                                     </p>
                                 </div>
                             </div>
@@ -126,7 +130,7 @@ export const Profile = () => {
                             {isOwner ?
                                 <>
                                     <Link
-                                        to={"/profile/" + userData._id + "/select-profile-picture"}
+                                        to={"/profile/" + user._id + "/select-profile-picture"}
                                         className="select-pic-btn"
                                     >
                                         Choose Nft11111111111111111111111111111111111111111
@@ -141,17 +145,6 @@ export const Profile = () => {
                     </div>
 
                     <div className="row">
-                        {/* <div className="col-md-4">
-                            <div className="profile-work">
-                                <p> Social Medias: </p>
-                                <Link to="" target="_Jam">YouTube</Link> <br />
-                                <Link to="" target="_Jam">Instagram</Link> <br />
-                                <Link to="" target="_Jam">Facebook</Link> <br />
-                                <Link to="" target="_Jam">Twitter</Link> <br />
-                                <Link to="" target="_Jam">Telegram</Link> <br />
-                            </div>
-                        </div> */}
-
                         <div className="col-md-8 pl-5 about-info ">
                             <div className="tab-content profile-tab" id="myTabContent">
                                 <div className="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -173,7 +166,7 @@ export const Profile = () => {
                                                     <input
                                                         type="text"
                                                         className="user-data"
-                                                        defaultValue={userData.username}
+                                                        defaultValue={user.username}
                                                         placeholder="Please fill field!"
                                                         name='username'
                                                     />
@@ -183,7 +176,7 @@ export const Profile = () => {
                                                     <input
                                                         disabled
                                                         className="user-data"
-                                                        defaultValue={userData.username}
+                                                        defaultValue={user.username}
                                                         placeholder="Please fill field!"
                                                     />
                                                 </>}
@@ -205,7 +198,7 @@ export const Profile = () => {
 
                                                         type="text"
                                                         className="user-data"
-                                                        defaultValue={userData.email}
+                                                        defaultValue={user.email}
                                                         placeholder="Please fill field!"
                                                         name="email" />
                                                     <button className="confirm-button" type="submit">✓</button>
@@ -214,7 +207,7 @@ export const Profile = () => {
                                                     <input
                                                         disabled
                                                         className="user-data"
-                                                        defaultValue={userData.email}
+                                                        defaultValue={user.email}
                                                         placeholder="Please fill field!" />
                                                 </>}
                                         </div>
@@ -225,7 +218,7 @@ export const Profile = () => {
                                             <label>Birthday :</label>
                                         </div>
                                         <div className="aligner ">
-                                            <p className="user-text">{userData.birthday}</p>
+                                            <p className="user-text">{user.birthday}</p>
                                         </div>
                                     </div>
                                 </div>

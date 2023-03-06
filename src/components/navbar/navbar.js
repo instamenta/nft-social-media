@@ -4,10 +4,15 @@ import AuthContext from "../../context/AuthProvider";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { decodeToken } from "../../services/NftService";
+import { useDispatch } from "react-redux";
+import { logout } from "../../features/user";
 
 import "./Navbar.css"
+
 export const Navbar = () => {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
+
     const { auth, setAuth } = useContext(AuthContext)
 
     const [logInfo, setLogInfo] = useState(false)
@@ -29,16 +34,19 @@ export const Navbar = () => {
             userData()
         } else {
             setUserId('')
+
             setLogInfo(false)
         }
     }, [auth, setAuth])
 
-    const logout = (e) => {
+    const logoutHandler = (e) => {
         e.preventDefault();
+
         setLogInfo(false)
         setUserId('')
         Cookies.remove('user', { path: '/' })
         setAuth({})
+        dispatch(logout())
         navigate('/users/login')
     }
 
@@ -87,7 +95,7 @@ export const Navbar = () => {
                     : <></>}
                 {logInfo === true ?
                     <li className="nav_item">
-                        <Link to="#" onClick={logout} className="nav_link">
+                        <Link to="#" onClick={logoutHandler} className="nav_link">
                             Logout
                         </Link>
                     </li>
