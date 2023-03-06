@@ -111,7 +111,7 @@ The NFT's are dispalyed in different order starting from the most expensive and 
 * the most wanted list
 * detail pages
 * users profiles
-! but you can't 
+### but you can't:
 * like
 * own
 * upload
