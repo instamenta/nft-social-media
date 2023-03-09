@@ -32,14 +32,12 @@ const nftSchema = mongoose.Schema({
     owners: [
         {
             type:String
-
         }
     ],
     likes: [
         String
     ]
 })
-
 
 const Nft = mongoose.model('Nft', nftSchema);
 

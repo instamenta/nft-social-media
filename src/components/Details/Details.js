@@ -57,7 +57,7 @@ export const Details = () => {
             }
             setCreatorName(userObject?.username)
         })()
-    }, []);
+    }, [user]);
 
     const deleteHandler = async (e) => {
         e.preventDefault()

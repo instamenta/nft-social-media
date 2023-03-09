@@ -1,14 +1,14 @@
 const Nft = require('../models/NftModel')
 const User = require('../models/UserModel')
 const uploadNft = async (req, res) => {
-    let { 
-        name, 
-        info, 
-        description, 
-        price, 
-        pic, 
+    let {
+        name,
+        info,
+        description,
+        price,
+        pic,
         auth
-        } = req.body;
+    } = req.body;
 
     price = Number(price)
 
@@ -27,7 +27,7 @@ const uploadNft = async (req, res) => {
 
 const catalogNft = async (req, res) => {
 
-    const nftList = await Nft.find().sort({_id: -1})
+    const nftList = await Nft.find().sort({ _id: -1 })
     res.json(nftList)
 }
 const detailsNft = async (req, res) => {
@@ -47,7 +47,7 @@ const editNft = async (req, res) => {
         description: data.description,
         price: data.price,
         pic: data.pic
-    }, function (err, docs) {
+    }, (err, docs) => {
         if (err) {
             console.log(err)
             res.status = 203
@@ -61,20 +61,21 @@ const editNft = async (req, res) => {
 const deleteNft = async (req, res) => {
 
     const nftId = req.params.id
-    Nft.findByIdAndDelete(nftId, function (err, docs) {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log("Deleted: " + docs)
-        }
-    })
+    Nft.findByIdAndDelete(nftId,
+        (err, docs) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log("Deleted: " + docs)
+            }
+        })
     res.status = 200
     res.json()
 }
 
 const likeNft = async (req, res) => {
 
-    const [user, creator] = req.params.usernames.split('=')
+    const [ user ] = req.params.usernames?.split('=')
     const nftId = req.params.id
 
     const nftData = await Nft.findOne({ _id: nftId }).lean()
@@ -82,12 +83,14 @@ const likeNft = async (req, res) => {
     if (nftData.likes.includes(user)) {
         const responce = await Nft.findOneAndUpdate({ _id: nftId }, { $pull: { likes: user } }).lean();
         await User.findOneAndUpdate({ username: user }, { $pull: { likedNft: nftId } }).lean();
+        
         res.status = 200
         res.json(responce)
 
     } else {
         const responce = await Nft.findOneAndUpdate({ _id: nftId }, { $push: { likes: user } }).lean();
         await User.findOneAndUpdate({ username: user }, { $push: { likedNft: nftId } }).lean();
+
         res.status = 200
         res.json(responce)
     }
@@ -95,7 +98,7 @@ const likeNft = async (req, res) => {
 }
 const ownNft = async (req, res) => {
 
-    const [user, creator] = req.params.usernames.split('=')
+    const [ user ] = req.params.usernames.split('=')
     const nftId = req.params.id
     const nftUrl = req.body.picUrl.toString()
 
@@ -118,20 +121,20 @@ const ownNft = async (req, res) => {
 }
 
 const latestNft = async (req, res) => {
-
-    if(req.params) {
+    
+    if (req.params) {
         const count = Number(req.params.count)
-        const nftList = await Nft.find().sort({price: -1}).limit(count)
+        const nftList = await Nft.find().sort({ price: -1 }).limit(count)
 
         res.json(nftList)
     }
 }
-const mostWantedNft = async (req,res) => {
+const mostWantedNft = async (req, res) => {
 
-    const nftList = await Nft.find().sort({price: -1})
+    const nftList = await Nft.find().sort({ price: -1 })
 
     res.status = 200
     res.json(nftList)
 }
 
-module.exports = { uploadNft, catalogNft, detailsNft, editNft, deleteNft, likeNft, ownNft, latestNft, mostWantedNft}
+module.exports = { uploadNft, catalogNft, detailsNft, editNft, deleteNft, likeNft, ownNft, latestNft, mostWantedNft }

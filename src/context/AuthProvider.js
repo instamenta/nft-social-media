@@ -9,7 +9,7 @@ const AuthContext = createContext({})
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({})
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
         const cookie = Cookies.get('user')
         if (auth && cookie !== undefined) {
@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
                 }
             })()
         }
-    }, [ auth ])
+    }, [ auth, document.cookie])
 
     return (
         <AuthContext.Provider value={{ auth, setAuth }}>
