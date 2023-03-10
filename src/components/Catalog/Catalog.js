@@ -36,16 +36,21 @@ export const Catalog = () => {
 
     return (
         <div className="catalog-container">
-            <form className='catalog-form'>
-                <h1 className="message-catalog">
-                    FIND ALL NFT</h1>
-                {ntfComponents
-                    ? <div className="wrapper-card">
-                        {ntfComponents}
-                    </div>
-                    : <div className="wrapper-card">
-                        <h1>No available nft in your region</h1>
-                    </div>}
+            <form className="catalog-form">
+                <h1 className="message-catalog">FIND ALL NFT</h1>
+                <div className="wrapper-card">
+                    {ntfComponents ? (
+                        <>
+                            <div className="box">
+                                {ntfComponents}
+                            </div>
+                        </>
+                    ) : (
+                        <div className="box">
+                            <h1>No available nft in your region</h1>
+                        </div>
+                    )}
+                </div>
             </form>
         </div>
     )
