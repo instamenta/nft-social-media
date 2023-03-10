@@ -1,132 +1,201 @@
-/* Catalog container */
+/* .wrapper-card {
+    margin: 2rem;
+    margin-top: 10px;
+    padding-top: 0px;
+    display: grid;
+    gap:1rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    padding-bottom: 30px;
+} */
+.catalog-form {
+    width: 80vw;
+    padding: 8px 32px;
+    background-color: rgba(255, 255, 255,0.8);   
+    border-radius: 24px;
+}
+.wrapper-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .catalog-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding-top: 24px;
-    min-height: 110vh;
-    background-image: linear-gradient(to bottom,
-            #000000,
-            #2e2e2e,
-            #585858,
-            #878787,
-            #b9b9b9,
-            #b9b9b9,
-            #b9b9b9,
-            #b9b9b9,
-            #878787,
-            #585858,
-            #2e2e2e,
-            #000000);
+    justify-content: center;
+}
+.card-img {
+    object-fit: cover;
+    max-width: 80vw;
+
+    aspect-ratio: 1/1;
+    border-radius: 20px 20px 0px 0px;
+    user-select: none;
 }
 
-.catalog-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 1000px;
+.card-body {
+    margin: 1rem;
+    user-select: none;
+}
+
+.card-title {
+    line-height: 1.4rem;
+    margin-bottom: 0.5rem;
+    user-select: none;
+}
+
+.card-description {
+    user-select: none;
+}
+
+.card-price {
+    font-size: 1.4rem;
+    user-select: none;
+    margin-top: 0.6rem;
+
+}
+
+.card-price::before {
+    content: "$";
+    font-size: 1rem;
+    position: relative;
+    top: -0.3rem;
+    user-select: none;
+    padding-right: 0.1rem;
+}
+
+.card-btn {
+    border: none;
+    border-top: 1px solid gainsboro;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: bold;
+    color: inherit;
     width: 100%;
-    margin: 0 auto;
-    padding: 0 16px;
+    cursor: pointer;
+    font-size: 20px;
+    text-align: center;
+    user-select: none;
+    height: 50%;
+}
+
+.card-btn:hover {
+    color: black;
+    background-color: whitesmoke;
+    border-radius: 50%;
 }
 
 .message-catalog {
-    color: #fff;
-    font-size: 2rem;
-    margin-bottom: 32px;
     text-align: center;
+
+    padding: 20px;
+
+    font-size: 84px !important;
+
+
+    letter-spacing: 6px;
+    user-select: none;
+
+    font-family: 'Gajraj One', cursive;
+    text-shadow: 2px 2px rgb(255, 79, 255);
+    -webkit-text-stroke: rgb(255, 79, 255) 1px;
+
+    text-shadow: 2px 2px rgb(109, 100, 187);
+    color: rgb(255, 255, 255);
+    user-select: none;
+    transition: all 250ms ease;
+}
+.message-catalog:hover {
+    color: rgb(162, 162, 196);
+    transform: scale(1.2);
+    letter-spacing: 16px;
 }
 
-/* Catalog Cards */
-.wrapper-card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 16px;
-}
+/* responsive */
 
-.wrapper-card .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 16px;
-    background: #1d1d1d;
-    border-radius: 10px;
-    overflow: hidden;
-}
+.card {
 
-.wrapper-card .card img {
-    width: 100%;
-    height: 0;
-    padding-bottom: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.wrapper-card .card h2 {
-    color: #fff;
-    font-size: 1.2rem;
-    margin-bottom: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.wrapper-card .card h3 {
-    color: #fff;
-    font-size: 1rem;
-    margin-bottom: 16px;
-}
-
-.wrapper-card .card p {
-    color: #fff;
-    font-size: 0.8rem;
-    margin-bottom: 8px;
-}
-
-.wrapper-card .card .actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    font-size: 0.8rem;
-}
-
-.wrapper-card .card .actions button {
-    padding: 8px;
-    border-radius: 4px;
-    border: none;
-    color: #fff;
-    font-size: inherit;
-    background-color: #333;
+    text-align: center;
     cursor: pointer;
+    box-shadow: 0 0 10px 5px lightgray;
+    border-radius: 20px;
+    margin: 10px;
+
+    transition: all 300ms ease;
 }
 
-.wrapper-card .card .actions button:hover {
-    background-color: #555;
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px 5px rgb(31, 179, 228);
 }
 
-@media only screen and (max-width: 1024px) {
+.catalog-container {
+    display: flex;
+    align-items: center;
+}
+.wrapper-card {
+    margin: 2rem;
+    margin-top: 10px;
+    padding-top: 0px;
+    display: grid;
+    
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+@media only screen and (max-width: 600px) {
     .wrapper-card {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 12px;
-        padding: 12px;
+        grid-template-columns: 1fr;
+        /* background-color: red; */
+        gap: 0;
+    }
+    .card {
+        max-width: 80vw;
+    }
+    .message-catalog {
+    font-size: 16px;
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media (min-width: 600px) {
     .wrapper-card {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 8px;
-        padding: 8px;
+        grid-template-columns: 1fr ;
+        /* background-color: black; */
+        max-width: 80vw;    
+        gap: 0rem;
     }
-
-    .wrapper-card .card h2 {
-        font-size: 1rem;
+    .card {
+        /* max-width: 40vw; */
     }
+    .message-catalog {
+        font-size: 16px;
+        }
+}
 
-    .wrapper-card .card h3 {
-        font-size: 0.8rem;
+@media (min-width: 900px) {
+    .wrapper-card {
+        grid-template-columns: 1fr 1fr ;
+        /* background-color: yellow; */
+        gap: 2rem;
+    }
+    .message-catalog {
+        font-size: 24px;
+        }
+}
+@media (min-width: 1350px) {
+    .wrapper-card {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        /* background-color: aqua; */
+        gap: 3rem;
+        
+    }
+    .message-catalog {
+        font-size: 32px;
     }
 }
+
+/* 
+  
+
+ */
