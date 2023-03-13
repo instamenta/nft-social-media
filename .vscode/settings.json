@@ -1,0 +1,9 @@
+{
+    "workbench.colorTheme": "One Dark Pro",
+    "workbench.preferredLightColorTheme": "One Dark Pro Darker",
+    "workbench.preferredHighContrastLightColorTheme": "Quiet Light",
+    "workbench.editor.autoLockGroups": {
+        "imagePreview.previewEditor": true
+    },
+    "workbench.iconTheme": "material-icon-theme"
+}
