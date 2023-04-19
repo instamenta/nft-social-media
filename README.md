@@ -12,8 +12,8 @@
 
 ## Home 
 ```
-Welcoming page available for both Users and Guests and with interactive
-      image sliding deck in which the most wanted NFT's are displayed.
+A welcoming page for both Users and Guests, complete with an 
+interactive picture sliding deck displaying the most desired NFTs.
 ```     
 ![React1](https://user-images.githubusercontent.com/98179343/218256881-7726e83a-7c26-404c-b8fd-acc8886e2cd8.PNG)
 ![React2](https://user-images.githubusercontent.com/98179343/218256883-557871f7-bc7d-4887-ba39-bf259de4c878.PNG)
@@ -21,88 +21,88 @@ Welcoming page available for both Users and Guests and with interactive
 
 ## Catalog 
 ```
-The main part of the website which both Users and Guest can access
-      and see the complete list of every NFT uploaded to the website.
+The major section of the website that both Users and Visitors
+may access to see a comprehensive list of every NFT posted to the website.
+
 ```
 
 ![React3](https://user-images.githubusercontent.com/98179343/218256888-2f0029d0-0245-4273-b2ff-5036932c798e.PNG)
 
 ## Details
 ```
-Shows the most important info about selected NFT. Guests can see
-how much likes and owns it has as well as the price and the name of the person
-who uploaded it which leads to his personal Profile page, Users can see this
-info too and gain the power to Own and Like. Liking NFT adds it to your "Liked List" 
-and owning NFT adds it to your "Owned List" but also gives you the ability to pick
-it as your profile picture to add a unique self expression customization.
+Displays the most significant information about the selected NFT. 
+Guests may see how many likes and owns it has, as well as the price and 
+the name of the person who submitted it, which takes them to his personal 
+Profile page. Users can also view this information and get the ability 
+to Own and Like. Liking NFT adds it to your "Liked List" and owning NFT 
+puts it to your "Owned List," but it also adds it to your "Liked List.
 ```
 ![React4](https://user-images.githubusercontent.com/98179343/218256900-1efcc165-5d28-49c7-93df-69241abd6b70.PNG)
 
 ## Profile
 ```
-Every User his own personal profile page, here Guest can see the User's name, 
-description and picture as well as how much NFT's they own and like, as a User you can 
-change your picture, description, email, username and password as long as they remain unique.
+Each User has his or her own personal profile page, where visitors can 
+view the User's name, description, and photo, as well as how many NFTs 
+they possess and like. As a User, you may modify your picture, 
+description, email, username, and password as long as they stay unique
 ```
 ![React5](https://user-images.githubusercontent.com/98179343/218256935-2519f1e3-499a-48e2-912d-af298488fb1b.PNG)
 ![React9](https://user-images.githubusercontent.com/98179343/218256937-5fa1b614-052e-4766-9bc6-1d22949a7c91.PNG)
 
 ## Upload
 ```
-Available only for Users after either Login or Register. This is from 
-where you can upload your own NFT. After uploading you are redirected to your 
-newly created details page of the NFT from where you can always edit it or delete it. 
-Every NFT you upload is automatically added your own list.
+Only available to Users when they Login or Register. This is the location
+where you may post your own NFT. After uploading, you will be led to your
+newly generated NFT details page, where you may always update or delete it.
+Every NFT you publish is instantly added to your own list.
 ```
 ![React8](https://user-images.githubusercontent.com/98179343/218256951-9efd051f-ec88-41db-b050-5492a6390778.PNG)
 
 ## Edit 
 ```
-This is where you can edit the uploaded NFT's to your liking.
+This is where you may make changes to the uploaded NFTs.
 ```
 ## Register
 ```
-sends the data  to the server if the form is filled correctly.
-Checks if the username and email are unique, and hashes your password,
-after that creates the user profile and stores the data in the MongoDB database.
-After successful register it redirects you to your newly created user profile.      
+Transmits the data to the server if the form is successfully filled out.
+Checks to see if the username and email are unique, then hashes your password 
+before creating the user profile and storing the data in the MongoDB database.
+After successfully registering, you will be redirected to your newly created user profile.           
 ```
 ![React7](https://user-images.githubusercontent.com/98179343/218256957-8b6dd16b-a717-4456-8890-e138216ede2f.PNG)
 
 
 ## Login - 
 ```
-sends the data to the backend server where it checks for the email 
-in the database, if there is match takes the passwords and compares them. 
-If the password match a JWT Cookie token is created and send to the Client for 
-authorization this gives access to the interactive part of the social media website.
+transmits the data to the backend server, which checks the database 
+for the email address and compares the passwords. If the password matches, 
+a JWT Cookie token is generated and sent to the Client for authorisation, 
+granting access to the interactive portion of the social networking platform.
 ```
 ![React6](https://user-images.githubusercontent.com/98179343/218256958-be83dce2-8528-41a3-8373-b5d8ac1ea5ea.PNG)
 
 
 ## Select Profile Picture
 ```
-this is where Users can select their profile picture 
-from list of all the uploaded and owned NFT's by them.
+This is where users may choose their profile image from a selection of all available options.NFT
 ```
 
 * Most Wanted - 
 ```
-Variation of the Catalog page accessible for both Users and Guests.
-The NFT's are dispalyed in different order starting from the most expensive and popular.
+A Catalog page that is accessible to both Users and Guests.
+The NFTs are displayed in descending order, beginning with the most costly and popular.
 ```
 
-# The website has two parts:
+# The website is divided into two sections:
 
 ## User part 
-### After either Login or Register in the website you will be granted with access to:
-* your personal profile where you can customize your profile picture, description,
-* username and email to your liking.
-* the ability like and own NFT's uploaded by other users and create and edit your own NFT's.
-* cookie used for authorization.
+### After you Login or Register on the website, you will have access to: 
+* your personal profile, where you can customize your profile picture, description.
+* username, and email to your liking. 
+* the ability to like and own NFT's uploaded by other users, as well as create and edit your own NFT's.
 
 ## Guest part 
-### As a guest you are given a lot of freedom, you can visit the 
+### As a visitor, you have a lot of freedom; you can go to the:
 
 * homepage
 * catalog
@@ -116,16 +116,16 @@ The NFT's are dispalyed in different order starting from the most expensive and 
 * edit
 comment the NFT's.
     
-# Basic Architecture Explanation
+# Explanation of Basic Architecture
 
 ## Public
-* for static images and css + index.html
+* for static graphics, CSS, and index.html
 
 ## Server 
 ### contains the REST server 
 * routes 
 ```
-handles route redirecting to the corresponding request addres based on first parameter
+handles route redirecting to the relevant request address depending on the first parameter
 ```
       
 * utils 
@@ -140,7 +140,7 @@ keeps the Mongoose Schemas
 
 * controllers 
 ```
-find the specific fetched route and handles the REST request
+locate the fetched route and handle the REST request
 ```
           
 * src 
